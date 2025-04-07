@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-v4-models</artifactId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.5</version>
   </parent>
 
   <artifactId>opentmf-673-v4-model</artifactId>
-  <version>4.0.1.5-SNAPSHOT</version>
+  <version>4.0.1.5</version>
   <description>
     TMF-673: Geographic Address Management API, version: 4.0.1
     Hierarchical model classes with polymorphism.
@@ -19,7 +19,7 @@
     <dependency>
       <groupId>org.opentmf.model</groupId>
       <artifactId>opentmf-common-v4-model</artifactId>
-      <version>4.1.0.5-SNAPSHOT</version>
+      <version>4.1.0.5</version>
     </dependency>
   </dependencies>
 
