@@ -8,26 +8,26 @@ common group modules and the single module referenced classes in their correspon
 
 Currently, it holds the original model classes for the following TMF APIs:
 
-- [TMF-620](tmf-620-model/README.md) (4.1.0.4) Product Catalog Management API
-- [TMF-622](tmf-622-model/README.md) (4.0.0.4) Product Ordering Management API
-- [TMF-629](tmf-629-model/README.md) (4.0.0.4) Customer Management API
-- [TMF-632](tmf-632-model/README.md) (4.0.0.4) Party Management API
-- [TMF-633](tmf-633-model/README.md) (4.0.0.4) Service Catalog Management API
-- [TMF-634](tmf-634-model/README.md) (4.1.0.4) Resource Catalog Management API
-- [TMF-637](tmf-637-model/README.md) (4.0.0.4) Product Inventory Management API
-- [TMF-638](tmf-638-model/README.md) (4.0.0.4) Service Inventory Management API
-- [TMF-639](tmf-639-model/README.md) (4.0.0.4) Resource Inventory Management API
-- [TMF-641](tmf-641-model/README.md) (4.1.0.4) Service Ordering Management API
-- [TMF-648](tmf-648-model/README.md) (4.0.0.4) Quote Management API
-- [TMF-651](tmf-651-model/README.md) (4.0.0.4) Agreement
-- [TMF-652](tmf-652-model/README.md) (4.0.0.4) Resource Order Management API
-- [TMF-663](tmf-663-model/README.md) (4.0.0.4) Shopping Cart Management API
-- [TMF-666](tmf-666-model/README.md) (4.0.0.4) Account Management API
-- [TMF-669](tmf-669-model/README.md) (4.0.0.4) Party Role Management API
-- [TMF-673](tmf-673-model/README.md) (4.0.1.4) Geographic Address Management API
-- [TMF-674](tmf-674-model/README.md) (4.0.0.4) Geographic Site Management API
-- [TMF-675](tmf-675-model/README.md) (4.0.0.4) Geographic Location API
-- [TMF-681](tmf-681-model/README.md) (4.0.0.4) Communication Management API
+- [TMF-620](tmf-620-model/README.md) (4.1.0.5) Product Catalog Management API
+- [TMF-622](tmf-622-model/README.md) (4.0.0.5) Product Ordering Management API
+- [TMF-629](tmf-629-model/README.md) (4.0.0.5) Customer Management API
+- [TMF-632](tmf-632-model/README.md) (4.0.0.5) Party Management API
+- [TMF-633](tmf-633-model/README.md) (4.0.0.5) Service Catalog Management API
+- [TMF-634](tmf-634-model/README.md) (4.1.0.5) Resource Catalog Management API
+- [TMF-637](tmf-637-model/README.md) (4.0.0.5) Product Inventory Management API
+- [TMF-638](tmf-638-model/README.md) (4.0.0.5) Service Inventory Management API
+- [TMF-639](tmf-639-model/README.md) (4.0.0.5) Resource Inventory Management API
+- [TMF-641](tmf-641-model/README.md) (4.1.0.5) Service Ordering Management API
+- [TMF-648](tmf-648-model/README.md) (4.0.0.5) Quote Management API
+- [TMF-651](tmf-651-model/README.md) (4.0.0.5) Agreement
+- [TMF-652](tmf-652-model/README.md) (4.0.0.5) Resource Order Management API
+- [TMF-663](tmf-663-model/README.md) (4.0.0.5) Shopping Cart Management API
+- [TMF-666](tmf-666-model/README.md) (4.0.0.5) Account Management API
+- [TMF-669](tmf-669-model/README.md) (4.0.0.5) Party Role Management API
+- [TMF-673](tmf-673-model/README.md) (4.0.1.5) Geographic Address Management API
+- [TMF-674](tmf-674-model/README.md) (4.0.0.5) Geographic Site Management API
+- [TMF-675](tmf-675-model/README.md) (4.0.0.5) Geographic Location API
+- [TMF-681](tmf-681-model/README.md) (4.0.0.5) Communication Management API
 
 ## Dependencies
 
@@ -112,3 +112,5 @@ the above method is very convenient for using the library's utility methods.
 - Adds TMF-681 Communications Management model.
 ### 1.0.4
 - The first open-source release.
+### 1.0.5
+- Updates opentmf-commons dependency to 1.0.5

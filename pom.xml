@@ -81,7 +81,7 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
 
-    <opentmf-commons.version>1.0.4</opentmf-commons.version>
+    <opentmf-commons.version>1.0.5</opentmf-commons.version>
     <lombok.version>1.18.38</lombok.version>
 
     <sonar-plugin.version>5.1.0.4751</sonar-plugin.version>
