@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-v4-models</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5-SNAPSHOT</version>
   </parent>
 
   <artifactId>opentmf-634-v4-model</artifactId>
-  <version>4.1.0.4</version>
+  <version>4.1.0.5-SNAPSHOT</version>
   <description>
     TMF-634: Resource Catalog Management API, version: 4.1.0
     Hierarchical model classes with polymorphism.
@@ -19,7 +19,7 @@
     <dependency>
       <groupId>org.opentmf.model</groupId>
       <artifactId>opentmf-resource-v4-model</artifactId>
-      <version>4.1.0.4</version>
+      <version>4.1.0.5-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
