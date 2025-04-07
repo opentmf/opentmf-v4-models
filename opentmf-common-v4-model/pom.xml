@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.opentmf.model</groupId>
+    <artifactId>opentmf-v4-models</artifactId>
+    <version>1.0.4-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>opentmf-common-v4-model</artifactId>
+  <version>4.1.0.4-SNAPSHOT</version>
+  <description>
+    Common classes that are referenced from the following TMF artifacts:
+    - TMF-620: Product Catalog Management API, version: 4.1.0
+    - TMF-622: Product Ordering Management API, version: 4.0.0
+    - TMF-629: Customer Management API, version: 4.0.0
+    - TMF-632: Party Management API, version: 4.0.0
+    - TMF-633: Service Catalog Management API, version: 4.0.0
+    - TMF-634: Resource Catalog Management API, version: 4.1.0
+    - TMF-637: Product Inventory Management API, version: 4.0.0
+    - TMF-638: Service Inventory Management API, version: 4.0.0
+    - TMF-639: Resource Inventory Management API, version: 4.0.0
+    - TMF-641: Service Ordering Management API, version: 4.1.0
+    - TMF-648: Quote Management API, version: 4.0.0
+    - TMF-651: Agreement, version: 4.0.0
+    - TMF-652: Resource Order Management API, version: 4.0.0
+    - TMF-663: Shopping Cart Management API, version: 4.0.0
+    - TMF-666: Account Management API, version: 4.0.0
+    - TMF-669: Party Role Management API, version: 4.0.0
+    - TMF-673: Geographic Address Management API, version: 4.0.1
+    - TMF-674: Geographic Site Management API, version: 4.0.0
+    - TMF-675: Geographic Location API, version: 4.0.0
+    - TMF-681: Communication Management API, version: 4.0.0
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.opentmf.commons</groupId>
+      <artifactId>opentmf-commons</artifactId>
+      <version>${opentmf-commons.version}</version>
+    </dependency>
+  </dependencies>
+
+</project>
