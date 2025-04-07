@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-v4-models</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.4</version>
   </parent>
 
   <artifactId>opentmf-681-v4-model</artifactId>
-  <version>4.0.0.4-SNAPSHOT</version>
+  <version>4.0.0.4</version>
   <description>
     TMF-681: Communication Management API, version: 4.0.0
     Hierarchical model classes with polymorphism.
@@ -19,7 +19,7 @@
     <dependency>
       <groupId>org.opentmf.model</groupId>
       <artifactId>opentmf-common-v4-model</artifactId>
-      <version>4.1.0.4-SNAPSHOT</version>
+      <version>4.1.0.4</version>
     </dependency>
   </dependencies>
 
