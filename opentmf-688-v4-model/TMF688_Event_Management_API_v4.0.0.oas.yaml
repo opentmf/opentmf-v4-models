@@ -1,0 +1,1690 @@
+openapi: 3.0.0
+info:
+  title: Event Streaming API
+  description: My api short documentation
+  version: 4.0.0
+tags:
+  - name: event
+  - name: topic
+  - name: hub
+  - name: notification listeners (client side)
+  - name: events subscription
+paths:
+  "/topic/{topicId}/event":
+    get:
+      operationId: listEvent
+      summary: List or find Event objects
+      description: This operation list or find Event entities
+      tags:
+        - event
+      parameters:
+        - name: topicId
+          description: Identifier of the parent Topic entity
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Event"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createEvent
+      summary: Creates a Event
+      description: This operation creates a Event entity.
+      tags:
+        - event
+      parameters:
+        - name: topicId
+          description: Identifier of the parent Topic entity
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Event_Create"
+        description: The Event to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Event"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/topic/{topicId}/event/{id}":
+    get:
+      operationId: retrieveEvent
+      summary: Retrieves a Event by ID
+      description: This operation retrieves a Event entity. Attribute selection is
+        enabled for all first level attributes.
+      tags:
+        - event
+      parameters:
+        - name: topicId
+          description: Identifier of the parent Topic entity
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: id
+          description: Identifier of the Event
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Event"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /topic:
+    get:
+      operationId: listTopic
+      summary: List or find Topic objects
+      description: This operation list or find Topic entities
+      tags:
+        - topic
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Topic"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createTopic
+      summary: Creates a Topic
+      description: This operation creates a Topic entity.
+      tags:
+        - topic
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Topic_Create"
+        description: The Topic to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Topic"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/topic/{id}":
+    get:
+      operationId: retrieveTopic
+      summary: Retrieves a Topic by ID
+      description: This operation retrieves a Topic entity. Attribute selection is
+        enabled for all first level attributes.
+      tags:
+        - topic
+      parameters:
+        - name: id
+          description: Identifier of the Topic
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Topic"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteTopic
+      summary: Deletes a Topic
+      description: This operation deletes a Topic entity.
+      tags:
+        - topic
+      parameters:
+        - name: id
+          description: Identifier of the Topic
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/topic/{topicId}/hub":
+    get:
+      operationId: listHub
+      summary: List or find Hub objects
+      description: This operation list or find Hub entities
+      tags:
+        - hub
+      parameters:
+        - name: topicId
+          description: Identifier of the parent Topic entity
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Hub"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createHub
+      summary: Creates a Hub
+      description: This operation creates a Hub entity.
+      tags:
+        - hub
+      parameters:
+        - name: topicId
+          description: Identifier of the parent Topic entity
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Hub_Create"
+        description: The Hub to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Hub"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/topic/{topicId}/hub/{id}":
+    get:
+      operationId: retrieveHub
+      summary: Retrieves a Hub by ID
+      description: This operation retrieves a Hub entity. Attribute selection is
+        enabled for all first level attributes.
+      tags:
+        - hub
+      parameters:
+        - name: topicId
+          description: Identifier of the parent Topic entity
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: id
+          description: Identifier of the Hub
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Hub"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteHub
+      summary: Deletes a Hub
+      description: This operation deletes a Hub entity.
+      tags:
+        - hub
+      parameters:
+        - name: topicId
+          description: Identifier of the parent Topic entity
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: id
+          description: Identifier of the Hub
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /hub:
+    post:
+      operationId: registerListener
+      summary: Register a listener
+      description: Sets the communication endpoint address the service instance must
+        use to deliver information about its health state, execution state,
+        failures and metrics.
+      tags:
+        - events subscription
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/EventSubscriptionInput"
+        description: Data containing the callback endpoint to deliver the information
+        required: true
+      responses:
+        "201":
+          description: Subscribed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/hub/{id}":
+    delete:
+      operationId: unregisterListener
+      summary: Unregister a listener
+      description: Resets the communication endpoint address the service instance must
+        use to deliver information about its health state, execution state,
+        failures and metrics.
+      tags:
+        - events subscription
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: The id of the registered listener
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/topicCreateEvent:
+    post:
+      operationId: listenToTopicCreateEvent
+      summary: Client listener for entity TopicCreateEvent
+      description: Example of a client listener for receiving the notification
+        TopicCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/TopicCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/topicChangeEvent:
+    post:
+      operationId: listenToTopicChangeEvent
+      summary: Client listener for entity TopicChangeEvent
+      description: Example of a client listener for receiving the notification
+        TopicChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/TopicChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/topicDeleteEvent:
+    post:
+      operationId: listenToTopicDeleteEvent
+      summary: Client listener for entity TopicDeleteEvent
+      description: Example of a client listener for receiving the notification
+        TopicDeleteEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/TopicDeleteEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+servers:
+  - url: https://serverRoot/tmf-api/event/v4
+components:
+  schemas:
+    Any: {}
+    Characteristic:
+      type: object
+      description: Describes a given characteristic of an object or entity through a
+        name/value pair.
+      required:
+        - name
+        - value
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the characteristic
+        name:
+          type: string
+          description: Name of the characteristic
+        valueType:
+          type: string
+          description: Data type of the value of the characteristic
+        characteristicRelationship:
+          type: array
+          items:
+            $ref: "#/components/schemas/CharacteristicRelationship"
+        value:
+          $ref: "#/components/schemas/Any"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    CharacteristicRelationship:
+      type: object
+      description: Another Characteristic that is related to the current Characteristic;
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the characteristic
+        relationshipType:
+          type: string
+          description: The type of relationship
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    EntityRef:
+      type: object
+      description: Entity reference schema to be use for all entityRef class.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of a related entity.
+        href:
+          type: string
+          format: uri
+          description: Reference of the related entity.
+        name:
+          type: string
+          description: Name of the related entity.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+      required:
+        - id
+    Event:
+      type: object
+      description: event with common attributes.
+      properties:
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        domain:
+          type: string
+          description: The domain of the event.
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        title:
+          type: string
+          description: The title of the event.
+        analyticCharacteristic:
+          type: array
+          items:
+            $ref: "#/components/schemas/Characteristic"
+        event:
+          $ref: "#/components/schemas/Any"
+        relatedParty:
+          type: array
+          items:
+            $ref: "#/components/schemas/RelatedParty"
+        reportingSystem:
+          $ref: "#/components/schemas/EntityRef"
+        source:
+          $ref: "#/components/schemas/EntityRef"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    Event_Create:
+      type: object
+      description: |-
+        event with common attributes.
+        Skipped properties: id,href
+      properties:
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        domain:
+          type: string
+          description: The domain of the event.
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        title:
+          type: string
+          description: The title of the event.
+        analyticCharacteristic:
+          type: array
+          items:
+            $ref: "#/components/schemas/Characteristic"
+        event:
+          $ref: "#/components/schemas/Any"
+        relatedParty:
+          type: array
+          items:
+            $ref: "#/components/schemas/RelatedParty"
+        reportingSystem:
+          $ref: "#/components/schemas/EntityRef"
+        source:
+          $ref: "#/components/schemas/EntityRef"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    Hub:
+      type: object
+      description: A Hub is used to subscribe to an event notification
+      required:
+        - callback
+        - id
+      properties:
+        id:
+          type: string
+          description: The unique-id for your subscription - referenced when updating or
+            deleting a subscription
+        callback:
+          type: string
+          description: The URI that will be POSTed to when a notification is triggered
+        query:
+          type: string
+          description: This is a query string used to filter notifications in the context
+            of the notifier
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    Hub_Create:
+      type: object
+      description: |-
+        A Hub is used to subscribe to an event notification
+        Skipped properties: id,href
+      required:
+        - callback
+      properties:
+        callback:
+          type: string
+          description: The URI that will be POSTed to when a notification is triggered
+        query:
+          type: string
+          description: This is a query string used to filter notifications in the context
+            of the notifier
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    RelatedParty:
+      type: object
+      description: Related Entity reference. A related party defines party or party
+        role linked to a specific entity.
+      required:
+        - "@referredType"
+        - id
+      properties:
+        id:
+          type: string
+          description: Unique identifier of a related entity.
+        href:
+          type: string
+          format: uri
+          description: Reference of the related entity.
+        name:
+          type: string
+          description: Name of the related entity.
+        role:
+          type: string
+          description: Role played by the related party
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+    Topic:
+      type: object
+      description: Is a event channel provided by the Event Streaming API
+      properties:
+        id:
+          type: string
+          description: The identifier of the notification.
+        href:
+          type: string
+          format: uri
+          description: Reference of the related entity.
+        contentQuery:
+          type: string
+          description: is the filter that will be applied on the content of the Event.
+        headerQuery:
+          type: string
+          description: is the filter that will be applied on the Event header properties.
+        name:
+          type: string
+          description: use to identify grouping of events, per domain, per event types,
+            per access control-right and so on.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    Topic_Create:
+      type: object
+      description: |-
+        Is a event channel provided by the Event Streaming API
+        Skipped properties: id,href
+      properties:
+        contentQuery:
+          type: string
+          description: is the filter that will be applied on the content of the Event.
+        headerQuery:
+          type: string
+          description: is the filter that will be applied on the Event header properties.
+        name:
+          type: string
+          description: use to identify grouping of events, per domain, per event types,
+            per access control-right and so on.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    EventSubscription:
+      type: object
+      description: Sets the communication endpoint address the service instance must
+        use to deliver notification information
+      required:
+        - id
+        - callback
+      properties:
+        id:
+          type: string
+          description: Id of the listener
+        callback:
+          type: string
+          description: The callback being registered.
+        query:
+          type: string
+          description: additional data to be passed
+    EventSubscriptionInput:
+      type: object
+      description: Sets the communication endpoint address the service instance must
+        use to deliver notification information
+      required:
+        - callback
+      properties:
+        callback:
+          type: string
+          description: The callback being registered.
+        query:
+          type: string
+          description: additional data to be passed
+    TopicCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/TopicCreateEventPayload"
+    TopicCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        topic:
+          $ref: "#/components/schemas/Topic"
+    TopicChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/TopicChangeEventPayload"
+    TopicChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        topic:
+          $ref: "#/components/schemas/Topic"
+    TopicDeleteEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/TopicDeleteEventPayload"
+    TopicDeleteEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        topic:
+          $ref: "#/components/schemas/Topic"
+    Error:
+      description: Used when an API throws an Error, typically with a HTTP error
+        response-code (3xx, 4xx, 5xx)
+      type: object
+      required:
+        - code
+        - reason
+      properties:
+        code:
+          type: string
+          description: Application relevant detail, defined in the API or a common list.
+        reason:
+          type: string
+          description: Explanation of the reason for the error which can be shown to a
+            client user.
+        message:
+          type: string
+          description: More details and corrective actions related to the error which can
+            be shown to a client user.
+        status:
+          type: string
+          description: HTTP Error code extension
+        referenceError:
+          type: string
+          format: uri
+          description: URI of documentation describing the error.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class.
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name.

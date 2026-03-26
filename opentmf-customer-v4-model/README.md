@@ -1,55 +1,29 @@
 # opentmf-customer-v4-model
 
-This artifact holds the TMF v4 model classes for the Customer portfolio.
+Shared **model** types for the **Customer** group (referenced by many TMF modules). Group membership follows TM Forum’s official Open API portfolio grouping — see [Open APIs](https://www.tmforum.org/open-digital-architecture/open-apis).
 
-Common classes that are referenced from the following TMF artifacts:
+
+- TMF-622: Product Ordering Management API, version: 4.0.0
 - TMF-629: Customer Management API, version: 4.0.0
-- TMF-632: Party Management API, version: 4.0.0
-- TMF-666: Account Management API, version: 4.0.0
-- TMF-669: Party Role Management API, version: 4.0.0
+- TMF-646: Appointment Management API, version: 4.0.0
+- TMF-648: Quote Management API, version: 4.0.0
+- TMF-654: Prepay Balance Management API, version: 4.0.0
+- TMF-663: Shopping Cart Management API, version: 4.0.0
+- TMF-670: Payment Method Management API, version: 4.0.0
+- TMF-676: Payment Management API, version: 4.0.0
+- TMF-678: Customer Bill Management API, version: 4.0.0
+- TMF-680: Recommendation Management API, version: 4.0.0
+- TMF-696: Risk Management API, version: 4.0.0
+- TMF-717: Customer360 Management API, version: 4.0.0
 
-## Usage
-This model library is automatically included from the Customer portfolio TMF model
-libraries. Hence, normally it is not necessary to explicitly specify a maven dependency.
+Usually pulled in transitively. To depend explicitly:
 
-If however, for edge use cases it becomes necessary to reference this library directly,
-the following two steps needs to be carried out:
-
-### 1. Add Maven Dependency
-#### Import OpenTMF Commons Dependencies
-```xml
-<dependencyManagement>
-  <dependency>
-    <groupId>org.opentmf</groupId>
-    <artifactId>opentmf-versions</artifactId>
-    <version>RELEASE</version>
-    <type>pom</type>
-    <scope>import</scope>
-  </dependency>
-</dependencyManagement>
-```
-#### Import opentmf-customer-v4-model Module
 ```xml
 <dependency>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-customer-v4-model</artifactId>
+    <version>4.0.0.0</version>
 </dependency>
 ```
 
-### 2. Configure the ObjectMapper
-In order to benefit dynamic type resolving, you need to provide a primary ObjectMapper bean within
-your microservice and call the registerExtensions method of this tmf-customer-model library.
-
-```java
-@Configuration
-public class JacksonConfig {
-
-  @Bean
-  @Primary
-  public ObjectMapper objectMapper() {
-    var objectMapper = JacksonUtil.getDefaultObjectMapper();
-    TmfCustomerJacksonConfig.registerExtensions(objectMapper);
-    return objectMapper;
-  }
-}
-```
+For JSON polymorphism, register `TmfCustomerJacksonConfig` on your `ObjectMapper` (see root README).

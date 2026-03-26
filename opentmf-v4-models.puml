@@ -1,0 +1,45 @@
+@startuml opentmf-v4-models
+title opentmf v4 models
+caption TMF -> group-common -> common
+
+top to bottom direction
+
+skinparam defaultTextAlignment center
+skinparam defaultFontStyle plain
+skinparam shadowing true
+skinparam shadowColor #E0E0E0
+skinparam rectangle {
+  RoundCorner 20
+  BorderThickness 1
+  FontStyle plain
+}
+skinparam arrow {
+  Color #BBBBBB
+  Thickness 1
+}
+
+rectangle "<b>common</b>" as Common #C5E0B4
+
+rectangle "<b>standalone</b>\n\n699 Sales Management API\n" as Standalone #F5F5F5
+
+rectangle "<b>customer</b>\n\n622 Product Ordering Management ..\n629 Customer Management API\n646 Appointment Management API\n648 Quote Management API\n654 Prepay Balance Management API\n663 Shopping Cart Management API\n670 Payment Method Management API\n676 Payment Management API\n678 Customer Bill Management API\n680 Recommendation Management API\n696 Risk Management API\n717 Customer360 Management API\n" as customer #DAE8FC
+
+rectangle "<b>general</b>\n\n621 Trouble Ticket Management API\n649 Performance Thresholding Man..\n655 Change Management API\n662 Entity Catalog Management API\n667 Document Management API\n673 Geographic Address Managemen..\n674 Geographic Site Management API\n675 Geographic Location Manageme..\n681 Communication Management API\n686 Topology API\n688 Event Management API\n691 Federated ID Management API\n701 Process Flow Management API\n703 Entity Inventory Management ..\n704 Test Case Management API\n705 Test Environment Management ..\n706 Test Data Management API\n707 Test Result Management API\n708 Test Execution Management API\n709 Test Scenario Management API\n710 General Test Artifact Manage..\n714 Work Qualification Management\n715 Warranty Management\n720 Digital Identity Management ..\n724 Incident Management API\n725 Metadata Catalog Management ..\n728 Dunning Case Management\n915 AI Management API\n921 Intent Management API\n" as general #D5E8D4
+
+rectangle "<b>partner</b>\n\n632 Party Management API\n644 Privacy Management API\n651 Agreement Management API\n666 Account Management API\n668 Partnership Type\n669 Party Role Management API\n672 User Role Permission Managem..\n683 Party Interaction Management..\n700 Shipping Order Management API\n711 Shipment Management Manageme..\n713 Work Management\n" as partner #FFE6CC
+
+rectangle "<b>product</b>\n\n620 Product Catalog Management API\n635 Usage Management API\n637 Product Inventory Management..\n658 Loyalty\n671 Promotion Management API\n677 Usage Consumption Management..\n679 Product Offering Qualificati..\n" as product #E1D5E7
+
+rectangle "<b>resource</b>\n\n634 Resource Catalog Management ..\n639 Resource Inventory Managemen..\n642 Alarm Management API\n652 Resource Order Management API\n664 Resource Function Activation..\n687 Stock Management API\n702 Resource Activation Manageme..\n716 ResourceReservation\n730 Software And Compute Managem..\n908 IoT Agent and Device Managem..\n" as resource #FFF2CC
+
+rectangle "<b>service</b>\n\n633 Service Catalog Management API\n638 Service Inventory Management..\n640 Service Activation Managemen..\n641 Service Ordering Management ..\n645 Service Qualification Manage..\n653 Service Test Management API\n657 Service Quality Management M..\n727 Service Usage Management API\n" as service #F8CECC
+
+Standalone --> Common
+customer --> Common
+general --> Common
+partner --> Common
+product --> Common
+resource --> Common
+service --> Common
+
+@enduml

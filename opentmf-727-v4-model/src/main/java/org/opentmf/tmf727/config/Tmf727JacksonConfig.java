@@ -1,0 +1,21 @@
+package org.opentmf.tmf727.config;
+
+import lombok.Generated;
+import org.opentmf.service.config.TmfServiceJacksonConfig;
+import tools.jackson.databind.json.JsonMapper;
+
+/**
+ * Performs JsonMapper initializations for this layer.
+ *
+ * @author Gökhan Demir
+ */
+public final class Tmf727JacksonConfig {
+
+  @Generated
+  private Tmf727JacksonConfig() {
+  }
+
+  public static void registerExtensions(JsonMapper.Builder builder) {
+    TmfServiceJacksonConfig.registerExtensions(builder);
+  }
+}

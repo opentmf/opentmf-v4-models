@@ -1,71 +1,95 @@
 # opentmf-common-v4-model
 
-This artifact holds the TMF v4 model classes for the Common portfolio.
+Shared **model** types for the **Common** group (referenced by many TMF modules). Group membership follows TM Forum’s official Open API portfolio grouping — see [Open APIs](https://www.tmforum.org/open-digital-architecture/open-apis).
 
-Common classes that are referenced from the following TMF artifacts:
+
 - TMF-620: Product Catalog Management API, version: 4.1.0
+- TMF-621: Trouble Ticket Management API, version: 4.0.0
 - TMF-622: Product Ordering Management API, version: 4.0.0
 - TMF-629: Customer Management API, version: 4.0.0
 - TMF-632: Party Management API, version: 4.0.0
 - TMF-633: Service Catalog Management API, version: 4.0.0
 - TMF-634: Resource Catalog Management API, version: 4.1.0
+- TMF-635: Usage Management API, version: 4.0.0
 - TMF-637: Product Inventory Management API, version: 4.0.0
 - TMF-638: Service Inventory Management API, version: 4.0.0
 - TMF-639: Resource Inventory Management API, version: 4.0.0
+- TMF-640: Service Activation Management API, version: 4.0.0
 - TMF-641: Service Ordering Management API, version: 4.1.0
+- TMF-642: Alarm Management API, version: 4.0.0
+- TMF-644: Privacy Management API, version: 4.0.0
+- TMF-645: Service Qualification Management API, version: 4.0.0
+- TMF-646: Appointment Management API, version: 4.0.0
 - TMF-648: Quote Management API, version: 4.0.0
-- TMF-651: Agreement, version: 4.0.0
+- TMF-649: Performance Thresholding Management API, version: 4.0.0
+- TMF-651: Agreement Management API, version: 4.0.0
 - TMF-652: Resource Order Management API, version: 4.0.0
+- TMF-653: Service Test Management API, version: 4.2.0
+- TMF-654: Prepay Balance Management API, version: 4.0.0
+- TMF-655: Change Management API, version: 4.0.0
+- TMF-657: Service Quality Management Management API, version: 4.0.0
+- TMF-658: Loyalty, version: 4.0.0
+- TMF-662: Entity Catalog Management API, version: 4.0.0
 - TMF-663: Shopping Cart Management API, version: 4.0.0
+- TMF-664: Resource Function Activation Management API, version: 4.0.0
 - TMF-666: Account Management API, version: 4.0.0
+- TMF-667: Document Management API, version: 4.0.0
+- TMF-668: Partnership Type, version: 4.0.0
 - TMF-669: Party Role Management API, version: 4.0.0
-- TMF-673: Geographic Address Management API, version: 4.0.1
+- TMF-670: Payment Method Management API, version: 4.0.0
+- TMF-671: Promotion Management API, version: 4.1.0
+- TMF-672: User Role Permission Management API, version: 4.0.0
+- TMF-673: Geographic Address Management API, version: 4.0.0
 - TMF-674: Geographic Site Management API, version: 4.0.0
-- TMF-675: Geographic Location API, version: 4.0.0
+- TMF-675: Geographic Location Management API, version: 4.0.0
+- TMF-676: Payment Management API, version: 4.0.0
+- TMF-677: Usage Consumption Management API, version: 4.0.0
+- TMF-678: Customer Bill Management API, version: 4.0.0
+- TMF-679: Product Offering Qualification Management API, version: 4.0.0
+- TMF-680: Recommendation Management API, version: 4.0.0
 - TMF-681: Communication Management API, version: 4.0.0
+- TMF-683: Party Interaction Management API, version: 4.0.0
+- TMF-686: Topology API, version: 4.0.0
+- TMF-687: Stock Management API, version: 4.0.0
+- TMF-688: Event Management API, version: 4.0.0
+- TMF-691: Federated ID Management API, version: 4.0.0
+- TMF-696: Risk Management API, version: 4.0.0
+- TMF-699: Sales Management API, version: 4.0.0
+- TMF-700: Shipping Order Management API, version: 4.0.0
+- TMF-701: Process Flow Management API, version: 4.1.0
+- TMF-702: Resource Activation Management API, version: 4.0.0
+- TMF-703: Entity Inventory Management API, version: 4.0.0
+- TMF-704: Test Case Management API, version: 4.0.0
+- TMF-705: Test Environment Management API, version: 4.0.0
+- TMF-706: Test Data Management API, version: 4.0.0
+- TMF-707: Test Result Management API, version: 4.0.0
+- TMF-708: Test Execution Management API, version: 4.0.0
+- TMF-709: Test Scenario Management API, version: 4.0.0
+- TMF-710: General Test Artifact Management API, version: 4.0.0
+- TMF-711: Shipment Management Management API, version: 4.0.0
+- TMF-713: Work Management, version: 4.0.0
+- TMF-714: Work Qualification Management, version: 4.0.0
+- TMF-715: Warranty Management, version: 4.0.0
+- TMF-716: ResourceReservation, version: 4.0.0
+- TMF-717: Customer360 Management API, version: 4.0.0
+- TMF-720: Digital Identity Management API, version: 4.0.0
+- TMF-724: Incident Management API, version: 4.0.0
+- TMF-725: Metadata Catalog Management API, version: 4.0.0
+- TMF-727: Service Usage Management API, version: 4.0.0
+- TMF-728: Dunning Case Management, version: 4.0.0
+- TMF-730: Software And Compute Management API, version: 4.0.0
+- TMF-908: IoT Agent and Device Management API, version: 4.0.0
+- TMF-915: AI Management API, version: 4.0.0
+- TMF-921: Intent Management API, version: 4.0.0
 
-## Usage
-This model library is automatically included from the Common portfolio TMF model
-libraries. Hence, normally it is not necessary to explicitly specify a maven dependency.
+Usually pulled in transitively. To depend explicitly:
 
-If however, for edge use cases it becomes necessary to reference this library directly,
-the following two steps needs to be carried out:
-
-### 1. Add Maven Dependency
-#### Import OpenTMF Commons Dependencies
-```xml
-<dependencyManagement>
-  <dependency>
-    <groupId>org.opentmf</groupId>
-    <artifactId>opentmf-versions</artifactId>
-    <version>RELEASE</version>
-    <type>pom</type>
-    <scope>import</scope>
-  </dependency>
-</dependencyManagement>
-```
-#### Import opentmf-common-v4-model Module
 ```xml
 <dependency>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-common-v4-model</artifactId>
+    <version>4.2.0.0</version>
 </dependency>
 ```
 
-### 2. Configure the ObjectMapper
-In order to benefit dynamic type resolving, you need to provide a primary ObjectMapper bean within
-your microservice and call the registerExtensions method of this tmf-common-model library.
-
-```java
-@Configuration
-public class JacksonConfig {
-
-  @Bean
-  @Primary
-  public ObjectMapper objectMapper() {
-    var objectMapper = JacksonUtil.getDefaultObjectMapper();
-    TmfCommonJacksonConfig.registerExtensions(objectMapper);
-    return objectMapper;
-  }
-}
-```
+For JSON polymorphism, register `TmfCommonJacksonConfig` on your `ObjectMapper` (see root README).

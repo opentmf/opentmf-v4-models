@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.opentmf.model</groupId>
+    <artifactId>opentmf-v4-models</artifactId>
+    <version>4.0.5-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>opentmf-partner-v4-model</artifactId>
+  <name>opentmf-partner-v4-model</name>
+  <version>4.0.0.0-SNAPSHOT</version>
+  <description>
+        
+    - TMF-632: Party Management API, version: 4.0.0
+    - TMF-644: Privacy Management API, version: 4.0.0
+    - TMF-651: Agreement Management API, version: 4.0.0
+    - TMF-666: Account Management API, version: 4.0.0
+    - TMF-668: Partnership Type, version: 4.0.0
+    - TMF-669: Party Role Management API, version: 4.0.0
+    - TMF-672: User Role Permission Management API, version: 4.0.0
+    - TMF-683: Party Interaction Management API, version: 4.0.0
+    - TMF-700: Shipping Order Management API, version: 4.0.0
+    - TMF-711: Shipment Management Management API, version: 4.0.0
+    - TMF-713: Work Management, version: 4.0.0
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.opentmf.model</groupId>
+      <artifactId>opentmf-partner-v4-api</artifactId>
+      <version>4.0.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opentmf.model</groupId>
+      <artifactId>opentmf-common-v4-model</artifactId>
+      <version>4.2.0.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+</project>

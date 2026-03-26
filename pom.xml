@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.opentmf.model</groupId>
   <artifactId>opentmf-v4-models</artifactId>
-  <version>1.0.6-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <version>4.0.5-SNAPSHOT</version>
+  <name>opentmf-v4-models</name>
 
   <description>
     The Java model classes directly generated from the official vanilla swagger
@@ -24,56 +25,107 @@
       <name>Gokhan Demir</name>
       <email>gokhan@opentmf.org</email>
     </developer>
-    <developer>
-      <id>yusuf-bozkurt</id>
-      <name>Yusuf Bozkurt</name>
-      <email>yusuf.bozkurt@pia-team.com</email>
-    </developer>
-    <developer>
-      <id>cezmi-aslan</id>
-      <name>Cezmi Aslan</name>
-      <email>cezmi.aslan@pia-team.com</email>
-    </developer>
   </developers>
 
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
       <distribution>repo</distribution>
       <comments>A permissive open-source license</comments>
     </license>
   </licenses>
 
-  <url>https://github.com/opentmf/opentmf-v4-models</url>
+  <url>https://github.com/opentmf/opentmf-v4-api</url>
 
   <modules>
-    <module>opentmf-620-v4-model</module>
-    <module>opentmf-622-v4-model</module>
-    <module>opentmf-629-v4-model</module>
-    <module>opentmf-632-v4-model</module>
-    <module>opentmf-633-v4-model</module>
-    <module>opentmf-634-v4-model</module>
-    <module>opentmf-637-v4-model</module>
-    <module>opentmf-638-v4-model</module>
-    <module>opentmf-639-v4-model</module>
-    <module>opentmf-641-v4-model</module>
-    <module>opentmf-648-v4-model</module>
-    <module>opentmf-651-v4-model</module>
-    <module>opentmf-652-v4-model</module>
-    <module>opentmf-663-v4-model</module>
-    <module>opentmf-666-v4-model</module>
-    <module>opentmf-669-v4-model</module>
-    <module>opentmf-673-v4-model</module>
-    <module>opentmf-674-v4-model</module>
-    <module>opentmf-675-v4-model</module>
-    <module>opentmf-681-v4-model</module>
-    <module>opentmf-common-v4-model</module>
-    <module>opentmf-customer-v4-model</module>
-    <module>opentmf-product-v4-model</module>
-    <module>opentmf-resource-v4-model</module>
-    <module>opentmf-service-v4-model</module>
+      <module>opentmf-620-v4-model</module>
+      <module>opentmf-621-v4-model</module>
+      <module>opentmf-622-v4-model</module>
+      <module>opentmf-629-v4-model</module>
+      <module>opentmf-632-v4-model</module>
+      <module>opentmf-633-v4-model</module>
+      <module>opentmf-634-v4-model</module>
+      <module>opentmf-635-v4-model</module>
+      <module>opentmf-637-v4-model</module>
+      <module>opentmf-638-v4-model</module>
+      <module>opentmf-639-v4-model</module>
+      <module>opentmf-640-v4-model</module>
+      <module>opentmf-641-v4-model</module>
+      <module>opentmf-642-v4-model</module>
+      <module>opentmf-644-v4-model</module>
+      <module>opentmf-645-v4-model</module>
+      <module>opentmf-646-v4-model</module>
+      <module>opentmf-648-v4-model</module>
+      <module>opentmf-649-v4-model</module>
+      <module>opentmf-651-v4-model</module>
+      <module>opentmf-652-v4-model</module>
+      <module>opentmf-653-v4-model</module>
+      <module>opentmf-654-v4-model</module>
+      <module>opentmf-655-v4-model</module>
+      <module>opentmf-657-v4-model</module>
+      <module>opentmf-658-v4-model</module>
+      <module>opentmf-662-v4-model</module>
+      <module>opentmf-663-v4-model</module>
+      <module>opentmf-664-v4-model</module>
+      <module>opentmf-666-v4-model</module>
+      <module>opentmf-667-v4-model</module>
+      <module>opentmf-668-v4-model</module>
+      <module>opentmf-669-v4-model</module>
+      <module>opentmf-670-v4-model</module>
+      <module>opentmf-671-v4-model</module>
+      <module>opentmf-672-v4-model</module>
+      <module>opentmf-673-v4-model</module>
+      <module>opentmf-674-v4-model</module>
+      <module>opentmf-675-v4-model</module>
+      <module>opentmf-676-v4-model</module>
+      <module>opentmf-677-v4-model</module>
+      <module>opentmf-678-v4-model</module>
+      <module>opentmf-679-v4-model</module>
+      <module>opentmf-680-v4-model</module>
+      <module>opentmf-681-v4-model</module>
+      <module>opentmf-683-v4-model</module>
+      <module>opentmf-686-v4-model</module>
+      <module>opentmf-687-v4-model</module>
+      <module>opentmf-688-v4-model</module>
+      <module>opentmf-691-v4-model</module>
+      <module>opentmf-696-v4-model</module>
+      <module>opentmf-699-v4-model</module>
+      <module>opentmf-700-v4-model</module>
+      <module>opentmf-701-v4-model</module>
+      <module>opentmf-702-v4-model</module>
+      <module>opentmf-703-v4-model</module>
+      <module>opentmf-704-v4-model</module>
+      <module>opentmf-705-v4-model</module>
+      <module>opentmf-706-v4-model</module>
+      <module>opentmf-707-v4-model</module>
+      <module>opentmf-708-v4-model</module>
+      <module>opentmf-709-v4-model</module>
+      <module>opentmf-710-v4-model</module>
+      <module>opentmf-711-v4-model</module>
+      <module>opentmf-713-v4-model</module>
+      <module>opentmf-714-v4-model</module>
+      <module>opentmf-715-v4-model</module>
+      <module>opentmf-716-v4-model</module>
+      <module>opentmf-717-v4-model</module>
+      <module>opentmf-720-v4-model</module>
+      <module>opentmf-724-v4-model</module>
+      <module>opentmf-725-v4-model</module>
+      <module>opentmf-727-v4-model</module>
+      <module>opentmf-728-v4-model</module>
+      <module>opentmf-730-v4-model</module>
+      <module>opentmf-908-v4-model</module>
+      <module>opentmf-915-v4-model</module>
+      <module>opentmf-921-v4-model</module>
+      <module>opentmf-common-v4-model</module>
+      <module>opentmf-customer-v4-model</module>
+      <module>opentmf-general-v4-model</module>
+      <module>opentmf-partner-v4-model</module>
+      <module>opentmf-product-v4-model</module>
+      <module>opentmf-resource-v4-model</module>
+      <module>opentmf-service-v4-model</module>
   </modules>
+  <packaging>pom</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -81,25 +133,72 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
 
-    <opentmf-commons.version>1.0.5</opentmf-commons.version>
-    <lombok.version>1.18.38</lombok.version>
+    <spring-boot.version>4.0.4</spring-boot.version>
+    <opentmf-commons.version>2.1.0</opentmf-commons.version>
 
-    <sonar-plugin.version>5.1.0.4751</sonar-plugin.version>
-    <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
-    <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
-    <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
-    <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
-    <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
-    <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
+    <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+    <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
+    <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
+
+    <maven-enforcer-plugin.version>3.6.2</maven-enforcer-plugin.version>
+    <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
+
+    <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
+    <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
+    <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
+    <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <type>pom</type>
+        <scope>import</scope>
+        <version>${spring-boot.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
-    <!-- Only optional Dependencies in this level -->
+    <!-- Compile Dependencies -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.opentmf.commons</groupId>
+      <artifactId>opentmf-commons</artifactId>
+      <version>${opentmf-commons.version}</version>
+    </dependency>
+
+    <!-- Optional Dependencies -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
       <optional>true</optional>
+    </dependency>
+
+    <!-- TEST Dependencies -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -108,33 +207,21 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <version>${maven-enforcer-plugin.version}</version>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>${maven-source-plugin.version}</version>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven-resources-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${maven-javadoc-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <version>${maven-gpg-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>${maven-release-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.sonarsource.scanner.maven</groupId>
-          <artifactId>sonar-maven-plugin</artifactId>
-          <version>${sonar-plugin.version}</version>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${maven-deploy-plugin.version}</version>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -143,6 +230,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${maven-enforcer-plugin.version}</version>
         <executions>
           <execution>
             <id>enforce-maven</id>
@@ -161,65 +249,79 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-            <configuration>
-              <failOnWarnings>false</failOnWarnings>
-              <failOnError>false</failOnError>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
+        <version>${maven-release-plugin.version}</version>
         <configuration>
-          <useReleaseProfile>false</useReleaseProfile>
+          <releaseProfiles>release</releaseProfiles>
           <goals>deploy</goals>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.central</groupId>
-        <artifactId>central-publishing-maven-plugin</artifactId>
-        <version>${central-publishing-maven-plugin.version}</version>
-        <extensions>true</extensions>
-        <configuration>
-          <publishingServerId>publish-to-central</publishingServerId>
-          <autoPublish>true</autoPublish>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${maven-source-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven-javadoc-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <failOnWarnings>false</failOnWarnings>
+                  <failOnError>false</failOnError>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${maven-gpg-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>${central-publishing-maven-plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>publish-to-central</publishingServerId>
+              <autoPublish>true</autoPublish>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <scm>
     <url>https://github.com/opentmf/opentmf-v4-models</url>

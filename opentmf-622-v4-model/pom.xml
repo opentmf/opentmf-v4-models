@@ -5,11 +5,12 @@
   <parent>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-v4-models</artifactId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>4.0.5-SNAPSHOT</version>
   </parent>
 
   <artifactId>opentmf-622-v4-model</artifactId>
-  <version>4.0.0.6-SNAPSHOT</version>
+  <name>opentmf-622-v4-model</name>
+  <version>4.0.0.5-SNAPSHOT</version>
   <description>
     TMF-622: Product Ordering Management API, version: 4.0.0
     Hierarchical model classes with polymorphism.
@@ -18,8 +19,13 @@
   <dependencies>
     <dependency>
       <groupId>org.opentmf.model</groupId>
-      <artifactId>opentmf-product-v4-model</artifactId>
-      <version>4.1.0.6-SNAPSHOT</version>
+      <artifactId>opentmf-622-v4-api</artifactId>
+      <version>4.0.0.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opentmf.model</groupId>
+      <artifactId>opentmf-customer-v4-model</artifactId>
+      <version>4.0.0.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 

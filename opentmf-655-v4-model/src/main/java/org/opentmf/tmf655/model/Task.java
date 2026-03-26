@@ -1,0 +1,40 @@
+package org.opentmf.tmf655.model;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Getter;
+import lombok.Setter;
+import org.opentmf.common.model.NamedEntity;
+import org.opentmf.commons.validation.constraints.SafeText;
+
+/**
+ * A step or task along in the process of implementation a Change Request.
+ *
+ * <p><br/>
+ * <strong>Referring TMF artifacts:</strong>
+ * <ul>
+ *   <li>TMF-655: Change Management API</li>
+ * </ul>
+ * </p>
+ *
+ * @author Gökhan Demir
+ */
+@Getter
+@Setter
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    visible = true,
+    include = JsonTypeInfo.As.EXISTING_PROPERTY,
+    defaultImpl = Task.class
+)
+public class Task extends NamedEntity implements ITask {
+
+  /**
+   * The description of the task.
+   */
+  private @SafeText String description;
+
+  /**
+   * The state of the task.
+   */
+  private @SafeText String state;
+}

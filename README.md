@@ -1,116 +1,132 @@
 # opentmf-v4-models
 
-Contains the model classes directly generated from the official vanilla swagger specifications
-of the related TMF modules, with minimal manual adaptations for class inheritance and reuse.
+Concrete **TM Forum data model** classes (Lombok, Jackson, validation) generated from the official OpenAPI specs. Each class implements the matching getter-only interface from **opentmf-v4-api**.
 
-The project is a multi-module project, that packages the commonly used classes in the
-common group modules and the single module referenced classes in their corresponding tmf modules.
+Multi-module layout: shared types live in common-group modules; TMF-specific types live in per-TMF modules. **Common-group boundaries** follow the official portfolio grouping published by TM Forum — see [Open APIs](https://www.tmforum.org/open-digital-architecture/open-apis).
 
-Currently, it holds the original model classes for the following TMF APIs:
+Modules covered:
 
-- [TMF-620](tmf-620-model/README.md) (4.1.0.5) Product Catalog Management API
-- [TMF-622](tmf-622-model/README.md) (4.0.0.5) Product Ordering Management API
-- [TMF-629](tmf-629-model/README.md) (4.0.0.5) Customer Management API
-- [TMF-632](tmf-632-model/README.md) (4.0.0.5) Party Management API
-- [TMF-633](tmf-633-model/README.md) (4.0.0.5) Service Catalog Management API
-- [TMF-634](tmf-634-model/README.md) (4.1.0.5) Resource Catalog Management API
-- [TMF-637](tmf-637-model/README.md) (4.0.0.5) Product Inventory Management API
-- [TMF-638](tmf-638-model/README.md) (4.0.0.5) Service Inventory Management API
-- [TMF-639](tmf-639-model/README.md) (4.0.0.5) Resource Inventory Management API
-- [TMF-641](tmf-641-model/README.md) (4.1.0.5) Service Ordering Management API
-- [TMF-648](tmf-648-model/README.md) (4.0.0.5) Quote Management API
-- [TMF-651](tmf-651-model/README.md) (4.0.0.5) Agreement
-- [TMF-652](tmf-652-model/README.md) (4.0.0.5) Resource Order Management API
-- [TMF-663](tmf-663-model/README.md) (4.0.0.5) Shopping Cart Management API
-- [TMF-666](tmf-666-model/README.md) (4.0.0.5) Account Management API
-- [TMF-669](tmf-669-model/README.md) (4.0.0.5) Party Role Management API
-- [TMF-673](tmf-673-model/README.md) (4.0.1.5) Geographic Address Management API
-- [TMF-674](tmf-674-model/README.md) (4.0.0.5) Geographic Site Management API
-- [TMF-675](tmf-675-model/README.md) (4.0.0.5) Geographic Location API
-- [TMF-681](tmf-681-model/README.md) (4.0.0.5) Communication Management API
+- [TMF-620](opentmf-620-v4-model/README.md) Product Catalog Management API
+- [TMF-621](opentmf-621-v4-model/README.md) Trouble Ticket Management API
+- [TMF-622](opentmf-622-v4-model/README.md) Product Ordering Management API
+- [TMF-629](opentmf-629-v4-model/README.md) Customer Management API
+- [TMF-632](opentmf-632-v4-model/README.md) Party Management API
+- [TMF-633](opentmf-633-v4-model/README.md) Service Catalog Management API
+- [TMF-634](opentmf-634-v4-model/README.md) Resource Catalog Management API
+- [TMF-635](opentmf-635-v4-model/README.md) Usage Management API
+- [TMF-637](opentmf-637-v4-model/README.md) Product Inventory Management API
+- [TMF-638](opentmf-638-v4-model/README.md) Service Inventory Management API
+- [TMF-639](opentmf-639-v4-model/README.md) Resource Inventory Management API
+- [TMF-640](opentmf-640-v4-model/README.md) Service Activation Management API
+- [TMF-641](opentmf-641-v4-model/README.md) Service Ordering Management API
+- [TMF-642](opentmf-642-v4-model/README.md) Alarm Management API
+- [TMF-644](opentmf-644-v4-model/README.md) Privacy Management API
+- [TMF-645](opentmf-645-v4-model/README.md) Service Qualification Management API
+- [TMF-646](opentmf-646-v4-model/README.md) Appointment Management API
+- [TMF-648](opentmf-648-v4-model/README.md) Quote Management API
+- [TMF-649](opentmf-649-v4-model/README.md) Performance Thresholding Management API
+- [TMF-651](opentmf-651-v4-model/README.md) Agreement Management API
+- [TMF-652](opentmf-652-v4-model/README.md) Resource Order Management API
+- [TMF-653](opentmf-653-v4-model/README.md) Service Test Management API
+- [TMF-654](opentmf-654-v4-model/README.md) Prepay Balance Management API
+- [TMF-655](opentmf-655-v4-model/README.md) Change Management API
+- [TMF-657](opentmf-657-v4-model/README.md) Service Quality Management Management API
+- [TMF-658](opentmf-658-v4-model/README.md) Loyalty
+- [TMF-662](opentmf-662-v4-model/README.md) Entity Catalog Management API
+- [TMF-663](opentmf-663-v4-model/README.md) Shopping Cart Management API
+- [TMF-664](opentmf-664-v4-model/README.md) Resource Function Activation Management API
+- [TMF-666](opentmf-666-v4-model/README.md) Account Management API
+- [TMF-667](opentmf-667-v4-model/README.md) Document Management API
+- [TMF-668](opentmf-668-v4-model/README.md) Partnership Type
+- [TMF-669](opentmf-669-v4-model/README.md) Party Role Management API
+- [TMF-670](opentmf-670-v4-model/README.md) Payment Method Management API
+- [TMF-671](opentmf-671-v4-model/README.md) Promotion Management API
+- [TMF-672](opentmf-672-v4-model/README.md) User Role Permission Management API
+- [TMF-673](opentmf-673-v4-model/README.md) Geographic Address Management API
+- [TMF-674](opentmf-674-v4-model/README.md) Geographic Site Management API
+- [TMF-675](opentmf-675-v4-model/README.md) Geographic Location Management API
+- [TMF-676](opentmf-676-v4-model/README.md) Payment Management API
+- [TMF-677](opentmf-677-v4-model/README.md) Usage Consumption Management API
+- [TMF-678](opentmf-678-v4-model/README.md) Customer Bill Management API
+- [TMF-679](opentmf-679-v4-model/README.md) Product Offering Qualification Management API
+- [TMF-680](opentmf-680-v4-model/README.md) Recommendation Management API
+- [TMF-681](opentmf-681-v4-model/README.md) Communication Management API
+- [TMF-683](opentmf-683-v4-model/README.md) Party Interaction Management API
+- [TMF-686](opentmf-686-v4-model/README.md) Topology API
+- [TMF-687](opentmf-687-v4-model/README.md) Stock Management API
+- [TMF-688](opentmf-688-v4-model/README.md) Event Management API
+- [TMF-691](opentmf-691-v4-model/README.md) Federated ID Management API
+- [TMF-696](opentmf-696-v4-model/README.md) Risk Management API
+- [TMF-699](opentmf-699-v4-model/README.md) Sales Management API
+- [TMF-700](opentmf-700-v4-model/README.md) Shipping Order Management API
+- [TMF-701](opentmf-701-v4-model/README.md) Process Flow Management API
+- [TMF-702](opentmf-702-v4-model/README.md) Resource Activation Management API
+- [TMF-703](opentmf-703-v4-model/README.md) Entity Inventory Management API
+- [TMF-704](opentmf-704-v4-model/README.md) Test Case Management API
+- [TMF-705](opentmf-705-v4-model/README.md) Test Environment Management API
+- [TMF-706](opentmf-706-v4-model/README.md) Test Data Management API
+- [TMF-707](opentmf-707-v4-model/README.md) Test Result Management API
+- [TMF-708](opentmf-708-v4-model/README.md) Test Execution Management API
+- [TMF-709](opentmf-709-v4-model/README.md) Test Scenario Management API
+- [TMF-710](opentmf-710-v4-model/README.md) General Test Artifact Management API
+- [TMF-711](opentmf-711-v4-model/README.md) Shipment Management Management API
+- [TMF-713](opentmf-713-v4-model/README.md) Work Management
+- [TMF-714](opentmf-714-v4-model/README.md) Work Qualification Management
+- [TMF-715](opentmf-715-v4-model/README.md) Warranty Management
+- [TMF-716](opentmf-716-v4-model/README.md) ResourceReservation
+- [TMF-717](opentmf-717-v4-model/README.md) Customer360 Management API
+- [TMF-720](opentmf-720-v4-model/README.md) Digital Identity Management API
+- [TMF-724](opentmf-724-v4-model/README.md) Incident Management API
+- [TMF-725](opentmf-725-v4-model/README.md) Metadata Catalog Management API
+- [TMF-727](opentmf-727-v4-model/README.md) Service Usage Management API
+- [TMF-728](opentmf-728-v4-model/README.md) Dunning Case Management
+- [TMF-730](opentmf-730-v4-model/README.md) Software And Compute Management API
+- [TMF-908](opentmf-908-v4-model/README.md) IoT Agent and Device Management API
+- [TMF-915](opentmf-915-v4-model/README.md) AI Management API
+- [TMF-921](opentmf-921-v4-model/README.md) Intent Management API
 
-## Dependencies
+## Diagram
 
-The opentmf-v4-models libraries depend on the [opentmf-commons](https://github.com/opentmf/opentmf-commons)
-library that provides the following:
+[PlantUML](opentmf-v4-models.puml) in the project root.
 
-- `JacksonUtil` Class:
-  - Provides a singleton ObjectMapper and utility methods.
-- `ValidationUtil` Class:
-  - Provides utility methods for on-demand bean validation.
-- Validation Annotations:
-  - `@SafeText`: Allows only a set of safe characters for strings.
-  - `@SafeId`: Allows only alphanumeric characters, underscore and minus.
-  - `@SafeQuery`: Allows only a set of safe characters for URL queries.
-  - `@SafeJsonPath`: Allows only certain special characters necessary to build a json path string, in addition to the English alphanumeric characters.
-  - `@Required`: A class level annotation to act as  `@NotNull` for inherited properties. Validates only and only if, at the time of the validation, the initialized `@Required` belongs to the actual declaring class itself, not to a parent class.
-- Other useful utility methods like `ListUtil`, `PropertyUtil` and `UrlUtil`, that do not depend on Spring framework.
+## Depends on
 
-## Layered Approach
+- **opentmf-v4-api** — `I*` interfaces (and enums when generated there).
+- **opentmf-commons** — validation annotations, `JacksonUtil`, helpers.
 
-The opentmf-v4-models library has been designed to be extendable with layers.
-This layer is the original TMF v4 models.
-There can be additional layers to incorporate extensions by other projects.
+## OpenTMF version alignment (BOM)
 
-The following image shows the released artifacts and their dependencies
-within tmf-v4-models:
+Import **`opentmf-versions`** in `<dependencyManagement>` so OpenTMF artifacts (models, APIs, commons, etc.) stay on aligned versions:
 
-![](opentmf-v4-models.jpg)
+```xml
+<dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.opentmf</groupId>
+      <artifactId>opentmf-versions</artifactId>
+      <version>LATEST</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+  </dependencies>
+</dependencyManagement>
+```
 
-## Usage Example
-We might want to use some extended attributes of a particular TMF backend, by extending the above
-vanilla TMF model classes. For example, the product ordering management microservice of DNext.
-In such a case, we can extend the ProductOrder class and place additional attributes that will be
-used by the DNext microservice. The below example assumes we have such a model artifact.
+**Replace `LATEST` with a fixed `opentmf-versions` release** (e.g. the current line you standardize on). Maven still resolves `LATEST` / `RELEASE` in some setups, but those keywords are **deprecated for reproducible builds** and are effectively **EOL** as a practice — **use a static version for build consistency** (CI, audits, and local builds should all see the same bill of materials).
 
-Let's suppose, we have a microservice that depends on opentmf-641-v4-model and
-the assumed dnext-opentmf-622-v4-model classes. In order to use them, we can expose the
-ObjectMapper bean as follows:
+## Jackson
+
+Register polymorphic subtypes once per TMF module you use directly; each `Tmf*JacksonConfig.registerExtensions` chains parent commons.
 
 ```java
-@Component
-public class JacksonConfig {
-
-  @Primary
-  @Bean
-  public ObjectMapper objectMapper() {
-
-    // start with the default initialized ObjectMapper instance by the util class
-    var objectMapper = JacksonUtil.getDefaultObjectMapper();
-
-    // extension initializations for the desired modules
-    DnextTmf622JacksonConfig.registerExtensions(objectMapper);
-    Tmf641JacksonConfig.registerExtensions(objectMapper);
-
-    // if necessary, other objectMapper initialization that are specific to that microservice
-    // ...
-    // ...
-
-    // finally, return this initialized ObjectMapper.
-    // This will be used by Spring Boot for all APIs.
-    // You will be able to use JacksonUtil methods too.
-    return objectMapper;
-  }
+@Bean @Primary
+public ObjectMapper objectMapper() {
+  var b = JsonMapper.builder();
+  Tmf622JacksonConfig.registerExtensions(b);
+  return b.build();
 }
 ```
 
-Since the `JacksonUtil` library uses the single `ObjectMapper` it instantiates in its utility methods,
-the above method is very convenient for using the library's utility methods.
-
 ## Requirements
 
-- Java 17 or newer.
-
-## Version History
-### 1.0.0
-- Initial version.
-### 1.0.1
-- Adds TMF-648 Quote models.
-### 1.0.2
-- Moves projects to -v4 folders.
-### 1.0.3
-- Adds TMF-681 Communications Management model.
-### 1.0.4
-- The first open-source release.
-### 1.0.5
-- Updates opentmf-commons dependency to 1.0.5
+Java 17+.

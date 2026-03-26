@@ -1,0 +1,3900 @@
+openapi: 3.0.0
+info:
+  title: Risk Management
+  description: >-
+    ## TMF API Reference: TMF696 - Risk Assessment
+
+
+    ### Release : 20.0 - March 2020
+
+
+    Risk Assessment API allows assessment of risks, such as party risk, risk associated with product offering, and risk associated with party role requesting a particular offering
+  version: 4.0.0
+tags:
+  - name: productOfferingRiskAssessment
+  - name: partyRoleRiskAssessment
+  - name: partyRoleProductOfferingRiskAssessment
+  - name: shoppingCartRiskAssessment
+  - name: productOrderRiskAssessment
+  - name: notification listeners (client side)
+  - name: events subscription
+paths:
+  /productOfferingRiskAssessment:
+    get:
+      operationId: listProductOfferingRiskAssessment
+      summary: List or find ProductOfferingRiskAssessment objects
+      description: This operation list or find ProductOfferingRiskAssessment entities
+      tags:
+        - productOfferingRiskAssessment
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProductOfferingRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createProductOfferingRiskAssessment
+      summary: Creates a ProductOfferingRiskAssessment
+      description: This operation creates a ProductOfferingRiskAssessment entity.
+      tags:
+        - productOfferingRiskAssessment
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductOfferingRiskAssessment_Create"
+        description: The ProductOfferingRiskAssessment to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ProductOfferingRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/productOfferingRiskAssessment/{id}":
+    get:
+      operationId: retrieveProductOfferingRiskAssessment
+      summary: Retrieves a ProductOfferingRiskAssessment by ID
+      description: This operation retrieves a ProductOfferingRiskAssessment entity.
+        Attribute selection is enabled for all first level attributes.
+      tags:
+        - productOfferingRiskAssessment
+      parameters:
+        - name: id
+          description: Identifier of the ProductOfferingRiskAssessment
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ProductOfferingRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteProductOfferingRiskAssessment
+      summary: Deletes a ProductOfferingRiskAssessment
+      description: This operation deletes a ProductOfferingRiskAssessment entity.
+      tags:
+        - productOfferingRiskAssessment
+      parameters:
+        - name: id
+          description: Identifier of the ProductOfferingRiskAssessment
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /partyRoleRiskAssessment:
+    get:
+      operationId: listPartyRoleRiskAssessment
+      summary: List or find PartyRoleRiskAssessment objects
+      description: This operation list or find PartyRoleRiskAssessment entities
+      tags:
+        - partyRoleRiskAssessment
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PartyRoleRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createPartyRoleRiskAssessment
+      summary: Creates a PartyRoleRiskAssessment
+      description: This operation creates a PartyRoleRiskAssessment entity.
+      tags:
+        - partyRoleRiskAssessment
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PartyRoleRiskAssessment_Create"
+        description: The PartyRoleRiskAssessment to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/PartyRoleRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/partyRoleRiskAssessment/{id}":
+    get:
+      operationId: retrievePartyRoleRiskAssessment
+      summary: Retrieves a PartyRoleRiskAssessment by ID
+      description: This operation retrieves a PartyRoleRiskAssessment entity.
+        Attribute selection is enabled for all first level attributes.
+      tags:
+        - partyRoleRiskAssessment
+      parameters:
+        - name: id
+          description: Identifier of the PartyRoleRiskAssessment
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/PartyRoleRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deletePartyRoleRiskAssessment
+      summary: Deletes a PartyRoleRiskAssessment
+      description: This operation deletes a PartyRoleRiskAssessment entity.
+      tags:
+        - partyRoleRiskAssessment
+      parameters:
+        - name: id
+          description: Identifier of the PartyRoleRiskAssessment
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /partyRoleProductOfferingRiskAssessment:
+    get:
+      operationId: listPartyRoleProductOfferingRiskAssessment
+      summary: List or find PartyRoleProductOfferingRiskAssessment objects
+      description: This operation list or find PartyRoleProductOfferingRiskAssessment
+        entities
+      tags:
+        - partyRoleProductOfferingRiskAssessment
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createPartyRoleProductOfferingRiskAssessment
+      summary: Creates a PartyRoleProductOfferingRiskAssessment
+      description: This operation creates a PartyRoleProductOfferingRiskAssessment entity.
+      tags:
+        - partyRoleProductOfferingRiskAssessment
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessment_Create"
+        description: The PartyRoleProductOfferingRiskAssessment to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/partyRoleProductOfferingRiskAssessment/{id}":
+    get:
+      operationId: retrievePartyRoleProductOfferingRiskAssessment
+      summary: Retrieves a PartyRoleProductOfferingRiskAssessment by ID
+      description: This operation retrieves a PartyRoleProductOfferingRiskAssessment
+        entity. Attribute selection is enabled for all first level attributes.
+      tags:
+        - partyRoleProductOfferingRiskAssessment
+      parameters:
+        - name: id
+          description: Identifier of the PartyRoleProductOfferingRiskAssessment
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deletePartyRoleProductOfferingRiskAssessment
+      summary: Deletes a PartyRoleProductOfferingRiskAssessment
+      description: This operation deletes a PartyRoleProductOfferingRiskAssessment entity.
+      tags:
+        - partyRoleProductOfferingRiskAssessment
+      parameters:
+        - name: id
+          description: Identifier of the PartyRoleProductOfferingRiskAssessment
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /shoppingCartRiskAssessment:
+    get:
+      operationId: listShoppingCartRiskAssessment
+      summary: List or find ShoppingCartRiskAssessment objects
+      description: This operation list or find ShoppingCartRiskAssessment entities
+      tags:
+        - shoppingCartRiskAssessment
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ShoppingCartRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createShoppingCartRiskAssessment
+      summary: Creates a ShoppingCartRiskAssessment
+      description: This operation creates a ShoppingCartRiskAssessment entity.
+      tags:
+        - shoppingCartRiskAssessment
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ShoppingCartRiskAssessment_Create"
+        description: The ShoppingCartRiskAssessment to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ShoppingCartRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/shoppingCartRiskAssessment/{id}":
+    get:
+      operationId: retrieveShoppingCartRiskAssessment
+      summary: Retrieves a ShoppingCartRiskAssessment by ID
+      description: This operation retrieves a ShoppingCartRiskAssessment entity.
+        Attribute selection is enabled for all first level attributes.
+      tags:
+        - shoppingCartRiskAssessment
+      parameters:
+        - name: id
+          description: Identifier of the ShoppingCartRiskAssessment
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ShoppingCartRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteShoppingCartRiskAssessment
+      summary: Deletes a ShoppingCartRiskAssessment
+      description: This operation deletes a ShoppingCartRiskAssessment entity.
+      tags:
+        - shoppingCartRiskAssessment
+      parameters:
+        - name: id
+          description: Identifier of the ShoppingCartRiskAssessment
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productOrderRiskAssessment:
+    get:
+      operationId: listProductOrderRiskAssessment
+      summary: List or find ProductOrderRiskAssessment objects
+      description: This operation list or find ProductOrderRiskAssessment entities
+      tags:
+        - productOrderRiskAssessment
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProductOrderRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createProductOrderRiskAssessment
+      summary: Creates a ProductOrderRiskAssessment
+      description: This operation creates a ProductOrderRiskAssessment entity.
+      tags:
+        - productOrderRiskAssessment
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductOrderRiskAssessment_Create"
+        description: The ProductOrderRiskAssessment to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ProductOrderRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/productOrderRiskAssessment/{id}":
+    get:
+      operationId: retrieveProductOrderRiskAssessment
+      summary: Retrieves a ProductOrderRiskAssessment by ID
+      description: This operation retrieves a ProductOrderRiskAssessment entity.
+        Attribute selection is enabled for all first level attributes.
+      tags:
+        - productOrderRiskAssessment
+      parameters:
+        - name: id
+          description: Identifier of the ProductOrderRiskAssessment
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ProductOrderRiskAssessment"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteProductOrderRiskAssessment
+      summary: Deletes a ProductOrderRiskAssessment
+      description: This operation deletes a ProductOrderRiskAssessment entity.
+      tags:
+        - productOrderRiskAssessment
+      parameters:
+        - name: id
+          description: Identifier of the ProductOrderRiskAssessment
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /hub:
+    post:
+      operationId: registerListener
+      summary: Register a listener
+      description: Sets the communication endpoint address the service instance must
+        use to deliver information about its health state, execution state,
+        failures and metrics.
+      tags:
+        - events subscription
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/EventSubscriptionInput"
+        description: Data containing the callback endpoint to deliver the information
+        required: true
+      responses:
+        "201":
+          description: Subscribed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/hub/{id}":
+    delete:
+      operationId: unregisterListener
+      summary: Unregister a listener
+      description: Resets the communication endpoint address the service instance must
+        use to deliver information about its health state, execution state,
+        failures and metrics.
+      tags:
+        - events subscription
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: The id of the registered listener
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/productOfferingRiskAssessmentCreateEvent:
+    post:
+      operationId: listenToProductOfferingRiskAssessmentCreateEvent
+      summary: Client listener for entity ProductOfferingRiskAssessmentCreateEvent
+      description: Example of a client listener for receiving the notification
+        ProductOfferingRiskAssessmentCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductOfferingRiskAssessmentCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/productOfferingRiskAssessmentDeleteEvent:
+    post:
+      operationId: listenToProductOfferingRiskAssessmentDeleteEvent
+      summary: Client listener for entity ProductOfferingRiskAssessmentDeleteEvent
+      description: Example of a client listener for receiving the notification
+        ProductOfferingRiskAssessmentDeleteEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductOfferingRiskAssessmentDeleteEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/productOfferingRiskAssessmentStatusChangeEvent:
+    post:
+      operationId: listenToProductOfferingRiskAssessmentStatusChangeEvent
+      summary: Client listener for entity ProductOfferingRiskAssessmentStatusChangeEvent
+      description: Example of a client listener for receiving the notification
+        ProductOfferingRiskAssessmentStatusChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductOfferingRiskAssessmentStatusChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/partyRoleRiskAssessmentCreateEvent:
+    post:
+      operationId: listenToPartyRoleRiskAssessmentCreateEvent
+      summary: Client listener for entity PartyRoleRiskAssessmentCreateEvent
+      description: Example of a client listener for receiving the notification
+        PartyRoleRiskAssessmentCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PartyRoleRiskAssessmentCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/partyRoleRiskAssessmentDeleteEvent:
+    post:
+      operationId: listenToPartyRoleRiskAssessmentDeleteEvent
+      summary: Client listener for entity PartyRoleRiskAssessmentDeleteEvent
+      description: Example of a client listener for receiving the notification
+        PartyRoleRiskAssessmentDeleteEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PartyRoleRiskAssessmentDeleteEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/partyRoleRiskAssessmentStatusChangeEvent:
+    post:
+      operationId: listenToPartyRoleRiskAssessmentStatusChangeEvent
+      summary: Client listener for entity PartyRoleRiskAssessmentStatusChangeEvent
+      description: Example of a client listener for receiving the notification
+        PartyRoleRiskAssessmentStatusChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PartyRoleRiskAssessmentStatusChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/partyRoleProductOfferingRiskAssessmentCreateEvent:
+    post:
+      operationId: listenToPartyRoleProductOfferingRiskAssessmentCreateEvent
+      summary: Client listener for entity
+        PartyRoleProductOfferingRiskAssessmentCreateEvent
+      description: Example of a client listener for receiving the notification
+        PartyRoleProductOfferingRiskAssessmentCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessmentCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/partyRoleProductOfferingRiskAssessmentDeleteEvent:
+    post:
+      operationId: listenToPartyRoleProductOfferingRiskAssessmentDeleteEvent
+      summary: Client listener for entity
+        PartyRoleProductOfferingRiskAssessmentDeleteEvent
+      description: Example of a client listener for receiving the notification
+        PartyRoleProductOfferingRiskAssessmentDeleteEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessmentDeleteEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/partyRoleProductOfferingRiskAssessmentStatusChangeEvent:
+    post:
+      operationId: listenToPartyRoleProductOfferingRiskAssessmentStatusChangeEvent
+      summary: Client listener for entity
+        PartyRoleProductOfferingRiskAssessmentStatusChangeEvent
+      description: Example of a client listener for receiving the notification
+        PartyRoleProductOfferingRiskAssessmentStatusChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessmentStatusChangeE\
+                vent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/shoppingCartRiskAssessmentCreateEvent:
+    post:
+      operationId: listenToShoppingCartRiskAssessmentCreateEvent
+      summary: Client listener for entity ShoppingCartRiskAssessmentCreateEvent
+      description: Example of a client listener for receiving the notification
+        ShoppingCartRiskAssessmentCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ShoppingCartRiskAssessmentCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/shoppingCartRiskAssessmentDeleteEvent:
+    post:
+      operationId: listenToShoppingCartRiskAssessmentDeleteEvent
+      summary: Client listener for entity ShoppingCartRiskAssessmentDeleteEvent
+      description: Example of a client listener for receiving the notification
+        ShoppingCartRiskAssessmentDeleteEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ShoppingCartRiskAssessmentDeleteEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/shoppingCartRiskAssessmentStatusChangeEvent:
+    post:
+      operationId: listenToShoppingCartRiskAssessmentStatusChangeEvent
+      summary: Client listener for entity ShoppingCartRiskAssessmentStatusChangeEvent
+      description: Example of a client listener for receiving the notification
+        ShoppingCartRiskAssessmentStatusChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ShoppingCartRiskAssessmentStatusChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/productOrderRiskAssessmentCreateEvent:
+    post:
+      operationId: listenToProductOrderRiskAssessmentCreateEvent
+      summary: Client listener for entity ProductOrderRiskAssessmentCreateEvent
+      description: Example of a client listener for receiving the notification
+        ProductOrderRiskAssessmentCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductOrderRiskAssessmentCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/productOrderRiskAssessmentDeleteEvent:
+    post:
+      operationId: listenToProductOrderRiskAssessmentDeleteEvent
+      summary: Client listener for entity ProductOrderRiskAssessmentDeleteEvent
+      description: Example of a client listener for receiving the notification
+        ProductOrderRiskAssessmentDeleteEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductOrderRiskAssessmentDeleteEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/productOrderRiskAssessmentStatusChangeEvent:
+    post:
+      operationId: listenToProductOrderRiskAssessmentStatusChangeEvent
+      summary: Client listener for entity ProductOrderRiskAssessmentStatusChangeEvent
+      description: Example of a client listener for receiving the notification
+        ProductOrderRiskAssessmentStatusChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductOrderRiskAssessmentStatusChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+servers:
+  - url: https://serverRoot/tmf-api/riskManagement/v4
+components:
+  schemas:
+    Addressable:
+      type: object
+      description: Base schema for adressable entities
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        href:
+          type: string
+          format: uri
+          description: Hyperlink reference
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    Any: {}
+    Characteristic:
+      type: object
+      description: Describes a given characteristic of an object or entity through a
+        name/value pair.
+      required:
+        - name
+        - value
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the characteristic
+        name:
+          type: string
+          description: Name of the characteristic
+        valueType:
+          type: string
+          description: Data type of the value of the characteristic
+        characteristicRelationship:
+          type: array
+          items:
+            $ref: "#/components/schemas/CharacteristicRelationship"
+        value:
+          $ref: "#/components/schemas/Any"
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    CharacteristicRelationship:
+      type: object
+      description: Another Characteristic that is related to the current Characteristic;
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the characteristic
+        relationshipType:
+          type: string
+          description: The type of relationship
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    EntityRef:
+      type: object
+      description: Entity reference schema to be use for all entityRef class.
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        href:
+          type: string
+          format: uri
+          description: Hyperlink reference
+        name:
+          type: string
+          description: Name of the related entity.
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+      required:
+        - id
+    Extensible:
+      type: object
+      description: Base Extensible schema for use in TMForum Open-APIs
+      properties:
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    PartyRoleProductOfferingRiskAssessment:
+      type: object
+      description: This is a task resource allowing assessment of the risks associated
+        with a party or party role that considers acquiring a specific product
+        offering
+      required:
+        - partyRole
+        - productOffering
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        href:
+          type: string
+          format: uri
+          description: Hyperlink reference
+        status:
+          type: string
+          description: The status of the risk assessment, such as Succeeded, In Progress,
+            Failed, output from the task
+        characteristic:
+          type: array
+          items:
+            $ref: "#/components/schemas/Characteristic"
+          description: Additional characteristics for which the risk might be assessed,
+            optional input to the task
+        partyRole:
+          $ref: "#/components/schemas/RelatedPartyRef"
+        place:
+          $ref: "#/components/schemas/RelatedPlace"
+        productOffering:
+          $ref: "#/components/schemas/ProductOfferingRef"
+        riskAssessmentResult:
+          $ref: "#/components/schemas/RiskAssessmentResult"
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    PartyRoleProductOfferingRiskAssessment_Create:
+      type: object
+      description: >-
+        This is a task resource allowing assessment of the risks associated with
+        a party or party role that considers acquiring a specific product
+        offering
+
+        Skipped properties: id,href
+      required:
+        - partyRole
+        - productOffering
+      properties:
+        status:
+          type: string
+          description: The status of the risk assessment, such as Succeeded, In Progress,
+            Failed, output from the task
+        characteristic:
+          type: array
+          items:
+            $ref: "#/components/schemas/Characteristic"
+          description: Additional characteristics for which the risk might be assessed,
+            optional input to the task
+        partyRole:
+          $ref: "#/components/schemas/RelatedPartyRef"
+        place:
+          $ref: "#/components/schemas/RelatedPlace"
+        productOffering:
+          $ref: "#/components/schemas/ProductOfferingRef"
+        riskAssessmentResult:
+          $ref: "#/components/schemas/RiskAssessmentResult"
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    PartyRoleRiskAssessment:
+      type: object
+      description: This is a task resource allowing assessment of the risks associated
+        with a party role
+      required:
+        - partyRole
+      properties:
+        partyRole:
+          $ref: "#/components/schemas/RelatedPartyRef"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    PartyRoleRiskAssessment_Create:
+      type: object
+      description: >-
+        This is a task resource allowing assessment of the risks associated with
+        a party role
+
+        Skipped properties: id,href
+      required:
+        - partyRole
+      properties:
+        partyRole:
+          $ref: "#/components/schemas/RelatedPartyRef"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    ProductOfferingRef:
+      type: object
+      description: ProductOffering reference. A product offering represents entities
+        that are orderable from the provider of the catalog, this resource
+        includes pricing information.
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        href:
+          type: string
+          format: uri
+          description: Hyperlink reference
+        name:
+          type: string
+          description: Name of the related entity.
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+      required:
+        - id
+    ProductOfferingRiskAssessment:
+      type: object
+      description: This is a task resource allowing assessment of the risks associated
+        with a product offering. For example, the risk associated with iPhone X
+        will probably be higher than the risk for a battery
+      required:
+        - productOffering
+      properties:
+        productOffering:
+          $ref: "#/components/schemas/ProductOfferingRef"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    ProductOfferingRiskAssessment_Create:
+      type: object
+      description: >-
+        This is a task resource allowing assessment of the risks associated with
+        a product offering. For example, the risk associated with iPhone X will
+        probably be higher than the risk for a battery
+
+        Skipped properties: id,href
+      required:
+        - productOffering
+      properties:
+        productOffering:
+          $ref: "#/components/schemas/ProductOfferingRef"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    ProductOrderRef:
+      type: object
+      description: ProductOrder (ProductOrder) .The product order which the
+        recommendation is related with.
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        href:
+          type: string
+          format: uri
+          description: Hyperlink reference
+        name:
+          type: string
+          description: Name of the related entity.
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+      required:
+        - id
+    ProductOrderRiskAssessment:
+      type: object
+      description: This is a task resource allowing assessment of the risks associated
+        with a product order - presumably submitted by a party role and
+        containing one or more product offerings
+      required:
+        - productOrder
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        href:
+          type: string
+          format: uri
+          description: Hyperlink reference
+        status:
+          type: string
+          description: The status of the risk assessment, such as Succeeded, In Progress,
+            Failed, output from the task
+        characteristic:
+          type: array
+          items:
+            $ref: "#/components/schemas/Characteristic"
+          description: Additional characteristics for which the risk might be assessed,
+            optional input to the task
+        place:
+          $ref: "#/components/schemas/RelatedPlace"
+        productOrder:
+          $ref: "#/components/schemas/ProductOrderRef"
+        riskAssessmentResult:
+          $ref: "#/components/schemas/RiskAssessmentResult"
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    ProductOrderRiskAssessment_Create:
+      type: object
+      description: >-
+        This is a task resource allowing assessment of the risks associated with
+        a product order - presumably submitted by a party role and containing
+        one or more product offerings
+
+        Skipped properties: id,href
+      required:
+        - productOrder
+      properties:
+        status:
+          type: string
+          description: The status of the risk assessment, such as Succeeded, In Progress,
+            Failed, output from the task
+        characteristic:
+          type: array
+          items:
+            $ref: "#/components/schemas/Characteristic"
+          description: Additional characteristics for which the risk might be assessed,
+            optional input to the task
+        place:
+          $ref: "#/components/schemas/RelatedPlace"
+        productOrder:
+          $ref: "#/components/schemas/ProductOrderRef"
+        riskAssessmentResult:
+          $ref: "#/components/schemas/RiskAssessmentResult"
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    RelatedPartyRef:
+      type: object
+      description: RelatedParty reference. A related party defines party or party role
+        linked to a specific entity.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of a related party
+        href:
+          type: string
+          format: uri
+          description: Reference of the related party, could be a party reference or a
+            party role reference
+        name:
+          type: string
+          description: Name of the related party
+        role:
+          type: string
+          description: Role of the related party.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+      required:
+        - id
+    RelatedPlace:
+      type: object
+      description: A  Place and an associated role as installation adress, delivery
+        address, etc....
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the place
+        href:
+          type: string
+          format: uri
+          description: Unique reference of the place
+        name:
+          type: string
+          description: A user-friendly name for the place, such as [Paris Store], [London
+            Store], [Main Home]
+        role:
+          type: string
+          description: "Role of the place, such as: [home delivery], [shop retrieval])"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    RiskAssessment:
+      type: object
+      description: This is a generalized task resource allowing assessment of risks -
+        it is expected that the resource will be specialized to reflect specific
+        risks, such as risks associated with a party, or with an order, etc.
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        href:
+          type: string
+          format: uri
+          description: Hyperlink reference
+        status:
+          type: string
+          description: The status of the risk assessment, such as Succeeded, In Progress,
+            Failed, output from the task
+        characteristic:
+          type: array
+          items:
+            $ref: "#/components/schemas/Characteristic"
+          description: Additional characteristics for which the risk might be assessed,
+            optional input to the task
+        place:
+          $ref: "#/components/schemas/RelatedPlace"
+        riskAssessmentResult:
+          $ref: "#/components/schemas/RiskAssessmentResult"
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    RiskAssessmentResult:
+      type: object
+      description: This resource reflects the risk assessment
+      properties:
+        overallScore:
+          type: number
+          format: float
+          description: An overall assessment of the risk, composed from the individual
+            scores
+        score:
+          type: array
+          items:
+            $ref: "#/components/schemas/RiskScore"
+          description: Additional characteristics for which the risk might be assessed,
+            optional input to the task
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    RiskScore:
+      type: object
+      description: This resource reflects a score for a specific risk
+      properties:
+        score:
+          type: number
+          format: float
+          description: The risk score
+        riskName:
+          $ref: "#/components/schemas/RiskType"
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    RiskType:
+      type: string
+      description: Types of risk that can be assessed
+      enum:
+        - FraudRisk
+        - BadPaymentRisk
+        - CreditGamingRisk
+        - IDConfidenceRisk
+        - PaymentMethodRisk
+    ShoppingCartRef:
+      type: object
+      description: ShoppingCart (ShoppingCartRef) . The shopping cart which the
+        recommendation is related with.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of shopping cart
+        href:
+          type: string
+          format: uri
+          description: Hypertext Reference of the shopping cart.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+      required:
+        - id
+    ShoppingCartRiskAssessment:
+      type: object
+      description: This is a task resource allowing assessment of the risks associated
+        with a shopping cart - presumably created by a party role and containing
+        one or more product offerings
+      required:
+        - shoppingCart
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        href:
+          type: string
+          format: uri
+          description: Hyperlink reference
+        status:
+          type: string
+          description: The status of the risk assessment, such as Succeeded, In Progress,
+            Failed, output from the task
+        characteristic:
+          type: array
+          items:
+            $ref: "#/components/schemas/Characteristic"
+          description: Additional characteristics for which the risk might be assessed,
+            optional input to the task
+        place:
+          $ref: "#/components/schemas/RelatedPlace"
+        riskAssessmentResult:
+          $ref: "#/components/schemas/RiskAssessmentResult"
+        shoppingCart:
+          $ref: "#/components/schemas/ShoppingCartRef"
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    ShoppingCartRiskAssessment_Create:
+      type: object
+      description: >-
+        This is a task resource allowing assessment of the risks associated with
+        a shopping cart - presumably created by a party role and containing one
+        or more product offerings
+
+        Skipped properties: id,href
+      required:
+        - shoppingCart
+      properties:
+        status:
+          type: string
+          description: The status of the risk assessment, such as Succeeded, In Progress,
+            Failed, output from the task
+        characteristic:
+          type: array
+          items:
+            $ref: "#/components/schemas/Characteristic"
+          description: Additional characteristics for which the risk might be assessed,
+            optional input to the task
+        place:
+          $ref: "#/components/schemas/RelatedPlace"
+        riskAssessmentResult:
+          $ref: "#/components/schemas/RiskAssessmentResult"
+        shoppingCart:
+          $ref: "#/components/schemas/ShoppingCartRef"
+        "@baseType":
+          example: ResourceSpecification
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          example: https://mycsp.com:8080/tmf-api/schema/Resource/LogicalResourceSpecification.schema.json
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          example: LogicalResourceSpecification
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name
+    EventSubscription:
+      type: object
+      description: Sets the communication endpoint address the service instance must
+        use to deliver notification information
+      required:
+        - id
+        - callback
+      properties:
+        id:
+          type: string
+          description: Id of the listener
+        callback:
+          type: string
+          description: The callback being registered.
+        query:
+          type: string
+          description: additional data to be passed
+    EventSubscriptionInput:
+      type: object
+      description: Sets the communication endpoint address the service instance must
+        use to deliver notification information
+      required:
+        - callback
+      properties:
+        callback:
+          type: string
+          description: The callback being registered.
+        query:
+          type: string
+          description: additional data to be passed
+    ProductOfferingRiskAssessmentCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/ProductOfferingRiskAssessmentCreateEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    ProductOfferingRiskAssessmentCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        productOfferingRiskAssessment:
+          $ref: "#/components/schemas/ProductOfferingRiskAssessment"
+    ProductOfferingRiskAssessmentDeleteEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/ProductOfferingRiskAssessmentDeleteEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    ProductOfferingRiskAssessmentDeleteEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        productOfferingRiskAssessment:
+          $ref: "#/components/schemas/ProductOfferingRiskAssessment"
+    ProductOfferingRiskAssessmentStatusChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/ProductOfferingRiskAssessmentStatusChangeEventPaylo\
+            ad"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    ProductOfferingRiskAssessmentStatusChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        productOfferingRiskAssessment:
+          $ref: "#/components/schemas/ProductOfferingRiskAssessment"
+    PartyRoleRiskAssessmentCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/PartyRoleRiskAssessmentCreateEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    PartyRoleRiskAssessmentCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        partyRoleRiskAssessment:
+          $ref: "#/components/schemas/PartyRoleRiskAssessment"
+    PartyRoleRiskAssessmentDeleteEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/PartyRoleRiskAssessmentDeleteEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    PartyRoleRiskAssessmentDeleteEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        partyRoleRiskAssessment:
+          $ref: "#/components/schemas/PartyRoleRiskAssessment"
+    PartyRoleRiskAssessmentStatusChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/PartyRoleRiskAssessmentStatusChangeEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    PartyRoleRiskAssessmentStatusChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        partyRoleRiskAssessment:
+          $ref: "#/components/schemas/PartyRoleRiskAssessment"
+    PartyRoleProductOfferingRiskAssessmentCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessmentCreateEventPa\
+            yload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    PartyRoleProductOfferingRiskAssessmentCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        partyRoleProductOfferingRiskAssessment:
+          $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessment"
+    PartyRoleProductOfferingRiskAssessmentDeleteEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessmentDeleteEventPa\
+            yload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    PartyRoleProductOfferingRiskAssessmentDeleteEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        partyRoleProductOfferingRiskAssessment:
+          $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessment"
+    PartyRoleProductOfferingRiskAssessmentStatusChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessmentStatusChangeE\
+            ventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    PartyRoleProductOfferingRiskAssessmentStatusChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        partyRoleProductOfferingRiskAssessment:
+          $ref: "#/components/schemas/PartyRoleProductOfferingRiskAssessment"
+    ShoppingCartRiskAssessmentCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/ShoppingCartRiskAssessmentCreateEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    ShoppingCartRiskAssessmentCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        shoppingCartRiskAssessment:
+          $ref: "#/components/schemas/ShoppingCartRiskAssessment"
+    ShoppingCartRiskAssessmentDeleteEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/ShoppingCartRiskAssessmentDeleteEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    ShoppingCartRiskAssessmentDeleteEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        shoppingCartRiskAssessment:
+          $ref: "#/components/schemas/ShoppingCartRiskAssessment"
+    ShoppingCartRiskAssessmentStatusChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/ShoppingCartRiskAssessmentStatusChangeEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    ShoppingCartRiskAssessmentStatusChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        shoppingCartRiskAssessment:
+          $ref: "#/components/schemas/ShoppingCartRiskAssessment"
+    ProductOrderRiskAssessmentCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/ProductOrderRiskAssessmentCreateEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    ProductOrderRiskAssessmentCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        productOrderRiskAssessment:
+          $ref: "#/components/schemas/ProductOrderRiskAssessment"
+    ProductOrderRiskAssessmentDeleteEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/ProductOrderRiskAssessmentDeleteEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    ProductOrderRiskAssessmentDeleteEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        productOrderRiskAssessment:
+          $ref: "#/components/schemas/ProductOrderRiskAssessment"
+    ProductOrderRiskAssessmentStatusChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        event:
+          $ref: "#/components/schemas/ProductOrderRiskAssessmentStatusChangeEventPayload"
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+    ProductOrderRiskAssessmentStatusChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        productOrderRiskAssessment:
+          $ref: "#/components/schemas/ProductOrderRiskAssessment"
+    Error:
+      description: Used when an API throws an Error, typically with a HTTP error
+        response-code (3xx, 4xx, 5xx)
+      type: object
+      required:
+        - code
+        - reason
+      properties:
+        code:
+          type: string
+          description: Application relevant detail, defined in the API or a common list.
+        reason:
+          type: string
+          description: Explanation of the reason for the error which can be shown to a
+            client user.
+        message:
+          type: string
+          description: More details and corrective actions related to the error which can
+            be shown to a client user.
+        status:
+          type: string
+          description: HTTP Error code extension
+        referenceError:
+          type: string
+          format: uri
+          description: URI of documentation describing the error.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class.
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name.

@@ -1,0 +1,5054 @@
+openapi: 3.0.0
+info:
+  title: Alarm
+  description: Alarm Management API
+  version: 4.0.0
+tags:
+  - name: alarm
+  - name: ackAlarms
+  - name: unAckAlarms
+  - name: clearAlarms
+  - name: commentAlarms
+  - name: groupAlarms
+  - name: unGroupAlarms
+  - name: notification listeners (client side)
+  - name: events subscription
+paths:
+  /alarm:
+    get:
+      operationId: listAlarm
+      summary: List or find Alarm objects
+      description: This operation list or find Alarm entities
+      tags:
+        - alarm
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Alarm"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createAlarm
+      summary: Creates a Alarm
+      description: This operation creates a Alarm entity.
+      tags:
+        - alarm
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Alarm_Create"
+        description: The Alarm to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Alarm"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/alarm/{id}":
+    get:
+      operationId: retrieveAlarm
+      summary: Retrieves a Alarm by ID
+      description: This operation retrieves a Alarm entity. Attribute selection is
+        enabled for all first level attributes.
+      tags:
+        - alarm
+      parameters:
+        - name: id
+          description: Identifier of the Alarm
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Alarm"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      operationId: patchAlarm
+      summary: Updates partially a Alarm
+      description: This operation updates partially a Alarm entity.
+      tags:
+        - alarm
+      parameters:
+        - name: id
+          description: Identifier of the Alarm
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Alarm_Update"
+        description: The Alarm to be updated
+        required: true
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Alarm"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteAlarm
+      summary: Deletes a Alarm
+      description: This operation deletes a Alarm entity.
+      tags:
+        - alarm
+      parameters:
+        - name: id
+          description: Identifier of the Alarm
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /ackAlarms:
+    get:
+      operationId: listAckAlarms
+      summary: List or find AckAlarms objects
+      description: This operation list or find AckAlarms entities
+      tags:
+        - ackAlarms
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AckAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createAckAlarms
+      summary: Creates a AckAlarms
+      description: This operation creates a AckAlarms entity.
+      tags:
+        - ackAlarms
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/AckAlarms_Create"
+        description: The AckAlarms to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/AckAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/ackAlarms/{id}":
+    get:
+      operationId: retrieveAckAlarms
+      summary: Retrieves a AckAlarms by ID
+      description: This operation retrieves a AckAlarms entity. Attribute selection is
+        enabled for all first level attributes.
+      tags:
+        - ackAlarms
+      parameters:
+        - name: id
+          description: Identifier of the AckAlarms
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/AckAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /unAckAlarms:
+    get:
+      operationId: listUnAckAlarms
+      summary: List or find UnAckAlarms objects
+      description: This operation list or find UnAckAlarms entities
+      tags:
+        - unAckAlarms
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UnAckAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createUnAckAlarms
+      summary: Creates a UnAckAlarms
+      description: This operation creates a UnAckAlarms entity.
+      tags:
+        - unAckAlarms
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UnAckAlarms_Create"
+        description: The UnAckAlarms to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/UnAckAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/unAckAlarms/{id}":
+    get:
+      operationId: retrieveUnAckAlarms
+      summary: Retrieves a UnAckAlarms by ID
+      description: This operation retrieves a UnAckAlarms entity. Attribute selection
+        is enabled for all first level attributes.
+      tags:
+        - unAckAlarms
+      parameters:
+        - name: id
+          description: Identifier of the UnAckAlarms
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/UnAckAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /clearAlarms:
+    get:
+      operationId: listClearAlarms
+      summary: List or find ClearAlarms objects
+      description: This operation list or find ClearAlarms entities
+      tags:
+        - clearAlarms
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ClearAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createClearAlarms
+      summary: Creates a ClearAlarms
+      description: This operation creates a ClearAlarms entity.
+      tags:
+        - clearAlarms
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ClearAlarms_Create"
+        description: The ClearAlarms to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ClearAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/clearAlarms/{id}":
+    get:
+      operationId: retrieveClearAlarms
+      summary: Retrieves a ClearAlarms by ID
+      description: This operation retrieves a ClearAlarms entity. Attribute selection
+        is enabled for all first level attributes.
+      tags:
+        - clearAlarms
+      parameters:
+        - name: id
+          description: Identifier of the ClearAlarms
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ClearAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /commentAlarms:
+    get:
+      operationId: listCommentAlarms
+      summary: List or find CommentAlarms objects
+      description: This operation list or find CommentAlarms entities
+      tags:
+        - commentAlarms
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CommentAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createCommentAlarms
+      summary: Creates a CommentAlarms
+      description: This operation creates a CommentAlarms entity.
+      tags:
+        - commentAlarms
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/CommentAlarms_Create"
+        description: The CommentAlarms to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/CommentAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/commentAlarms/{id}":
+    get:
+      operationId: retrieveCommentAlarms
+      summary: Retrieves a CommentAlarms by ID
+      description: This operation retrieves a CommentAlarms entity. Attribute
+        selection is enabled for all first level attributes.
+      tags:
+        - commentAlarms
+      parameters:
+        - name: id
+          description: Identifier of the CommentAlarms
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/CommentAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /groupAlarms:
+    get:
+      operationId: listGroupAlarms
+      summary: List or find GroupAlarms objects
+      description: This operation list or find GroupAlarms entities
+      tags:
+        - groupAlarms
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GroupAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createGroupAlarms
+      summary: Creates a GroupAlarms
+      description: This operation creates a GroupAlarms entity.
+      tags:
+        - groupAlarms
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/GroupAlarms_Create"
+        description: The GroupAlarms to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/GroupAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/groupAlarms/{id}":
+    get:
+      operationId: retrieveGroupAlarms
+      summary: Retrieves a GroupAlarms by ID
+      description: This operation retrieves a GroupAlarms entity. Attribute selection
+        is enabled for all first level attributes.
+      tags:
+        - groupAlarms
+      parameters:
+        - name: id
+          description: Identifier of the GroupAlarms
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/GroupAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /unGroupAlarms:
+    get:
+      operationId: listUnGroupAlarms
+      summary: List or find UnGroupAlarms objects
+      description: This operation list or find UnGroupAlarms entities
+      tags:
+        - unGroupAlarms
+      parameters:
+        - name: fields
+          description: Comma-separated properties to be provided in response
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: offset
+          description: Requested index for start of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          description: Requested number of resources to be provided in response
+          required: false
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+          headers:
+            X-Result-Count:
+              description: Actual number of items returned in the response body
+              schema:
+                type: integer
+            X-Total-Count:
+              description: Total number of items matching criteria
+              schema:
+                type: integer
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UnGroupAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createUnGroupAlarms
+      summary: Creates a UnGroupAlarms
+      description: This operation creates a UnGroupAlarms entity.
+      tags:
+        - unGroupAlarms
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UnGroupAlarms_Create"
+        description: The UnGroupAlarms to be created
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/UnGroupAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/unGroupAlarms/{id}":
+    get:
+      operationId: retrieveUnGroupAlarms
+      summary: Retrieves a UnGroupAlarms by ID
+      description: This operation retrieves a UnGroupAlarms entity. Attribute
+        selection is enabled for all first level attributes.
+      tags:
+        - unGroupAlarms
+      parameters:
+        - name: id
+          description: Identifier of the UnGroupAlarms
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: fields
+          description: Comma-separated properties to provide in response
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/UnGroupAlarms"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /hub:
+    post:
+      operationId: registerListener
+      summary: Register a listener
+      description: Sets the communication endpoint address the service instance must
+        use to deliver information about its health state, execution state,
+        failures and metrics.
+      tags:
+        - events subscription
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/EventSubscriptionInput"
+        description: Data containing the callback endpoint to deliver the information
+        required: true
+      responses:
+        "201":
+          description: Subscribed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  "/hub/{id}":
+    delete:
+      operationId: unregisterListener
+      summary: Unregister a listener
+      description: Resets the communication endpoint address the service instance must
+        use to deliver information about its health state, execution state,
+        failures and metrics.
+      tags:
+        - events subscription
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: The id of the registered listener
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Deleted
+        "400":
+          description: Bad request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/alarmCreateEvent:
+    post:
+      operationId: listenToAlarmCreateEvent
+      summary: Client listener for entity AlarmCreateEvent
+      description: Example of a client listener for receiving the notification
+        AlarmCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/AlarmCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/alarmAttributeValueChangeEvent:
+    post:
+      operationId: listenToAlarmAttributeValueChangeEvent
+      summary: Client listener for entity AlarmAttributeValueChangeEvent
+      description: Example of a client listener for receiving the notification
+        AlarmAttributeValueChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/AlarmAttributeValueChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/alarmStateChangeEvent:
+    post:
+      operationId: listenToAlarmStateChangeEvent
+      summary: Client listener for entity AlarmStateChangeEvent
+      description: Example of a client listener for receiving the notification
+        AlarmStateChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/AlarmStateChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/alarmDeleteEvent:
+    post:
+      operationId: listenToAlarmDeleteEvent
+      summary: Client listener for entity AlarmDeleteEvent
+      description: Example of a client listener for receiving the notification
+        AlarmDeleteEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/AlarmDeleteEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/ackAlarmsCreateEvent:
+    post:
+      operationId: listenToAckAlarmsCreateEvent
+      summary: Client listener for entity AckAlarmsCreateEvent
+      description: Example of a client listener for receiving the notification
+        AckAlarmsCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/AckAlarmsCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/ackAlarmsStateChangeEvent:
+    post:
+      operationId: listenToAckAlarmsStateChangeEvent
+      summary: Client listener for entity AckAlarmsStateChangeEvent
+      description: Example of a client listener for receiving the notification
+        AckAlarmsStateChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/AckAlarmsStateChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/unAckAlarmsCreateEvent:
+    post:
+      operationId: listenToUnAckAlarmsCreateEvent
+      summary: Client listener for entity UnAckAlarmsCreateEvent
+      description: Example of a client listener for receiving the notification
+        UnAckAlarmsCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UnAckAlarmsCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/unAckAlarmsStateChangeEvent:
+    post:
+      operationId: listenToUnAckAlarmsStateChangeEvent
+      summary: Client listener for entity UnAckAlarmsStateChangeEvent
+      description: Example of a client listener for receiving the notification
+        UnAckAlarmsStateChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UnAckAlarmsStateChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/clearAlarmsCreateEvent:
+    post:
+      operationId: listenToClearAlarmsCreateEvent
+      summary: Client listener for entity ClearAlarmsCreateEvent
+      description: Example of a client listener for receiving the notification
+        ClearAlarmsCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ClearAlarmsCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/clearAlarmsStateChangeEvent:
+    post:
+      operationId: listenToClearAlarmsStateChangeEvent
+      summary: Client listener for entity ClearAlarmsStateChangeEvent
+      description: Example of a client listener for receiving the notification
+        ClearAlarmsStateChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ClearAlarmsStateChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/commentAlarmsCreateEvent:
+    post:
+      operationId: listenToCommentAlarmsCreateEvent
+      summary: Client listener for entity CommentAlarmsCreateEvent
+      description: Example of a client listener for receiving the notification
+        CommentAlarmsCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/CommentAlarmsCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/commentAlarmsStateChangeEvent:
+    post:
+      operationId: listenToCommentAlarmsStateChangeEvent
+      summary: Client listener for entity CommentAlarmsStateChangeEvent
+      description: Example of a client listener for receiving the notification
+        CommentAlarmsStateChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/CommentAlarmsStateChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/groupAlarmsCreateEvent:
+    post:
+      operationId: listenToGroupAlarmsCreateEvent
+      summary: Client listener for entity GroupAlarmsCreateEvent
+      description: Example of a client listener for receiving the notification
+        GroupAlarmsCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/GroupAlarmsCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/groupAlarmsStateChangeEvent:
+    post:
+      operationId: listenToGroupAlarmsStateChangeEvent
+      summary: Client listener for entity GroupAlarmsStateChangeEvent
+      description: Example of a client listener for receiving the notification
+        GroupAlarmsStateChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/GroupAlarmsStateChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/unGroupAlarmsCreateEvent:
+    post:
+      operationId: listenToUnGroupAlarmsCreateEvent
+      summary: Client listener for entity UnGroupAlarmsCreateEvent
+      description: Example of a client listener for receiving the notification
+        UnGroupAlarmsCreateEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UnGroupAlarmsCreateEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/unGroupAlarmsStateChangeEvent:
+    post:
+      operationId: listenToUnGroupAlarmsStateChangeEvent
+      summary: Client listener for entity UnGroupAlarmsStateChangeEvent
+      description: Example of a client listener for receiving the notification
+        UnGroupAlarmsStateChangeEvent
+      tags:
+        - notification listeners (client side)
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UnGroupAlarmsStateChangeEvent"
+        description: The event data
+        required: true
+      responses:
+        "201":
+          description: Notified
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+servers:
+  - url: https://serverRoot/tmf-api/alarm/v4
+components:
+  schemas:
+    AckAlarms:
+      type: object
+      description: Task resource for the acknowledge alarms operation
+      properties:
+        id:
+          type: string
+          description: The identifier of the task
+        href:
+          type: string
+          format: uri
+          description: A reference to the task
+        ackSystemId:
+          type: string
+          description: Name of the acknowledging system
+        ackTime:
+          type: string
+          format: date-time
+          description: Time of the acknowledgement
+        ackUserId:
+          type: string
+          description: Name of the acknowledging user
+        state:
+          type: string
+          description: Current state of the operation task
+        ackedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully acknowledged alarms
+        alarmPattern:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alarm"
+          description: Alarm patterns to match target alarms. An alarm will match if all
+            of the sttributes in any of the patterns compare equal to those
+            attributes of the alarm.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    AckAlarms_Create:
+      type: object
+      description: |-
+        Task resource for the acknowledge alarms operation
+        Skipped properties: id,href
+      required:
+        - ackSystemId
+        - ackUserId
+        - alarmPattern
+      properties:
+        ackSystemId:
+          type: string
+          description: Name of the acknowledging system
+        ackTime:
+          type: string
+          format: date-time
+          description: Time of the acknowledgement
+        ackUserId:
+          type: string
+          description: Name of the acknowledging user
+        state:
+          type: string
+          description: Current state of the operation task
+        ackedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully acknowledged alarms
+        alarmPattern:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alarm"
+          minItems: 1
+          description: Alarm patterns to match target alarms. An alarm will match if all
+            of the sttributes in any of the patterns compare equal to those
+            attributes of the alarm.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    AffectedService:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+          format: uri
+          description: Provides the identifier of the service affected by the alarm
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    Alarm:
+      type: object
+      description: This resource represents an alarm supporting the information model
+        defined in ITU-T X.733.
+      properties:
+        id:
+          type: integer
+          description: Identifier of the alarm, determined by the alarm owning system
+        href:
+          type: string
+          format: uri
+          description: A reference to the alarm.
+        ackState:
+          type: string
+          description: Provides the Acknowledgement State of the alarm
+        ackSystemId:
+          type: string
+          description: Provides the name of the system that last changed the ackState of
+            an alarm, i.e. acknowledged or unacknowledged the alarm.
+        ackUserId:
+          type: string
+          description: Provides the id of the user who has last changed the ack state of
+            the alarm, i.e. acknowledged or unacknowledged the alarm.
+        alarmChangedTime:
+          type: string
+          format: date-time
+          description: Indicates the last date and time when the alarm is changed on the
+            alarm-owning system. Any change to the alarm whether coming from the
+            alarmed resource, or triggered by a change from the client is
+            changing this time.
+        alarmClearedTime:
+          type: string
+          format: date-time
+          description: "Indicates the time (as a date + time) at which the alarm is
+            cleared at the source. "
+        alarmDetails:
+          type: string
+          description: Contains further information on the alarm.
+        alarmEscalation:
+          type: boolean
+          description: "Indicates if this alarm has been escalated or not. "
+        alarmRaisedTime:
+          type: string
+          format: date-time
+          description: Indicates the time (as a date + time) at which the alarm occurred
+            at its source.
+        alarmReportingTime:
+          type: string
+          format: date-time
+          description: >-
+            Indicates the time (as a date + time) at which the alarm was
+            reported by the owning OSS. It might be different from the
+            alarmRaisedTime. For instance, if the alarm list is maintained by an
+            EMS, the alarmRaisedtime would be the time the alarm
+              was detected by the NE, while the alarmReportingTime would be the time this alarm was stored in the alarm list of the EMS.
+        alarmType:
+          type: string
+          description: >-
+            Categorize the alarm. Should be one of the values defined in X.733
+            8.1.1 or 3GPP TS 32.111-2 Annex A:
+            	Communications Alarm
+            	Processing Error Alarm
+            	Environmental Alarm
+            	Quality of Service Alarm
+            	Equipment Alarm
+            	Integrity Violation
+            	Operational Violation
+            	Physical Violation
+            	Security Service or Mechanism Violation
+            	Time Domain Violation
+        alarmedObjectType:
+          type: string
+          description: The type (class) of the managed object associated with the event.
+        clearSystemId:
+          type: string
+          description: "Provides the id of the system where the user who invoked the
+            alarmCleared operation is located. "
+        clearUserId:
+          type: string
+          description: Provides the id of the user who invoked the alarmCleared operation
+        externalAlarmId:
+          type: string
+          description: An identifier of the alarm in the source system.
+        isRootCause:
+          type: boolean
+          description: "Indicates whether the alarm is a root cause alarm.. "
+        perceivedSeverity:
+          type: string
+          description: >-
+            Lists the possible severities that can be allocated to an Alarm. The
+            values are consistent with ITU-T Recommendation X.733.
+
+            Once an alarm has been cleared, its perceived severity is set to 'cleared' and can no longer be set.
+        plannedOutageIndicator:
+          type: string
+          description: "Indicates that the Managed Object (related to this alarm) is in
+            planned outage (in planned maintenance, or out-of-service). "
+        probableCause:
+          type: string
+          description: Provides the probable cause of the alarm. The values are consistent
+            with ITU-T Recommendation X.733 or 3GPP TS 32.111-2 Annex B.
+        proposedRepairedActions:
+          type: string
+          description: Indicates proposed repair actions, if known to the system emitting
+            the alarm.
+        reportingSystemId:
+          type: string
+          description: Reporting system identity.
+        serviceAffecting:
+          type: boolean
+          description: Indicates whether the alarm affects service or not.
+        sourceSystemId:
+          type: string
+          description: Source system identity.
+        specificProblem:
+          type: string
+          description: Provides more specific information about the alarm.
+        state:
+          type: string
+          description: Defines the alarm state during its life cycle
+        affectedService:
+          type: array
+          items:
+            $ref: "#/components/schemas/AffectedService"
+        alarmedObject:
+          $ref: "#/components/schemas/AlarmedObject"
+        comment:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"
+        correlatedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRef"
+        crossedThresholdInformation:
+          $ref: "#/components/schemas/CrossedThresholdInformation"
+        parentAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRef"
+        place:
+          type: array
+          items:
+            $ref: "#/components/schemas/RelatedPlaceRefOrValue"
+        "@baseType":
+          type: string
+          description: The base type of this alarm.
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A reference to the schema describing this alarm.
+        "@type":
+          type: string
+          description: The type for this alarm.
+    Alarm_Create:
+      type: object
+      description: >-
+        This resource represents an alarm supporting the information model
+        defined in ITU-T X.733.
+
+        Skipped properties: id,href
+      required:
+        - alarmType
+        - perceivedSeverity
+        - probableCause
+        - alarmedObject
+        - sourceSystemId
+        - state
+        - alarmRaisedTime
+      properties:
+        ackState:
+          type: string
+          description: Provides the Acknowledgement State of the alarm
+        ackSystemId:
+          type: string
+          description: Provides the name of the system that last changed the ackState of
+            an alarm, i.e. acknowledged or unacknowledged the alarm.
+        ackUserId:
+          type: string
+          description: Provides the id of the user who has last changed the ack state of
+            the alarm, i.e. acknowledged or unacknowledged the alarm.
+        alarmChangedTime:
+          type: string
+          format: date-time
+          description: Indicates the last date and time when the alarm is changed on the
+            alarm-owning system. Any change to the alarm whether coming from the
+            alarmed resource, or triggered by a change from the client is
+            changing this time.
+        alarmClearedTime:
+          type: string
+          format: date-time
+          description: "Indicates the time (as a date + time) at which the alarm is
+            cleared at the source. "
+        alarmDetails:
+          type: string
+          description: Contains further information on the alarm.
+        alarmEscalation:
+          type: boolean
+          description: "Indicates if this alarm has been escalated or not. "
+        alarmRaisedTime:
+          type: string
+          format: date-time
+          description: Indicates the time (as a date + time) at which the alarm occurred
+            at its source.
+        alarmReportingTime:
+          type: string
+          format: date-time
+          description: >-
+            Indicates the time (as a date + time) at which the alarm was
+            reported by the owning OSS. It might be different from the
+            alarmRaisedTime. For instance, if the alarm list is maintained by an
+            EMS, the alarmRaisedtime would be the time the alarm
+              was detected by the NE, while the alarmReportingTime would be the time this alarm was stored in the alarm list of the EMS.
+        alarmType:
+          type: string
+          description: >-
+            Categorize the alarm. Should be one of the values defined in X.733
+            8.1.1 or 3GPP TS 32.111-2 Annex A:
+            	Communications Alarm
+            	Processing Error Alarm
+            	Environmental Alarm
+            	Quality of Service Alarm
+            	Equipment Alarm
+            	Integrity Violation
+            	Operational Violation
+            	Physical Violation
+            	Security Service or Mechanism Violation
+            	Time Domain Violation
+        alarmedObjectType:
+          type: string
+          description: The type (class) of the managed object associated with the event.
+        clearSystemId:
+          type: string
+          description: "Provides the id of the system where the user who invoked the
+            alarmCleared operation is located. "
+        clearUserId:
+          type: string
+          description: Provides the id of the user who invoked the alarmCleared operation
+        externalAlarmId:
+          type: string
+          description: An identifier of the alarm in the source system.
+        isRootCause:
+          type: boolean
+          description: "Indicates whether the alarm is a root cause alarm.. "
+        perceivedSeverity:
+          type: string
+          description: >-
+            Lists the possible severities that can be allocated to an Alarm. The
+            values are consistent with ITU-T Recommendation X.733.
+
+            Once an alarm has been cleared, its perceived severity is set to 'cleared' and can no longer be set.
+        plannedOutageIndicator:
+          type: string
+          description: "Indicates that the Managed Object (related to this alarm) is in
+            planned outage (in planned maintenance, or out-of-service). "
+        probableCause:
+          type: string
+          description: Provides the probable cause of the alarm. The values are consistent
+            with ITU-T Recommendation X.733 or 3GPP TS 32.111-2 Annex B.
+        proposedRepairedActions:
+          type: string
+          description: Indicates proposed repair actions, if known to the system emitting
+            the alarm.
+        reportingSystemId:
+          type: string
+          description: Reporting system identity.
+        serviceAffecting:
+          type: boolean
+          description: Indicates whether the alarm affects service or not.
+        sourceSystemId:
+          type: string
+          description: Source system identity.
+        specificProblem:
+          type: string
+          description: Provides more specific information about the alarm.
+        state:
+          type: string
+          description: Defines the alarm state during its life cycle
+        affectedService:
+          type: array
+          items:
+            $ref: "#/components/schemas/AffectedService"
+        alarmedObject:
+          $ref: "#/components/schemas/AlarmedObject"
+        comment:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"
+        correlatedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRef"
+        crossedThresholdInformation:
+          $ref: "#/components/schemas/CrossedThresholdInformation"
+        parentAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRef"
+        place:
+          type: array
+          items:
+            $ref: "#/components/schemas/RelatedPlaceRefOrValue"
+        "@baseType":
+          type: string
+          description: The base type of this alarm.
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A reference to the schema describing this alarm.
+        "@type":
+          type: string
+          description: The type for this alarm.
+    Alarm_Update:
+      type: object
+      description: >-
+        This resource represents an alarm supporting the information model
+        defined in ITU-T X.733.
+
+        Skipped properties: id,href,alarmRaisedTime,sourceSystemId
+      properties:
+        ackState:
+          type: string
+          description: Provides the Acknowledgement State of the alarm
+        ackSystemId:
+          type: string
+          description: Provides the name of the system that last changed the ackState of
+            an alarm, i.e. acknowledged or unacknowledged the alarm.
+        ackUserId:
+          type: string
+          description: Provides the id of the user who has last changed the ack state of
+            the alarm, i.e. acknowledged or unacknowledged the alarm.
+        alarmChangedTime:
+          type: string
+          format: date-time
+          description: Indicates the last date and time when the alarm is changed on the
+            alarm-owning system. Any change to the alarm whether coming from the
+            alarmed resource, or triggered by a change from the client is
+            changing this time.
+        alarmClearedTime:
+          type: string
+          format: date-time
+          description: "Indicates the time (as a date + time) at which the alarm is
+            cleared at the source. "
+        alarmDetails:
+          type: string
+          description: Contains further information on the alarm.
+        alarmEscalation:
+          type: boolean
+          description: "Indicates if this alarm has been escalated or not. "
+        alarmReportingTime:
+          type: string
+          format: date-time
+          description: >-
+            Indicates the time (as a date + time) at which the alarm was
+            reported by the owning OSS. It might be different from the
+            alarmRaisedTime. For instance, if the alarm list is maintained by an
+            EMS, the alarmRaisedtime would be the time the alarm
+              was detected by the NE, while the alarmReportingTime would be the time this alarm was stored in the alarm list of the EMS.
+        alarmType:
+          type: string
+          description: >-
+            Categorize the alarm. Should be one of the values defined in X.733
+            8.1.1 or 3GPP TS 32.111-2 Annex A:
+            	Communications Alarm
+            	Processing Error Alarm
+            	Environmental Alarm
+            	Quality of Service Alarm
+            	Equipment Alarm
+            	Integrity Violation
+            	Operational Violation
+            	Physical Violation
+            	Security Service or Mechanism Violation
+            	Time Domain Violation
+        alarmedObjectType:
+          type: string
+          description: The type (class) of the managed object associated with the event.
+        clearSystemId:
+          type: string
+          description: "Provides the id of the system where the user who invoked the
+            alarmCleared operation is located. "
+        clearUserId:
+          type: string
+          description: Provides the id of the user who invoked the alarmCleared operation
+        externalAlarmId:
+          type: string
+          description: An identifier of the alarm in the source system.
+        isRootCause:
+          type: boolean
+          description: "Indicates whether the alarm is a root cause alarm.. "
+        perceivedSeverity:
+          type: string
+          description: >-
+            Lists the possible severities that can be allocated to an Alarm. The
+            values are consistent with ITU-T Recommendation X.733.
+
+            Once an alarm has been cleared, its perceived severity is set to 'cleared' and can no longer be set.
+        plannedOutageIndicator:
+          type: string
+          description: "Indicates that the Managed Object (related to this alarm) is in
+            planned outage (in planned maintenance, or out-of-service). "
+        probableCause:
+          type: string
+          description: Provides the probable cause of the alarm. The values are consistent
+            with ITU-T Recommendation X.733 or 3GPP TS 32.111-2 Annex B.
+        proposedRepairedActions:
+          type: string
+          description: Indicates proposed repair actions, if known to the system emitting
+            the alarm.
+        reportingSystemId:
+          type: string
+          description: Reporting system identity.
+        serviceAffecting:
+          type: boolean
+          description: Indicates whether the alarm affects service or not.
+        specificProblem:
+          type: string
+          description: Provides more specific information about the alarm.
+        state:
+          type: string
+          description: Defines the alarm state during its life cycle
+        affectedService:
+          type: array
+          items:
+            $ref: "#/components/schemas/AffectedService"
+        alarmedObject:
+          $ref: "#/components/schemas/AlarmedObject"
+        comment:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"
+        correlatedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRef"
+        crossedThresholdInformation:
+          $ref: "#/components/schemas/CrossedThresholdInformation"
+        parentAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRef"
+        place:
+          type: array
+          items:
+            $ref: "#/components/schemas/RelatedPlaceRefOrValue"
+        "@baseType":
+          type: string
+          description: The base type of this alarm.
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A reference to the schema describing this alarm.
+        "@type":
+          type: string
+          description: The type for this alarm.
+    AlarmRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of a related entity.
+        href:
+          type: string
+          format: uri
+          description: Reference of the related entity.
+        name:
+          type: string
+          description: Name of the related entity.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+      required:
+        - id
+    AlarmRefOrValue:
+      type: object
+      description: An alarm defined by reference or value. The polymorphic attributes
+        @type, @schemaLocation & @referredType are related to the alarm entity
+        and not the RelatedAlarmRefOrValue class itself
+      properties:
+        id:
+          type: integer
+          description: Identifier of the alarm, determined by the alarm owning system
+        href:
+          type: string
+          format: uri
+          description: A reference to the alarm.
+        ackState:
+          type: string
+          description: Provides the Acknowledgement State of the alarm
+        ackSystemId:
+          type: string
+          description: Provides the name of the system that last changed the ackState of
+            an alarm, i.e. acknowledged or unacknowledged the alarm.
+        ackUserId:
+          type: string
+          description: Provides the id of the user who has last changed the ack state of
+            the alarm, i.e. acknowledged or unacknowledged the alarm.
+        alarmChangedTime:
+          type: string
+          format: date-time
+          description: Indicates the last date and time when the alarm is changed on the
+            alarm-owning system. Any change to the alarm whether coming from the
+            alarmed resource, or triggered by a change from the client is
+            changing this time.
+        alarmClearedTime:
+          type: string
+          format: date-time
+          description: "Indicates the time (as a date + time) at which the alarm is
+            cleared at the source. "
+        alarmDetails:
+          type: string
+          description: Contains further information on the alarm.
+        alarmEscalation:
+          type: boolean
+          description: "Indicates if this alarm has been escalated or not. "
+        alarmRaisedTime:
+          type: string
+          format: date-time
+          description: Indicates the time (as a date + time) at which the alarm occurred
+            at its source.
+        alarmReportingTime:
+          type: string
+          format: date-time
+          description: >-
+            Indicates the time (as a date + time) at which the alarm was
+            reported by the owning OSS. It might be different from the
+            alarmRaisedTime. For instance, if the alarm list is maintained by an
+            EMS, the alarmRaisedtime would be the time the alarm
+              was detected by the NE, while the alarmReportingTime would be the time this alarm was stored in the alarm list of the EMS.
+        alarmType:
+          type: string
+          description: >-
+            Categorize the alarm. Should be one of the values defined in X.733
+            8.1.1 or 3GPP TS 32.111-2 Annex A:
+            	Communications Alarm
+            	Processing Error Alarm
+            	Environmental Alarm
+            	Quality of Service Alarm
+            	Equipment Alarm
+            	Integrity Violation
+            	Operational Violation
+            	Physical Violation
+            	Security Service or Mechanism Violation
+            	Time Domain Violation
+        alarmedObjectType:
+          type: string
+          description: The type (class) of the managed object associated with the event.
+        clearSystemId:
+          type: string
+          description: "Provides the id of the system where the user who invoked the
+            alarmCleared operation is located. "
+        clearUserId:
+          type: string
+          description: Provides the id of the user who invoked the alarmCleared operation
+        externalAlarmId:
+          type: string
+          description: An identifier of the alarm in the source system.
+        isRootCause:
+          type: boolean
+          description: "Indicates whether the alarm is a root cause alarm.. "
+        name:
+          type: string
+          description: Name of the related entity.
+        perceivedSeverity:
+          type: string
+          description: >-
+            Lists the possible severities that can be allocated to an Alarm. The
+            values are consistent with ITU-T Recommendation X.733.
+
+            Once an alarm has been cleared, its perceived severity is set to 'cleared' and can no longer be set.
+        plannedOutageIndicator:
+          type: string
+          description: "Indicates that the Managed Object (related to this alarm) is in
+            planned outage (in planned maintenance, or out-of-service). "
+        probableCause:
+          type: string
+          description: Provides the probable cause of the alarm. The values are consistent
+            with ITU-T Recommendation X.733 or 3GPP TS 32.111-2 Annex B.
+        proposedRepairedActions:
+          type: string
+          description: Indicates proposed repair actions, if known to the system emitting
+            the alarm.
+        reportingSystemId:
+          type: string
+          description: Reporting system identity.
+        serviceAffecting:
+          type: boolean
+          description: Indicates whether the alarm affects service or not.
+        sourceSystemId:
+          type: string
+          description: Source system identity.
+        specificProblem:
+          type: string
+          description: Provides more specific information about the alarm.
+        state:
+          type: string
+          description: Defines the alarm state during its life cycle
+        affectedService:
+          type: array
+          items:
+            $ref: "#/components/schemas/AffectedService"
+        alarmedObject:
+          $ref: "#/components/schemas/AlarmedObject"
+        comment:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"
+        correlatedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRef"
+        crossedThresholdInformation:
+          $ref: "#/components/schemas/CrossedThresholdInformation"
+        parentAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRef"
+        place:
+          type: array
+          items:
+            $ref: "#/components/schemas/RelatedPlaceRefOrValue"
+        "@baseType":
+          type: string
+          description: The base type of this alarm.
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A reference to the schema describing this alarm.
+        "@type":
+          type: string
+          description: The type for this alarm.
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+    AlarmedObject:
+      type: object
+      description: Identifies the managed object instance associated with the alarm.
+      properties:
+        id:
+          type: string
+          description: The identifier of the managed object associated with the event.
+        href:
+          type: string
+          format: uri
+          description: A reference to the managed object associated with the event.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    ClearAlarms:
+      type: object
+      description: Task resource for clear alarms operation
+      properties:
+        id:
+          type: string
+          description: The identifier of the task
+        href:
+          type: string
+          format: uri
+          description: A reference to the task
+        alarmClearedTime:
+          type: string
+          format: date-time
+          description: Time of the alarm clearing
+        clearSystemId:
+          type: string
+          description: Name of the clearing system
+        clearUserId:
+          type: string
+          description: Name of the clearing user
+        state:
+          type: string
+          description: Current state of the operation task
+        alarmPattern:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alarm"
+          description: Alarm patterns to match target alarms. An alarm will match if all
+            of the sttributes in any of the patterns compare equal to those
+            attributes of the alarm.
+        clearedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully cleared alarms
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    ClearAlarms_Create:
+      type: object
+      description: |-
+        Task resource for clear alarms operation
+        Skipped properties: id,href
+      required:
+        - clearSystemId
+        - clearUserId
+        - alarmClearedTime
+        - alarmPattern
+      properties:
+        alarmClearedTime:
+          type: string
+          format: date-time
+          description: Time of the alarm clearing
+        clearSystemId:
+          type: string
+          description: Name of the clearing system
+        clearUserId:
+          type: string
+          description: Name of the clearing user
+        state:
+          type: string
+          description: Current state of the operation task
+        alarmPattern:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alarm"
+          minItems: 1
+          description: Alarm patterns to match target alarms. An alarm will match if all
+            of the sttributes in any of the patterns compare equal to those
+            attributes of the alarm.
+        clearedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully cleared alarms
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    Comment:
+      type: object
+      description: Indicates the comments entered on the alarm.
+      properties:
+        comment:
+          type: string
+          description: Indicates the text of the comment.
+        systemId:
+          type: string
+          description: Indicates the system identifier on which the client set the comment.
+        time:
+          type: string
+          format: date-time
+          description: Indicates the time commenting the alarm
+        userId:
+          type: string
+          description: Indicates the user commenting the alarm.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    CommentAlarms:
+      type: object
+      description: Task resource for comment alarms operation
+      properties:
+        id:
+          type: string
+          description: The identifier of the task
+        href:
+          type: string
+          format: uri
+          description: A reference to the task
+        state:
+          type: string
+          description: Current state of the operation task
+        alarmPattern:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alarm"
+          description: Alarm patterns to match target alarms. An alarm will match if all
+            of the sttributes in any of the patterns compare equal to those
+            attributes of the alarm.
+        comment:
+          $ref: "#/components/schemas/Comment"
+        commentedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully commented alarms
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    CommentAlarms_Create:
+      type: object
+      description: |-
+        Task resource for comment alarms operation
+        Skipped properties: id,href
+      required:
+        - comment
+        - alarmPattern
+      properties:
+        state:
+          type: string
+          description: Current state of the operation task
+        alarmPattern:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alarm"
+          minItems: 1
+          description: Alarm patterns to match target alarms. An alarm will match if all
+            of the sttributes in any of the patterns compare equal to those
+            attributes of the alarm.
+        comment:
+          $ref: "#/components/schemas/Comment"
+        commentedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully commented alarms
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    CrossedThresholdInformation:
+      type: object
+      description: Identifies the details of the threshold that has been crossed.
+      properties:
+        direction:
+          type: string
+          description: "Indicates the threshold crossing direction: up or down."
+        granularity:
+          type: string
+          description: Indicates the granularity at which the indicator is evaluated for
+            threshold crossing
+        indicatorName:
+          type: string
+          description: Indicates the name of indicator which crossed the threshold.
+        indicatorUnit:
+          type: string
+          description: Indicates the unit of the measurement of the indicator
+            corresponding to the threshold that has been crossed.
+        observedValue:
+          type: string
+          description: Indicates the value of the indicator which crossed the threshold.
+        thresholdCrossingDescription:
+          type: string
+          description: Indicates further information on the threshold crossing alarm.
+        threshold:
+          $ref: "#/components/schemas/ThresholdRef"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    EntityRef:
+      type: object
+      description: Entity reference schema to be use for all entityRef class.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of a related entity.
+        href:
+          type: string
+          format: uri
+          description: Reference of the related entity.
+        name:
+          type: string
+          description: Name of the related entity.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+      required:
+        - id
+    GroupAlarms:
+      type: object
+      description: Task resource for group alarms operation
+      properties:
+        id:
+          type: string
+          description: The identifier of the task
+        href:
+          type: string
+          format: uri
+          description: A reference to the task
+        alarmChangedTime:
+          type: string
+          format: date-time
+          description: Time of the correlation
+        sourceSystemId:
+          type: string
+          description: Source system identifier
+        state:
+          type: string
+          description: Current state of the operation task
+        correlatedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: Correlated alarms
+        groupedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully correlated alarms
+        parentAlarm:
+          $ref: "#/components/schemas/AlarmRefOrValue"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    GroupAlarms_Create:
+      type: object
+      description: |-
+        Task resource for group alarms operation
+        Skipped properties: id,href
+      required:
+        - sourceSystemId
+        - alarmChangedTime
+        - parentAlarm
+        - correlatedAlarm
+      properties:
+        alarmChangedTime:
+          type: string
+          format: date-time
+          description: Time of the correlation
+        sourceSystemId:
+          type: string
+          description: Source system identifier
+        state:
+          type: string
+          description: Current state of the operation task
+        correlatedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          minItems: 1
+          description: Correlated alarms
+        groupedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully correlated alarms
+        parentAlarm:
+          $ref: "#/components/schemas/AlarmRefOrValue"
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    Place:
+      type: object
+      description: Place reference. Place defines the places where the products are
+        sold or delivered.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the place
+        href:
+          type: string
+          format: uri
+          description: Unique reference of the place
+        name:
+          type: string
+          description: A user-friendly name for the place, such as [Paris Store], [London
+            Store], [Main Home]
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    PlaceRef:
+      type: object
+      description: Place reference. PlaceRef defines the placeRefs where the products
+        are sold or delivered.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of a related entity.
+        href:
+          type: string
+          format: uri
+          description: Reference of the related entity.
+        name:
+          type: string
+          description: Name of the related entity.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+      required:
+        - id
+    RelatedPlaceRefOrValue:
+      type: object
+      description: Related Entity reference. A related place defines a place described
+        by reference or by value linked to a specific entity. The polymorphic
+        attributes @type, @schemaLocation & @referredType are related to the
+        place entity and not the RelatedPlaceRefOrValue class itself
+      required:
+        - role
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the place
+        href:
+          type: string
+          format: uri
+          description: Unique reference of the place
+        name:
+          type: string
+          description: A user-friendly name for the place, such as [Paris Store], [London
+            Store], [Main Home]
+        role:
+          type: string
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+    ThresholdRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of a related entity.
+        href:
+          type: string
+          format: uri
+          description: Reference of the related entity.
+        name:
+          type: string
+          description: Name of the related entity.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+        "@referredType":
+          type: string
+          description: The actual type of the target instance when needed for
+            disambiguation.
+      required:
+        - id
+    UnAckAlarms:
+      type: object
+      description: Task resource for unacknowledge alarms operation
+      properties:
+        id:
+          type: string
+          description: The identifier of the task
+        href:
+          type: string
+          format: uri
+          description: A reference to the task
+        ackSystemId:
+          type: string
+          description: Name of the unacknowledging system
+        ackTime:
+          type: string
+          format: date-time
+          description: Time of the unacknowledgement
+        ackUserId:
+          type: string
+          description: Name of the unacknowledging user
+        state:
+          type: string
+          description: Current state of the operation task
+        alarmPattern:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alarm"
+          description: Alarm patterns to match target alarms. An alarm will match if all
+            of the sttributes in any of the patterns compare equal to those
+            attributes of the alarm.
+        unAckedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully unacknowledged alarms
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    UnAckAlarms_Create:
+      type: object
+      description: |-
+        Task resource for unacknowledge alarms operation
+        Skipped properties: id,href
+      required:
+        - ackSystemId
+        - ackUserId
+        - alarmPattern
+      properties:
+        ackSystemId:
+          type: string
+          description: Name of the unacknowledging system
+        ackTime:
+          type: string
+          format: date-time
+          description: Time of the unacknowledgement
+        ackUserId:
+          type: string
+          description: Name of the unacknowledging user
+        state:
+          type: string
+          description: Current state of the operation task
+        alarmPattern:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alarm"
+          minItems: 1
+          description: Alarm patterns to match target alarms. An alarm will match if all
+            of the sttributes in any of the patterns compare equal to those
+            attributes of the alarm.
+        unAckedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully unacknowledged alarms
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    UnGroupAlarms:
+      type: object
+      description: Task resource for ungroup alarms operation
+      properties:
+        id:
+          type: string
+          description: The identifier of the task
+        href:
+          type: string
+          format: uri
+          description: A reference to the task
+        alarmChangedTime:
+          type: string
+          format: date-time
+          description: Time of the uncorrelation
+        sourceSystemId:
+          type: string
+          description: Source system identifier
+        state:
+          type: string
+          description: Current state of the operation task
+        correlatedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: Correlated alarms
+        parentAlarm:
+          $ref: "#/components/schemas/AlarmRefOrValue"
+        unGroupedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully uncorrelated alarms
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    UnGroupAlarms_Create:
+      type: object
+      description: |-
+        Task resource for ungroup alarms operation
+        Skipped properties: id,href
+      required:
+        - sourceSystemId
+        - alarmChangedTime
+        - parentAlarm
+        - correlatedAlarm
+      properties:
+        alarmChangedTime:
+          type: string
+          format: date-time
+          description: Time of the uncorrelation
+        sourceSystemId:
+          type: string
+          description: Source system identifier
+        state:
+          type: string
+          description: Current state of the operation task
+        correlatedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          minItems: 1
+          description: Correlated alarms
+        parentAlarm:
+          $ref: "#/components/schemas/AlarmRefOrValue"
+        unGroupedAlarm:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlarmRefOrValue"
+          description: The successfully uncorrelated alarms
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name
+    EventSubscription:
+      type: object
+      description: Sets the communication endpoint address the service instance must
+        use to deliver notification information
+      required:
+        - id
+        - callback
+      properties:
+        id:
+          type: string
+          description: Id of the listener
+        callback:
+          type: string
+          description: The callback being registered.
+        query:
+          type: string
+          description: additional data to be passed
+    EventSubscriptionInput:
+      type: object
+      description: Sets the communication endpoint address the service instance must
+        use to deliver notification information
+      required:
+        - callback
+      properties:
+        callback:
+          type: string
+          description: The callback being registered.
+        query:
+          type: string
+          description: additional data to be passed
+    AlarmCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/AlarmCreateEventPayload"
+    AlarmCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        alarm:
+          $ref: "#/components/schemas/Alarm"
+    AlarmAttributeValueChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        fieldPath:
+          type: string
+          description: The path identifying the object field concerned by this notification.
+        event:
+          $ref: "#/components/schemas/AlarmAttributeValueChangeEventPayload"
+    AlarmAttributeValueChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        alarm:
+          $ref: "#/components/schemas/Alarm"
+    AlarmStateChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/AlarmStateChangeEventPayload"
+    AlarmStateChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        alarm:
+          $ref: "#/components/schemas/Alarm"
+    AlarmDeleteEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/AlarmDeleteEventPayload"
+    AlarmDeleteEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        alarm:
+          $ref: "#/components/schemas/Alarm"
+    AckAlarmsCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/AckAlarmsCreateEventPayload"
+    AckAlarmsCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        ackAlarms:
+          $ref: "#/components/schemas/AckAlarms"
+    AckAlarmsStateChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/AckAlarmsStateChangeEventPayload"
+    AckAlarmsStateChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        ackAlarms:
+          $ref: "#/components/schemas/AckAlarms"
+    UnAckAlarmsCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/UnAckAlarmsCreateEventPayload"
+    UnAckAlarmsCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        unAckAlarms:
+          $ref: "#/components/schemas/UnAckAlarms"
+    UnAckAlarmsStateChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/UnAckAlarmsStateChangeEventPayload"
+    UnAckAlarmsStateChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        unAckAlarms:
+          $ref: "#/components/schemas/UnAckAlarms"
+    ClearAlarmsCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/ClearAlarmsCreateEventPayload"
+    ClearAlarmsCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        clearAlarms:
+          $ref: "#/components/schemas/ClearAlarms"
+    ClearAlarmsStateChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/ClearAlarmsStateChangeEventPayload"
+    ClearAlarmsStateChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        clearAlarms:
+          $ref: "#/components/schemas/ClearAlarms"
+    CommentAlarmsCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/CommentAlarmsCreateEventPayload"
+    CommentAlarmsCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        commentAlarms:
+          $ref: "#/components/schemas/CommentAlarms"
+    CommentAlarmsStateChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/CommentAlarmsStateChangeEventPayload"
+    CommentAlarmsStateChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        commentAlarms:
+          $ref: "#/components/schemas/CommentAlarms"
+    GroupAlarmsCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/GroupAlarmsCreateEventPayload"
+    GroupAlarmsCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        groupAlarms:
+          $ref: "#/components/schemas/GroupAlarms"
+    GroupAlarmsStateChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/GroupAlarmsStateChangeEventPayload"
+    GroupAlarmsStateChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        groupAlarms:
+          $ref: "#/components/schemas/GroupAlarms"
+    UnGroupAlarmsCreateEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/UnGroupAlarmsCreateEventPayload"
+    UnGroupAlarmsCreateEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        unGroupAlarms:
+          $ref: "#/components/schemas/UnGroupAlarms"
+    UnGroupAlarmsStateChangeEvent:
+      type: object
+      description: The notification data structure
+      properties:
+        id:
+          type: string
+          description: Identifier of the Process flow
+        href:
+          type: string
+          format: uri
+          description: Reference of the ProcessFlow
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        domain:
+          type: string
+          description: The domain of the event.
+        title:
+          type: string
+          description: The title of the event.
+        description:
+          type: string
+          description: An explnatory of the event.
+        priority:
+          type: string
+          description: A priority.
+        timeOcurred:
+          type: string
+          format: date-time
+          description: The time the event occured.
+        event:
+          $ref: "#/components/schemas/UnGroupAlarmsStateChangeEventPayload"
+    UnGroupAlarmsStateChangeEventPayload:
+      type: object
+      description: The event data structure
+      properties:
+        unGroupAlarms:
+          $ref: "#/components/schemas/UnGroupAlarms"
+    Error:
+      description: Used when an API throws an Error, typically with a HTTP error
+        response-code (3xx, 4xx, 5xx)
+      type: object
+      required:
+        - code
+        - reason
+      properties:
+        code:
+          type: string
+          description: Application relevant detail, defined in the API or a common list.
+        reason:
+          type: string
+          description: Explanation of the reason for the error which can be shown to a
+            client user.
+        message:
+          type: string
+          description: More details and corrective actions related to the error which can
+            be shown to a client user.
+        status:
+          type: string
+          description: HTTP Error code extension
+        referenceError:
+          type: string
+          format: uri
+          description: URI of documentation describing the error.
+        "@baseType":
+          type: string
+          description: When sub-classing, this defines the super-class.
+        "@schemaLocation":
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes and
+            relationships
+        "@type":
+          type: string
+          description: When sub-classing, this defines the sub-class entity name.

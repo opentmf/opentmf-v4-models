@@ -1,54 +1,27 @@
 # opentmf-resource-v4-model
 
-This artifact holds the TMF v4 model classes for the Resource portfolio.
+Shared **model** types for the **Resource** group (referenced by many TMF modules). Group membership follows TM Forum’s official Open API portfolio grouping — see [Open APIs](https://www.tmforum.org/open-digital-architecture/open-apis).
 
-Common classes that are referenced from the following TMF artifacts:
+
 - TMF-634: Resource Catalog Management API, version: 4.1.0
 - TMF-639: Resource Inventory Management API, version: 4.0.0
+- TMF-642: Alarm Management API, version: 4.0.0
 - TMF-652: Resource Order Management API, version: 4.0.0
+- TMF-664: Resource Function Activation Management API, version: 4.0.0
+- TMF-687: Stock Management API, version: 4.0.0
+- TMF-702: Resource Activation Management API, version: 4.0.0
+- TMF-716: ResourceReservation, version: 4.0.0
+- TMF-730: Software And Compute Management API, version: 4.0.0
+- TMF-908: IoT Agent and Device Management API, version: 4.0.0
 
-## Usage
-This model library is automatically included from the Resource portfolio TMF model
-libraries. Hence, normally it is not necessary to explicitly specify a maven dependency.
+Usually pulled in transitively. To depend explicitly:
 
-If however, for edge use cases it becomes necessary to reference this library directly,
-the following two steps needs to be carried out:
-
-### 1. Add Maven Dependency
-#### Import OpenTMF Commons Dependencies
-```xml
-<dependencyManagement>
-  <dependency>
-    <groupId>org.opentmf</groupId>
-    <artifactId>opentmf-versions</artifactId>
-    <version>RELEASE</version>
-    <type>pom</type>
-    <scope>import</scope>
-  </dependency>
-</dependencyManagement>
-```
-#### Import opentmf-resource-v4-model Module
 ```xml
 <dependency>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-resource-v4-model</artifactId>
+    <version>4.1.0.0</version>
 </dependency>
 ```
 
-### 2. Configure the ObjectMapper
-In order to benefit dynamic type resolving, you need to provide a primary ObjectMapper bean within
-your microservice and call the registerExtensions method of this tmf-resource-model library.
-
-```java
-@Configuration
-public class JacksonConfig {
-
-  @Bean
-  @Primary
-  public ObjectMapper objectMapper() {
-    var objectMapper = JacksonUtil.getDefaultObjectMapper();
-    TmfResourceJacksonConfig.registerExtensions(objectMapper);
-    return objectMapper;
-  }
-}
-```
+For JSON polymorphism, register `TmfResourceJacksonConfig` on your `ObjectMapper` (see root README).
