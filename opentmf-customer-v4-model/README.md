@@ -22,8 +22,8 @@ Usually pulled in transitively. To depend explicitly:
 <dependency>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-customer-v4-model</artifactId>
-    <version>4.0.0.0</version>
+    <version>4.0.0.10</version>
 </dependency>
 ```
 
-For JSON polymorphism, register `TmfCustomerJacksonConfig` on your `ObjectMapper` (see root README).
+For JSON polymorphism, register `TmfCustomerJacksonConfig` on your `JsonMapper` (see root README).

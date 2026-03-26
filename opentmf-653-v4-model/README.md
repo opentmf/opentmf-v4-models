@@ -6,7 +6,7 @@
 <dependency>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-653-v4-model</artifactId>
-    <version>4.2.0.5</version>
+    <version>4.2.0.10</version>
 </dependency>
 ```
 

@@ -116,14 +116,22 @@ Import **`opentmf-versions`** in `<dependencyManagement>` so OpenTMF artifacts (
 
 ## Jackson
 
-Register polymorphic subtypes once per TMF module you use directly; each `Tmf*JacksonConfig.registerExtensions` chains parent commons.
+Register polymorphic subtypes once per TMF module you use directly; each `Tmf*JacksonConfig.registerExtensions`
+chains parent commons.
+
+This below prototype can be used in a microservice. We are creating an immutable jsonMapper, and then
+exposing it as the primary JsonMapper bean for Spring Boot, also using it in the static JacksonUtil
+methods.
 
 ```java
 @Bean @Primary
-public ObjectMapper objectMapper() {
-  var b = JsonMapper.builder();
-  Tmf622JacksonConfig.registerExtensions(b);
-  return b.build();
+public JsonMapper jsonMapper() {
+  var builder = JacksonUtil.defaultMapperBuilder();
+  Tmf622JacksonConfig.registerExtensions(builder);
+  ...
+  var jsonMapper = builder.build();
+  JacksonUtil.setDefaultJsonMapper(jsonMapper);
+  return jsonMapper;
 }
 ```
 

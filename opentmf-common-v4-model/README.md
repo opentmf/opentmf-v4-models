@@ -88,8 +88,8 @@ Usually pulled in transitively. To depend explicitly:
 <dependency>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-common-v4-model</artifactId>
-    <version>4.2.0.0</version>
+    <version>4.2.0.10</version>
 </dependency>
 ```
 
-For JSON polymorphism, register `TmfCommonJacksonConfig` on your `ObjectMapper` (see root README).
+For JSON polymorphism, register `TmfCommonJacksonConfig` on your `JsonMapper` (see root README).

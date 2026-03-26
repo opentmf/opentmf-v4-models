@@ -20,8 +20,8 @@ Usually pulled in transitively. To depend explicitly:
 <dependency>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-resource-v4-model</artifactId>
-    <version>4.1.0.0</version>
+    <version>4.1.0.10</version>
 </dependency>
 ```
 
-For JSON polymorphism, register `TmfResourceJacksonConfig` on your `ObjectMapper` (see root README).
+For JSON polymorphism, register `TmfResourceJacksonConfig` on your `JsonMapper` (see root README).
