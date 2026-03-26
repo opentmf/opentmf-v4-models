@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-v4-models</artifactId>
-    <version>4.0.5-SNAPSHOT</version>
+    <version>4.0.5</version>
   </parent>
 
   <artifactId>opentmf-product-v4-model</artifactId>
   <name>opentmf-product-v4-model</name>
-  <version>4.1.0.0-SNAPSHOT</version>
+  <version>4.1.0.0</version>
   <description>
         
     - TMF-620: Product Catalog Management API, version: 4.1.0
@@ -31,7 +31,7 @@
     <dependency>
       <groupId>org.opentmf.model</groupId>
       <artifactId>opentmf-common-v4-model</artifactId>
-      <version>4.2.0.0-SNAPSHOT</version>
+      <version>4.2.0.0</version>
     </dependency>
   </dependencies>
 
