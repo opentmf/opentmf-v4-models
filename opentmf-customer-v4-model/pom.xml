@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.opentmf.model</groupId>
+    <artifactId>opentmf-v4-models</artifactId>
+    <version>4.0.5-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>opentmf-customer-v4-model</artifactId>
+  <name>opentmf-customer-v4-model</name>
+  <version>4.0.0.0-SNAPSHOT</version>
+  <description>
+        
+    - TMF-622: Product Ordering Management API, version: 4.0.0
+    - TMF-629: Customer Management API, version: 4.0.0
+    - TMF-646: Appointment Management API, version: 4.0.0
+    - TMF-648: Quote Management API, version: 4.0.0
+    - TMF-654: Prepay Balance Management API, version: 4.0.0
+    - TMF-663: Shopping Cart Management API, version: 4.0.0
+    - TMF-670: Payment Method Management API, version: 4.0.0
+    - TMF-676: Payment Management API, version: 4.0.0
+    - TMF-678: Customer Bill Management API, version: 4.0.0
+    - TMF-680: Recommendation Management API, version: 4.0.0
+    - TMF-696: Risk Management API, version: 4.0.0
+    - TMF-717: Customer360 Management API, version: 4.0.0
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.opentmf.model</groupId>
+      <artifactId>opentmf-customer-v4-api</artifactId>
+      <version>4.0.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opentmf.model</groupId>
+      <artifactId>opentmf-common-v4-model</artifactId>
+      <version>4.2.0.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+</project>

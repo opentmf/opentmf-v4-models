@@ -1,0 +1,28 @@
+package org.opentmf.tmf714.model;
+
+import jakarta.validation.Valid;
+import lombok.Getter;
+import lombok.Setter;
+import org.opentmf.common.model.EventBase;
+
+/**
+ * The notification data structure.
+ *
+ * <p><br/>
+ * <strong>Referring TMF artifacts:</strong>
+ * <ul>
+ *   <li>TMF-714: Work Qualification Management</li>
+ * </ul>
+ * </p>
+ *
+ * @author Gökhan Demir
+ */
+@Getter
+@Setter
+public class QueryWorkQualificationDeleteEvent extends EventBase implements IQueryWorkQualificationDeleteEvent {
+
+  /**
+   * The event data structure.
+   */
+  private @Valid QueryWorkQualificationDeleteEventPayload event;
+}

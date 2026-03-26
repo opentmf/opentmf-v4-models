@@ -1,0 +1,42 @@
+package org.opentmf.tmf633.model;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import java.time.OffsetDateTime;
+import lombok.Getter;
+import lombok.Setter;
+import org.opentmf.commons.validation.constraints.Required;
+
+/**
+ * The (service) category resource is used to group service candidates in
+ * logical containers. Categories can contain other categories.
+ * <br/>Skipped properties: id,href.
+ *
+ * <p><br/>
+ * <strong>Required:</strong> name<br/>
+ * </p>
+ *
+ * <p><br/>
+ * <strong>Referring TMF artifacts:</strong>
+ * <ul>
+ *   <li>TMF-633: Service Catalog Management API</li>
+ * </ul>
+ * </p>
+ *
+ * @author Gökhan Demir
+ */
+@Getter
+@Setter
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    visible = true,
+    include = JsonTypeInfo.As.EXISTING_PROPERTY,
+    defaultImpl = ServiceCategoryCreate.class
+)
+@Required(fields = {"name"})
+public class ServiceCategoryCreate extends ServiceCategoryUpdate implements IServiceCategoryCreate {
+
+  /**
+   * Date and time of the last update.
+   */
+  private OffsetDateTime lastUpdate;
+}

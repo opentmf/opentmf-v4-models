@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.opentmf.model</groupId>
+    <artifactId>opentmf-v4-models</artifactId>
+    <version>4.0.5-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>opentmf-general-v4-model</artifactId>
+  <name>opentmf-general-v4-model</name>
+  <version>4.1.0.0-SNAPSHOT</version>
+  <description>
+        
+    - TMF-621: Trouble Ticket Management API, version: 4.0.0
+    - TMF-649: Performance Thresholding Management API, version: 4.0.0
+    - TMF-655: Change Management API, version: 4.0.0
+    - TMF-662: Entity Catalog Management API, version: 4.0.0
+    - TMF-667: Document Management API, version: 4.0.0
+    - TMF-673: Geographic Address Management API, version: 4.0.0
+    - TMF-674: Geographic Site Management API, version: 4.0.0
+    - TMF-675: Geographic Location Management API, version: 4.0.0
+    - TMF-681: Communication Management API, version: 4.0.0
+    - TMF-686: Topology API, version: 4.0.0
+    - TMF-688: Event Management API, version: 4.0.0
+    - TMF-691: Federated ID Management API, version: 4.0.0
+    - TMF-701: Process Flow Management API, version: 4.1.0
+    - TMF-703: Entity Inventory Management API, version: 4.0.0
+    - TMF-704: Test Case Management API, version: 4.0.0
+    - TMF-705: Test Environment Management API, version: 4.0.0
+    - TMF-706: Test Data Management API, version: 4.0.0
+    - TMF-707: Test Result Management API, version: 4.0.0
+    - TMF-708: Test Execution Management API, version: 4.0.0
+    - TMF-709: Test Scenario Management API, version: 4.0.0
+    - TMF-710: General Test Artifact Management API, version: 4.0.0
+    - TMF-714: Work Qualification Management, version: 4.0.0
+    - TMF-715: Warranty Management, version: 4.0.0
+    - TMF-720: Digital Identity Management API, version: 4.0.0
+    - TMF-724: Incident Management API, version: 4.0.0
+    - TMF-725: Metadata Catalog Management API, version: 4.0.0
+    - TMF-728: Dunning Case Management, version: 4.0.0
+    - TMF-915: AI Management API, version: 4.0.0
+    - TMF-921: Intent Management API, version: 4.0.0
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.opentmf.model</groupId>
+      <artifactId>opentmf-general-v4-api</artifactId>
+      <version>4.1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opentmf.model</groupId>
+      <artifactId>opentmf-common-v4-model</artifactId>
+      <version>4.2.0.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+</project>

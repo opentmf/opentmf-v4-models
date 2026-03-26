@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.opentmf.model</groupId>
+    <artifactId>opentmf-v4-models</artifactId>
+    <version>4.0.5-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>opentmf-677-v4-model</artifactId>
+  <name>opentmf-677-v4-model</name>
+  <version>4.0.0.5-SNAPSHOT</version>
+  <description>
+    TMF-677: Usage Consumption Management API, version: 4.0.0
+    Hierarchical model classes with polymorphism.
+  </description>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.opentmf.model</groupId>
+      <artifactId>opentmf-677-v4-api</artifactId>
+      <version>4.0.0.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opentmf.model</groupId>
+      <artifactId>opentmf-product-v4-model</artifactId>
+      <version>4.1.0.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+</project>
