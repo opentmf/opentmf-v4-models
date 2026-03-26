@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-v4-models</artifactId>
-    <version>4.0.5</version>
+    <version>4.0.6-SNAPSHOT</version>
   </parent>
 
   <artifactId>opentmf-644-v4-model</artifactId>
   <name>opentmf-644-v4-model</name>
-  <version>4.0.0.5</version>
+  <version>4.0.0.6-SNAPSHOT</version>
   <description>
     TMF-644: Privacy Management API, version: 4.0.0
     Hierarchical model classes with polymorphism.
@@ -25,7 +25,7 @@
     <dependency>
       <groupId>org.opentmf.model</groupId>
       <artifactId>opentmf-partner-v4-model</artifactId>
-      <version>4.0.0.0</version>
+      <version>4.0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 

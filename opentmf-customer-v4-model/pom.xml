@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-v4-models</artifactId>
-    <version>4.0.5</version>
+    <version>4.0.6-SNAPSHOT</version>
   </parent>
 
   <artifactId>opentmf-customer-v4-model</artifactId>
   <name>opentmf-customer-v4-model</name>
-  <version>4.0.0.0</version>
+  <version>4.0.0.1-SNAPSHOT</version>
   <description>
         
     - TMF-622: Product Ordering Management API, version: 4.0.0
@@ -36,7 +36,7 @@
     <dependency>
       <groupId>org.opentmf.model</groupId>
       <artifactId>opentmf-common-v4-model</artifactId>
-      <version>4.2.0.0</version>
+      <version>4.2.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
