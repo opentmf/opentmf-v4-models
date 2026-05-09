@@ -10,6 +10,9 @@ import lombok.Setter;
 import org.opentmf.common.model.AppointmentRef;
 import org.opentmf.common.model.BillingAccountRef;
 import org.opentmf.common.model.Extensible;
+import org.opentmf.common.model.OrderItemRelationship;
+import org.opentmf.common.model.OrderTerm;
+import org.opentmf.common.model.ProductOfferingQualificationRef;
 import org.opentmf.common.model.ProductOfferingRef;
 import org.opentmf.common.model.ProductRefOrValue;
 import org.opentmf.commons.validation.constraints.Required;
@@ -17,7 +20,6 @@ import org.opentmf.commons.validation.constraints.SafeId;
 import org.opentmf.commons.validation.constraints.SafeText;
 import org.opentmf.customer.model.PaymentRef;
 import org.opentmf.customer.model.ProductOfferingQualificationItemRef;
-import org.opentmf.customer.model.ProductOfferingQualificationRef;
 
 /**
  * An identified part of the order. A product order is decomposed into one or

@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.opentmf.common.model.Characteristic;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.ServiceRef;
+import org.opentmf.common.model.ServiceTestSpecificationRef;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.SafeText;
 

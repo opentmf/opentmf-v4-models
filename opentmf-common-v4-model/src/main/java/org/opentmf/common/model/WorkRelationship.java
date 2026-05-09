@@ -33,7 +33,7 @@ import org.opentmf.commons.validation.constraints.Required;
     defaultImpl = WorkRelationship.class
 )
 @Required(fields = {"relationshipType"})
-public class WorkRelationship extends CharacteristicRelationship implements IWorkRelationship {
+public class WorkRelationship extends WorkQualificationRelationship implements IWorkRelationship {
 
   /**
    * A Unit of Work defined by value or existing defined by reference. The

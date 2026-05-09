@@ -8,6 +8,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.opentmf.common.model.ServiceOrderItemRef;
 
 /**
  * A ServiceOrderErrorMessage represents an error that causes a status change in

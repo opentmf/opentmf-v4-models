@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.CartItemRelationship;
+import org.opentmf.common.model.CartTerm;
 import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.Note;
 import org.opentmf.common.model.ProductOfferingRef;

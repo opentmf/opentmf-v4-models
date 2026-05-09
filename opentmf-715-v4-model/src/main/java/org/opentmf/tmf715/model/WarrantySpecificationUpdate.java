@@ -12,6 +12,7 @@ import org.opentmf.common.model.ProductSpecificationRef;
 import org.opentmf.common.model.Quantity;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.ResourceSpecificationRef;
+import org.opentmf.common.model.WarrantySpecificationRelationship;
 import org.opentmf.common.model.WorkSpecificationUpdateBase;
 
 /**

@@ -40,7 +40,7 @@ import org.opentmf.commons.validation.constraints.Required;
     defaultImpl = EntitySpecificationRelationship.class
 )
 @Required(fields = {"relationshipType", "id"})
-public class EntitySpecificationRelationship extends ServiceSpecRelationship implements IEntitySpecificationRelationship {
+public class EntitySpecificationRelationship extends ServiceTestSpecRelationship implements IEntitySpecificationRelationship {
 
   /**
    * reference to an AssociationSpecification object.

@@ -1,11 +1,11 @@
 package org.opentmf.common.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.Valid;
-import java.util.List;
+import jakarta.validation.constraints.Size;
+import java.net.URI;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * EntitySpecification is a class that offers characteristics to describe a type
@@ -45,42 +45,17 @@ import lombok.Setter;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = EntitySpecification.class
 )
-public class EntitySpecification extends AssociationBase implements IEntitySpecification {
+public class EntitySpecification extends UsageSpecificationUpdate implements IEntitySpecification {
 
   /**
-   * Attachments that may be of relevance to this specification, such as picture,
-   * document, media.
+   * Hyperlink reference.
    */
-  @JsonProperty("attachment")
-  private List<@Valid AttachmentRefOrValue> attachments;
+  private URI href;
 
   /**
-   * Relationship to another specification.
+   * unique identifier.
    */
-  @JsonProperty("entitySpecRelationship")
-  private List<@Valid EntitySpecificationRelationship> entitySpecRelationships;
-
-  /**
-   * isBundle determines whether specification represents a single specification
-   * (false), or a bundle of specifications (true).
-   */
-  private Boolean isBundle;
-
-  /**
-   * Parties who manage or otherwise have an interest in this specification.
-   */
-  @JsonProperty("relatedParty")
-  private List<@Valid RelatedParty> relatedParties;
-
-  /**
-   * List of characteristics that the entity can take.
-   */
-  @JsonProperty("specCharacteristic")
-  private List<@Valid CharacteristicSpecification> specCharacteristics;
-
-  /**
-   * The reference object to the schema and type of target entity which is
-   * described by a specification.
-   */
-  private @Valid TargetEntitySchema targetEntitySchema;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 }

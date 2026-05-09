@@ -43,7 +43,7 @@ import org.opentmf.commons.validation.constraints.Required;
     defaultImpl = ResourceRelationship.class
 )
 @Required(fields = {"relationshipType", "resource"})
-public class ResourceRelationship extends CharacteristicRelationship implements IResourceRelationship {
+public class ResourceRelationship extends WarrantyRelationship implements IResourceRelationship {
 
   /**
    * Resource is an abstract entity that describes the common set of attributes

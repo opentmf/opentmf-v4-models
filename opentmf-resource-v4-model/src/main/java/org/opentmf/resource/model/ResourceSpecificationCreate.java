@@ -10,6 +10,7 @@ import org.opentmf.common.model.AttachmentRefOrValue;
 import org.opentmf.common.model.FeatureSpecification;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.ResourceSpecificationCreateBase;
+import org.opentmf.common.model.TargetResourceSchema;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;
 

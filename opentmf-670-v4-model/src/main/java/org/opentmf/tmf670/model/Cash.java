@@ -1,11 +1,10 @@
 package org.opentmf.tmf670.model;
 
-import jakarta.validation.constraints.Size;
-import java.net.URI;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.PaymentMethod;
 import org.opentmf.commons.validation.constraints.Required;
-import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * A cash method of payment. It has no additional data, but it could be extended
@@ -27,18 +26,12 @@ import org.opentmf.commons.validation.constraints.SafeId;
  */
 @Getter
 @Setter
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    visible = true,
+    include = JsonTypeInfo.As.EXISTING_PROPERTY,
+    defaultImpl = Cash.class
+)
 @Required(fields = {"atType", "name"})
-public class Cash extends PaymentMethodCreate implements ICash {
-
-  /**
-   * Hyperlink reference.
-   */
-  private URI href;
-
-  /**
-   * unique identifier.
-   */
-  @SafeId
-  @Size(max = 100)
-  private String id;
+public class Cash extends PaymentMethod implements ICash {
 }

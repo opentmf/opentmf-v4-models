@@ -10,6 +10,7 @@ import org.opentmf.common.model.ChannelRef;
 import org.opentmf.common.model.Characteristic;
 import org.opentmf.common.model.RelatedEntity;
 import org.opentmf.common.model.RelatedParty;
+import org.opentmf.common.model.TaskFlowSpecificationRef;
 import org.opentmf.commons.validation.constraints.SafeText;
 
 /**

@@ -14,6 +14,7 @@ import org.opentmf.common.model.Price;
 import org.opentmf.common.model.ProductRefOrValue;
 import org.opentmf.common.model.ProductStockRef;
 import org.opentmf.common.model.Quantity;
+import org.opentmf.common.model.ReserveProductStockRef;
 import org.opentmf.commons.validation.constraints.SafeId;
 import org.opentmf.commons.validation.constraints.SafeText;
 

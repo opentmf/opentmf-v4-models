@@ -7,7 +7,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.Characteristic;
-import org.opentmf.general.model.EdgeCreateBase;
+import org.opentmf.common.model.VertexRef;
+import org.opentmf.general.model.EdgeBase;
 
 /**
  * Edge is a directed edge connecting vertices in a directed Graph.
@@ -30,7 +31,7 @@ import org.opentmf.general.model.EdgeCreateBase;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = EdgeUpdate.class
 )
-public class EdgeUpdate extends EdgeCreateBase implements IEdgeUpdate {
+public class EdgeUpdate extends EdgeBase implements IEdgeUpdate {
 
   /**
    * Indicates if this Edge is birectional (true) or unidirection originating from
@@ -54,10 +55,6 @@ public class EdgeUpdate extends EdgeCreateBase implements IEdgeUpdate {
    * EdgeSpecification.
    */
   private @Valid EdgeSpecificationRef edgeSpecification;
-
-  private @Valid GraphRef graph;
-
-  private @Valid GraphRef subGraph;
 
   /**
    * Graph Vertices connected by this Edge.

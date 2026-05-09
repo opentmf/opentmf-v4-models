@@ -10,6 +10,7 @@ import org.opentmf.common.model.AttachmentRef;
 import org.opentmf.common.model.EntityCatalogUpdateBase;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.ResourceSpecificationRef;
+import org.opentmf.common.model.TargetServiceSchema;
 
 /**
  * #TODO

@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.Entity;
 import org.opentmf.commons.validation.constraints.Required;
-import org.opentmf.commons.validation.constraints.SafeQuery;
+import org.opentmf.commons.validation.constraints.SafeUrl;
 
 /**
  * A Hub is used to subscribe to an event notification.
@@ -46,7 +46,7 @@ public class Hub extends Entity implements IHub {
    * This is a query string used to filter notifications in the context of the
    * notifier.
    */
-  @SafeQuery
+  @SafeUrl
   @Size(max = 500)
   private String query;
 }

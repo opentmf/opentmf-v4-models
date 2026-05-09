@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.CharacteristicRelationship;
+import org.opentmf.common.model.ResourceGraphRef;
 
 /**
  * Describes links between resource graphs.

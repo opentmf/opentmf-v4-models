@@ -3,6 +3,7 @@ package org.opentmf.tmf658.model;
 import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.PartnershipRef;
 import org.opentmf.common.model.ProductOfferingRef;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;

@@ -12,13 +12,14 @@ import org.opentmf.common.model.AgreementRef;
 import org.opentmf.common.model.BillingAccountRef;
 import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.Note;
+import org.opentmf.common.model.ProductOfferingQualificationRef;
+import org.opentmf.common.model.QuoteRef;
 import org.opentmf.common.model.RelatedChannel;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeId;
 import org.opentmf.commons.validation.constraints.SafeText;
 import org.opentmf.customer.model.PaymentRef;
-import org.opentmf.customer.model.ProductOfferingQualificationRef;
 
 /**
  * A Product Order is a type of order which can be used to place an order

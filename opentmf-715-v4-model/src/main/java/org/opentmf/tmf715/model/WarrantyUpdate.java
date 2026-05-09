@@ -9,12 +9,15 @@ import lombok.Setter;
 import org.opentmf.common.model.AgreementRef;
 import org.opentmf.common.model.AttachmentRefOrValue;
 import org.opentmf.common.model.Characteristic;
+import org.opentmf.common.model.Extensible;
+import org.opentmf.common.model.Note;
 import org.opentmf.common.model.ProductRefOrValue;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.RelatedPlaceRefOrValue;
 import org.opentmf.common.model.ResourceRefOrValue;
 import org.opentmf.common.model.TimePeriod;
-import org.opentmf.common.model.WarrantyBase;
+import org.opentmf.common.model.WarrantyRelationship;
+import org.opentmf.common.model.WarrantySpecificationRef;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;
 import org.opentmf.general.model.EntityRelationship;
@@ -45,7 +48,7 @@ import org.opentmf.general.model.EntitySpecificationRef;
     defaultImpl = WarrantyUpdate.class
 )
 @Required(fields = {"name"})
-public class WarrantyUpdate extends WarrantyBase implements IWarrantyUpdate {
+public class WarrantyUpdate extends Extensible implements IWarrantyUpdate {
 
   /**
    * List of: A product to be created defined by value or existing defined by
@@ -85,6 +88,11 @@ public class WarrantyUpdate extends WarrantyBase implements IWarrantyUpdate {
   private @SafeText String context;
 
   /**
+   * free-text description of the entity.
+   */
+  private @SafeText String description;
+
+  /**
    * A date time( DateTime). The date till the entity is effective.
    */
   private @SafeText String endDate;
@@ -101,10 +109,27 @@ public class WarrantyUpdate extends WarrantyBase implements IWarrantyUpdate {
   private @Valid EntitySpecificationRef entitySpecification;
 
   /**
+   * isBundle determines whether an entity represents a single entity (false), or
+   * a bundle of entities(true).
+   */
+  private Boolean isBundle;
+
+  /**
    * isExternal determines whether an entity represents an external entity in the
    * inventory.
    */
   private Boolean isExternal;
+
+  /**
+   * A string used to give a name to the entity.
+   */
+  private @SafeText String name;
+
+  /**
+   * List of: Extra information about a given entity.
+   */
+  @JsonProperty("note")
+  private List<@Valid Note> notes;
 
   /**
    * List of: Related Entity reference. A related place defines a place described
@@ -126,6 +151,15 @@ public class WarrantyUpdate extends WarrantyBase implements IWarrantyUpdate {
    * A date time( DateTime). The date from which the entity is effective.
    */
   private @SafeText String startDate;
+
+  /**
+   * Valid values for the lifecycle state of the service
+   * <br/><p>Recommended values: feasibilityChecked, designed, reserved, inactive,
+   * active, terminated.
+   *
+   * @see org.opentmf.tmf715.model.WarrantyStateType
+   */
+  private @SafeText String state;
 
   /**
    * The life cycle state of the entity.

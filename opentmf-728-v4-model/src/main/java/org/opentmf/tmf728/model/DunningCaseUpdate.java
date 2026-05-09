@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.opentmf.common.model.AccountBalance;
 import org.opentmf.common.model.BillingAccountRef;
 import org.opentmf.common.model.Characteristic;
+import org.opentmf.common.model.DunningScenarioRef;
 import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.TimePeriod;

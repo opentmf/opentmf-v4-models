@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.AiContractSpecificationUpdate;
 import org.opentmf.common.model.FeatureSpecification;
 import org.opentmf.common.model.ResourceSpecificationRef;
 import org.opentmf.common.model.ServiceLevelSpecificationRef;

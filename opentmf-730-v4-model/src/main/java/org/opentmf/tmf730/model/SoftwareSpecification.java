@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.SoftwareSupportPackageRef;
 
 /**
  * A base class used to define the invariant characteristics and behavior

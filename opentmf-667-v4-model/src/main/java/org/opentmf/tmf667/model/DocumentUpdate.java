@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.opentmf.common.model.AttachmentRefOrValue;
 import org.opentmf.common.model.CategoryRef;
 import org.opentmf.common.model.Characteristic;
+import org.opentmf.common.model.DocumentRef;
 import org.opentmf.common.model.DocumentUpdateBase;
 import org.opentmf.common.model.ExternalIdentifier;
 import org.opentmf.common.model.RelatedEntity;

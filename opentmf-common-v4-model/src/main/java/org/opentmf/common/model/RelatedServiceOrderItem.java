@@ -1,6 +1,5 @@
 package org.opentmf.common.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.Size;
 import java.net.URI;
@@ -40,13 +39,19 @@ import org.opentmf.commons.validation.constraints.SafeText;
     defaultImpl = RelatedServiceOrderItem.class
 )
 @Required(fields = {"itemId", "serviceOrderId"})
-public class RelatedServiceOrderItem extends Entity implements IRelatedServiceOrderItem {
+public class RelatedServiceOrderItem extends ServiceOrderItemRef implements IRelatedServiceOrderItem {
 
   /**
-   * The actual type of the target instance when needed for disambiguation.
+   * Hyperlink reference.
    */
-  @JsonProperty("@referredType")
-  private @SafeText String atReferredType;
+  private URI href;
+
+  /**
+   * unique identifier.
+   */
+  @SafeId
+  @Size(max = 100)
+  private String id;
 
   /**
    * action to be performed on the product
@@ -57,26 +62,7 @@ public class RelatedServiceOrderItem extends Entity implements IRelatedServiceOr
   private @SafeText String itemAction;
 
   /**
-   * Identifier of the order item where the service was managed.
-   */
-  @SafeId
-  @Size(max = 100)
-  private String itemId;
-
-  /**
    * role of the service order item for this service.
    */
   private @SafeText String role;
-
-  /**
-   * Reference of the related entity.
-   */
-  private URI serviceOrderHref;
-
-  /**
-   * Unique identifier of a related entity.
-   */
-  @SafeId
-  @Size(max = 100)
-  private String serviceOrderId;
 }

@@ -12,11 +12,14 @@ import org.opentmf.commons.validation.constraints.SafeText;
  * Synthesized abstract parent for 6 model classes.
  *
  * <p><br/>
- * <strong>Referring TMF artifacts:</strong>
+ * <strong>Direct descendants:</strong>
  * <ul>
- *   <li>TMF-629: Customer Management API</li>
- *   <li>TMF-658: Loyalty</li>
- *   <li>TMF-669: Party Role Management API</li>
+ *   <li>CustomerCreate (629)</li>
+ *   <li>CustomerUpdate (629)</li>
+ *   <li>LoyaltyProgramPartnerCreate (658)</li>
+ *   <li>LoyaltyProgramPartnerUpdate (658)</li>
+ *   <li>PartyRoleCreate (669)</li>
+ *   <li>PartyRoleUpdate (669)</li>
  * </ul>
  * </p>
  *

@@ -5,6 +5,9 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.LoyaltyActionRef;
+import org.opentmf.common.model.LoyaltyConditionRef;
+import org.opentmf.common.model.LoyaltyEventTypeRef;
 import org.opentmf.commons.validation.constraints.SafeText;
 
 /**

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.AttachmentRef;
 import org.opentmf.common.model.Entity;
+import org.opentmf.common.model.RuleRef;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;
 

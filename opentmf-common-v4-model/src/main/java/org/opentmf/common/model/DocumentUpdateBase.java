@@ -9,11 +9,12 @@ import org.opentmf.commons.validation.constraints.SafeText;
  * Synthesized abstract parent for 4 model classes.
  *
  * <p><br/>
- * <strong>Referring TMF artifacts:</strong>
+ * <strong>Direct descendants:</strong>
  * <ul>
- *   <li>TMF-644: Privacy Management API</li>
- *   <li>TMF-653: Service Test Management API</li>
- *   <li>TMF-667: Document Management API</li>
+ *   <li>DocumentUpdate (667)</li>
+ *   <li>PartyPrivacyProfileSpecificationCreate (644)</li>
+ *   <li>PartyPrivacyProfileSpecificationUpdate (644)</li>
+ *   <li>ServiceTestSpecificationUpdate (653)</li>
  * </ul>
  * </p>
  *

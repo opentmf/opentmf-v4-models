@@ -12,6 +12,7 @@ import org.opentmf.common.model.DocumentUpdateBase;
 import org.opentmf.common.model.EntitySpecificationRelationship;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.ServiceSpecificationRef;
+import org.opentmf.common.model.ServiceTestSpecRelationship;
 import org.opentmf.common.model.TargetEntitySchema;
 import org.opentmf.commons.validation.constraints.SafeText;
 

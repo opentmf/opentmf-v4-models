@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import java.time.OffsetDateTime;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.BillCycleRef;
 import org.opentmf.common.model.Entity;
 import org.opentmf.common.model.Money;
 import org.opentmf.common.model.PaymentMethodRef;

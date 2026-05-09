@@ -12,6 +12,7 @@ import org.opentmf.common.model.AgreementRef;
 import org.opentmf.common.model.AgreementSpecificationRef;
 import org.opentmf.common.model.Characteristic;
 import org.opentmf.common.model.Extensible;
+import org.opentmf.common.model.PartyPrivacyProfileRef;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.Required;

@@ -3,6 +3,7 @@ package org.opentmf.tmf701.model;
 import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.TaskFlowRef;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;
 

@@ -11,13 +11,13 @@ import org.opentmf.commons.validation.constraints.SafeText;
  * Synthesized abstract parent for 5 model classes.
  *
  * <p><br/>
- * <strong>Referring TMF artifacts:</strong>
+ * <strong>Direct descendants:</strong>
  * <ul>
- *   <li>TMF-634: Resource Catalog Management API</li>
- *   <li>TMF-651: Agreement Management API</li>
- *   <li>TMF-658: Loyalty</li>
- *   <li>TMF-730: Software And Compute Management API</li>
- *   <li>TMF-908: IoT Agent and Device Management API</li>
+ *   <li>AgreementSpecificationCreate (651)</li>
+ *   <li>AgreementSpecificationUpdate (651)</li>
+ *   <li>LoyaltyProgramProductSpecUpdate (658)</li>
+ *   <li>ResourceSpecificationCreate (634, 730, 908)</li>
+ *   <li>ResourceSpecificationUpdate (634, 730, 908)</li>
  * </ul>
  * </p>
  *

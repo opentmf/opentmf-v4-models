@@ -8,6 +8,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.AttachmentRefOrValue;
+import org.opentmf.common.model.CalendarEventRef;
 import org.opentmf.common.model.ContactMedium;
 import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.Note;
@@ -18,7 +19,6 @@ import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeId;
 import org.opentmf.commons.validation.constraints.SafeText;
-import org.opentmf.customer.model.CalendarEventRef;
 
 /**
  * An Appointment is an arrangement to do something or meet someone at a

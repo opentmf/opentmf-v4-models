@@ -9,6 +9,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.AppliedCustomerBillingRate;
+import org.opentmf.common.model.CustomerBillRef;
+import org.opentmf.common.model.DunningRuleRef;
 import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.ProductOrderRef;
 import org.opentmf.commons.validation.constraints.Required;

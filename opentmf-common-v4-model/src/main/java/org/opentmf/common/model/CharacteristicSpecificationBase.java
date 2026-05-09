@@ -46,7 +46,7 @@ import org.opentmf.commons.validation.constraints.SafeText;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = CharacteristicSpecificationBase.class
 )
-public class CharacteristicSpecificationBase extends Extensible implements ICharacteristicSpecificationBase {
+public class CharacteristicSpecificationBase extends RuleUpdate implements ICharacteristicSpecificationBase {
 
   /**
    * This (optional) field provides a link to the schema describing the value
@@ -100,12 +100,6 @@ public class CharacteristicSpecificationBase extends Extensible implements IChar
    * the value for the minCardinality.
    */
   private Integer minCardinality;
-
-  /**
-   * A word, term, or phrase by which this characteristic specification is known
-   * and distinguished from other characteristic specifications.
-   */
-  private @SafeText String name;
 
   /**
    * A rule or principle represented in regular expression used to derive the

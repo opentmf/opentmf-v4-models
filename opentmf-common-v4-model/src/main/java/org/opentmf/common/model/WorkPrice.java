@@ -1,9 +1,7 @@
 package org.opentmf.common.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.commons.validation.constraints.SafeText;
@@ -30,7 +28,7 @@ import org.opentmf.commons.validation.constraints.SafeText;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = WorkPrice.class
 )
-public class WorkPrice extends CartPriceBase implements IWorkPrice {
+public class WorkPrice extends PriceBase implements IWorkPrice {
 
   /**
    * BillingAccount reference. A BillingAccount is a detailed description of a
@@ -43,13 +41,6 @@ public class WorkPrice extends CartPriceBase implements IWorkPrice {
    * percentage to apply for Price Alteration.
    */
   private @Valid Price price;
-
-  /**
-   * List of: Is an amount, usually of money, that modifies the price charged for
-   * an order item.
-   */
-  @JsonProperty("priceAlteration")
-  private List<@Valid PriceAlteration> priceAlterations;
 
   /**
    * Could be minutes, GB...

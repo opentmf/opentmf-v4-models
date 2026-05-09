@@ -1,11 +1,11 @@
 package org.opentmf.common.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.Valid;
-import java.util.List;
+import jakarta.validation.constraints.Size;
+import java.net.URI;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * ServiceSpecification is a class that offers characteristics to describe a
@@ -32,34 +32,17 @@ import lombok.Setter;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = ServiceSpecification.class
 )
-public class ServiceSpecification extends EntitySpecification implements IServiceSpecification {
+public class ServiceSpecification extends ServiceSpecificationCreate implements IServiceSpecification {
 
   /**
-   * A list of Features for this specification.
+   * Hyperlink reference.
    */
-  @JsonProperty("featureSpecification")
-  private List<@Valid FeatureSpecification> featureSpecifications;
+  private URI href;
 
   /**
-   * A list of resource specification references (ResourceSpecificationRef [*]).
-   * The ResourceSpecification is required for a service specification with type
-   * ResourceFacingServiceSpecification (RFSS).
+   * unique identifier.
    */
-  @JsonProperty("resourceSpecification")
-  private List<@Valid ResourceSpecificationRef> resourceSpecifications;
-
-  /**
-   * A list of service level specifications related to this service specification,
-   * and which will need to be satisfiable for corresponding service instances;
-   * e.g. Gold, Platinum.
-   */
-  @JsonProperty("serviceLevelSpecification")
-  private List<@Valid ServiceLevelSpecificationRef> serviceLevelSpecifications;
-
-  /**
-   * A list of service specifications related to this specification, e.g.
-   * migration, substitution, dependency or exclusivity relationship.
-   */
-  @JsonProperty("serviceSpecRelationship")
-  private List<@Valid ServiceSpecRelationship> serviceSpecRelationships;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 }

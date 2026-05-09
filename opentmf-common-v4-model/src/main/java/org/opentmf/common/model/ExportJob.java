@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.opentmf.commons.validation.constraints.SafeQuery;
+import org.opentmf.commons.validation.constraints.SafeUrl;
 
 /**
  * Represents a task used to export resources to a file.
@@ -34,7 +34,7 @@ public class ExportJob extends ImportJob implements IExportJob {
   /**
    * Used to scope the exported data.
    */
-  @SafeQuery
+  @SafeUrl
   @Size(max = 500)
   private String query;
 }

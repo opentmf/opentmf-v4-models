@@ -11,6 +11,7 @@ import org.opentmf.common.model.NamedEntity;
 import org.opentmf.common.model.Note;
 import org.opentmf.common.model.Place;
 import org.opentmf.common.model.RelatedParty;
+import org.opentmf.common.model.ResourceCharacteristic;
 import org.opentmf.common.model.ResourceRelationship;
 import org.opentmf.commons.validation.constraints.SafeText;
 

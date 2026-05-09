@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.commons.validation.constraints.Required;
-import org.opentmf.commons.validation.constraints.SafeQuery;
+import org.opentmf.commons.validation.constraints.SafeUrl;
 
 /**
  * Represents a task used to export resources to a file
@@ -41,7 +41,7 @@ public class ExportJobCreate extends ImportJobCreate implements IExportJobCreate
   /**
    * Used to scope the exported data.
    */
-  @SafeQuery
+  @SafeUrl
   @Size(max = 500)
   private String query;
 }

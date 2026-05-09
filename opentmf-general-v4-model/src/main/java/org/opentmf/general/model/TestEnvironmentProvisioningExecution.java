@@ -1,12 +1,12 @@
 package org.opentmf.general.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.Valid;
-import java.util.List;
+import jakarta.validation.constraints.Size;
+import java.net.URI;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.commons.validation.constraints.Required;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * REST resource for test environment provisioning lifecycle.
@@ -34,16 +34,17 @@ import org.opentmf.commons.validation.constraints.Required;
     defaultImpl = TestEnvironmentProvisioningExecution.class
 )
 @Required(fields = {"testEnvironmentAllocationExecution"})
-public class TestEnvironmentProvisioningExecution extends Execution implements ITestEnvironmentProvisioningExecution {
+public class TestEnvironmentProvisioningExecution extends TestEnvironmentProvisioningExecutionCreate implements ITestEnvironmentProvisioningExecution {
 
   /**
-   * List of: A reference to a managed provisioning artifact resource.
+   * Hyperlink reference.
    */
-  @JsonProperty("provisioningArtifact")
-  private List<@Valid ProvisioningArtifactRef> provisioningArtifacts;
+  private URI href;
 
   /**
-   * REST resource for test environment allocation lifecycle.
+   * unique identifier.
    */
-  private @Valid TestEnvironmentAllocationExecution testEnvironmentAllocationExecution;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 }

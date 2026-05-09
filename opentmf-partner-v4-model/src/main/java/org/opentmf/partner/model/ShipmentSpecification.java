@@ -3,14 +3,13 @@ package org.opentmf.partner.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
+import java.net.URI;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import org.opentmf.common.model.AssociationBase;
-import org.opentmf.common.model.AttachmentRefOrValue;
 import org.opentmf.common.model.CharacteristicSpecification;
-import org.opentmf.common.model.RelatedParty;
-import org.opentmf.commons.validation.constraints.SafeText;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * Definition of the nature of a Shipment. For example, could be a standard
@@ -34,58 +33,23 @@ import org.opentmf.commons.validation.constraints.SafeText;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = ShipmentSpecification.class
 )
-public class ShipmentSpecification extends AssociationBase implements IShipmentSpecification {
+public class ShipmentSpecification extends ShipmentSpecificationCreate implements IShipmentSpecification {
 
   /**
-   * Attachments that may be of relevance to this specification, such as picture,
-   * document, media.
+   * Hyperlink reference.
    */
-  @JsonProperty("attachment")
-  private List<@Valid AttachmentRefOrValue> attachments;
+  private URI href;
 
   /**
-   * isBundle determines whether an ShipmentSpecification represents a single
-   * ShipmentSpecification (false), or a bundle of ShipmentSpecification (true).
+   * unique identifier.
    */
-  private Boolean isBundle;
-
-  /**
-   * Parties who manage or otherwise have an interest in this shipment
-   * specification.
-   */
-  @JsonProperty("relatedParty")
-  private List<@Valid RelatedParty> relatedParties;
-
-  /**
-   * Relationship to another shipment specification, might be dependency,
-   * substitution, etc.
-   */
-  @JsonProperty("shipmentSpecRelationship")
-  private List<@Valid ShipmentSpecificationRelationship> shipmentSpecRelationships;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 
   /**
    * List of characteristics that the shipment can take.
    */
   @JsonProperty("shipmentSpecificationCharacteristic")
   private List<@Valid CharacteristicSpecification> shipmentSpecificationCharacteristics;
-
-  /**
-   * Possible values for the signature requirement upon receiving the shipment
-   * <br/><p>Recommended values: adult, receiver.
-   *
-   * @see org.opentmf.partner.model.SignatureRequiredByType
-   */
-  private @SafeText String signatureRequiredBy;
-
-  /**
-   * List of characteristics that the shipment can take.
-   */
-  @JsonProperty("specCharacteristic")
-  private List<@Valid CharacteristicSpecification> specCharacteristics;
-
-  /**
-   * The reference object to the schema and type of target shipment which is
-   * described by shipment specification.
-   */
-  private @Valid TargetShipmentSchema targetShipmentSchema;
 }

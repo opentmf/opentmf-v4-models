@@ -16,11 +16,11 @@ import org.opentmf.common.model.Price;
 import org.opentmf.common.model.Quantity;
 import org.opentmf.common.model.RelatedPartyWithContactInfo;
 import org.opentmf.common.model.RelatedPlaceRefOrValue;
+import org.opentmf.common.model.RelatedShipment;
+import org.opentmf.common.model.ShipmentTrackingRef;
 import org.opentmf.commons.validation.constraints.SafeText;
-import org.opentmf.partner.model.RelatedShipment;
 import org.opentmf.partner.model.ShipmentItem;
 import org.opentmf.partner.model.ShipmentSpecificationRefOrValue;
-import org.opentmf.partner.model.ShipmentTrackingRef;
 import org.opentmf.partner.model.ShippingInstruction;
 
 /**

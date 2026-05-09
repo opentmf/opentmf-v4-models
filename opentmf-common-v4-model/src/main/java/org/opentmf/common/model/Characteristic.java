@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeId;
-import org.opentmf.commons.validation.constraints.SafeText;
 
 /**
  * Describes a given characteristic of an object or entity through a name/value
@@ -86,7 +85,7 @@ import org.opentmf.commons.validation.constraints.SafeText;
     defaultImpl = Characteristic.class
 )
 @Required(fields = {"name", "value"})
-public class Characteristic extends Extensible implements ICharacteristic {
+public class Characteristic extends AppliedBillingRateCharacteristic implements ICharacteristic {
 
   /**
    * List of: Another Characteristic that is related to the current
@@ -101,18 +100,6 @@ public class Characteristic extends Extensible implements ICharacteristic {
   @SafeId
   @Size(max = 100)
   private String id;
-
-  /**
-   * Name of the characteristic.
-   */
-  private @SafeText String name;
-
-  private Object value;
-
-  /**
-   * Data type of the value of the characteristic.
-   */
-  private @SafeText String valueType;
 
   public static Characteristic of(String name, Object value) {
     var c = new Characteristic();

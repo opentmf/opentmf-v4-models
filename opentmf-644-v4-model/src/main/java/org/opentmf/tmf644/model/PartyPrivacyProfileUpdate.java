@@ -7,6 +7,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.Extensible;
+import org.opentmf.common.model.PartyPrivacyAgreementRef;
+import org.opentmf.common.model.PartyPrivacyProfileSpecificationRef;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.SafeText;

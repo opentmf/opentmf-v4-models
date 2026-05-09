@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.GraphRef;
 import org.opentmf.commons.validation.constraints.Required;
 
 /**
