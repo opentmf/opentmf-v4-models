@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.CapacityRef;
+import org.opentmf.common.model.CapacitySpecRef;
 import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.PlaceRefOrValue;
 import org.opentmf.commons.validation.constraints.SafeText;

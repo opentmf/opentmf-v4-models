@@ -1,20 +1,12 @@
 package org.opentmf.partner.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
-import java.time.OffsetDateTime;
-import java.util.List;
+import java.net.URI;
 import lombok.Getter;
 import lombok.Setter;
-import org.opentmf.common.model.AgreementRef;
-import org.opentmf.common.model.AgreementSpecificationRef;
-import org.opentmf.common.model.Characteristic;
-import org.opentmf.common.model.RelatedParty;
-import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.Required;
-import org.opentmf.commons.validation.constraints.SafeText;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * An agreement represents a contract or arrangement, either written or verbal
@@ -46,93 +38,17 @@ import org.opentmf.commons.validation.constraints.SafeText;
     defaultImpl = Agreement.class
 )
 @Required(fields = {"agreementType", "name", "agreementItem", "engagedParty"})
-public class Agreement extends RoleSpecification implements IAgreement {
+public class Agreement extends AgreementCreate implements IAgreement {
 
   /**
-   * List of: A business participant that is responsible for approving the
-   * agreement.
+   * Unique url identifying the agreement as a resource.
    */
-  @JsonProperty("agreementAuthorization")
-  private List<@Valid AgreementAuthorization> agreementAuthorizations;
+  private URI href;
 
   /**
-   * List of: A part of the agreement expressed in terms of a product offering and
-   * possibly including specific terms and conditions.
+   * Unique identifier for the agreement.
    */
-  @JsonProperty("agreementItem")
-  private @Size(min = 1) List<@Valid AgreementItem> agreementItems;
-
-  /**
-   * A period of time, either as a deadline (endDateTime only) a startDateTime
-   * only, or both.
-   */
-  private @Valid TimePeriod agreementPeriod;
-
-  /**
-   * Agreement specification reference. An AgreementSpecification represents a
-   * template of an agreement that can be used when establishing partnerships.
-   */
-  private @Valid AgreementSpecificationRef agreementSpecification;
-
-  /**
-   * The type of the agreement. For example commercial.
-   */
-  private @SafeText String agreementType;
-
-  /**
-   * List of: Agreement reference. An agreement represents a contract or
-   * arrangement, either written or verbal and sometimes enforceable by law, such
-   * as a service level agreement or a customer price agreement. An agreement
-   * involves a number of other business entities, such as products, services, and
-   * resources and/or their specifications.
-   */
-  @JsonProperty("associatedAgreement")
-  private List<@Valid AgreementRef> associatedAgreements;
-
-  /**
-   * List of: Describes a given characteristic of an object or entity through a
-   * name/value pair.
-   */
-  @JsonProperty("characteristic")
-  private List<@Valid Characteristic> characteristics;
-
-  /**
-   * A period of time, either as a deadline (endDateTime only) a startDateTime
-   * only, or both.
-   */
-  private @Valid TimePeriod completionDate;
-
-  /**
-   * A reference number assigned to an Agreement that follows a prescribed
-   * numbering system.
-   */
-  private Integer documentNumber;
-
-  /**
-   * List of: Related Party reference. A related party defines party or party role
-   * linked to a specific entity.
-   */
-  @JsonProperty("engagedParty")
-  private @Size(min = 1) List<@Valid RelatedParty> engagedParties;
-
-  /**
-   * Date at which the agreement was initialized.
-   */
-  private OffsetDateTime initialDate;
-
-  /**
-   * An overview and goals of the Agreement.
-   */
-  private @SafeText String statementOfIntent;
-
-  /**
-   * The current status of the agreement. Typical values are: in process, approved
-   * and rejected.
-   */
-  private @SafeText String status;
-
-  /**
-   * A string identifying the version of the agreement.
-   */
-  private @SafeText String version;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 }

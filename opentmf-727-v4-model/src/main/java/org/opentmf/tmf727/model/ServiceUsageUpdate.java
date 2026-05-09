@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.ServiceRef;
+import org.opentmf.common.model.ServiceUsageSpecificationRef;
 import org.opentmf.commons.validation.constraints.SafeText;
 
 /**

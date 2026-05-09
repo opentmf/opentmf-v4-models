@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.BucketRef;
+import org.opentmf.common.model.LogicalResourceRef;
 import org.opentmf.common.model.NamedEntity;
 import org.opentmf.common.model.PartyAccountRef;
 import org.opentmf.common.model.ProductRef;

@@ -9,6 +9,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.AttachmentRefOrValue;
+import org.opentmf.common.model.PaymentMethod;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeId;
 import org.opentmf.commons.validation.constraints.SafeText;
@@ -41,7 +42,24 @@ import org.opentmf.commons.validation.constraints.SafeText;
     defaultImpl = DirectDebit.class
 )
 @Required(fields = {"owner", "bank", "mandateType", "atType", "name", "firstDebitDate", "accountNumber"})
-public class DirectDebit extends BankAccountTransfer implements IDirectDebit {
+public class DirectDebit extends PaymentMethod implements IDirectDebit {
+
+  /**
+   * The Business Identifier Code/Swift code of the financial institution where
+   * the account is located.
+   */
+  @JsonProperty("BIC")
+  private @SafeText String bIC;
+
+  /**
+   * The bank account number, this could refer to the iban or swift number.
+   */
+  private @SafeText String accountNumber;
+
+  /**
+   * The type of account number (e.g.: IBAN, SWIFT, ...).
+   */
+  private @SafeText String accountNumberType;
 
   /**
    * List of: An attachment by value or by reference. An attachment complements
@@ -50,6 +68,11 @@ public class DirectDebit extends BankAccountTransfer implements IDirectDebit {
    */
   @JsonProperty("attachment")
   private List<@Valid AttachmentRefOrValue> attachments;
+
+  /**
+   * The display name of the bank.
+   */
+  private @SafeText String bank;
 
   /**
    * The date on which the (e)Mandate has been cancelled by the Debtor or the
@@ -95,6 +118,11 @@ public class DirectDebit extends BankAccountTransfer implements IDirectDebit {
    * The type of mandate e.g., single-use(single)/multi-use(recurring).
    */
   private @SafeText String mandateType;
+
+  /**
+   * The owner of the bank account. This is also the account name.
+   */
+  private @SafeText String owner;
 
   /**
    * A reference that the party can later use to identify the direct debit.

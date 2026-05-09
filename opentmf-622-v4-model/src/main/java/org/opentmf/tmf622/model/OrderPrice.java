@@ -1,15 +1,12 @@
 package org.opentmf.tmf622.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.BillingAccountRef;
-import org.opentmf.common.model.CartPriceBase;
 import org.opentmf.common.model.Price;
-import org.opentmf.common.model.PriceAlteration;
+import org.opentmf.common.model.PriceBase;
 import org.opentmf.commons.validation.constraints.SafeText;
 
 /**
@@ -33,7 +30,7 @@ import org.opentmf.commons.validation.constraints.SafeText;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = OrderPrice.class
 )
-public class OrderPrice extends CartPriceBase implements IOrderPrice {
+public class OrderPrice extends PriceBase implements IOrderPrice {
 
   /**
    * BillingAccount reference. A BillingAccount is a detailed description of a
@@ -46,12 +43,6 @@ public class OrderPrice extends CartPriceBase implements IOrderPrice {
    * percentage to apply for Price Alteration.
    */
   private @Valid Price price;
-
-  /**
-   * a structure used to describe a price alteration.
-   */
-  @JsonProperty("priceAlteration")
-  private List<@Valid PriceAlteration> priceAlterations;
 
   /**
    * Could be minutes, GB...

@@ -1,6 +1,5 @@
 package org.opentmf.common.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.Size;
 import java.net.URI;
@@ -47,13 +46,7 @@ import org.opentmf.commons.validation.constraints.SafeText;
     defaultImpl = RelatedProductOrderItem.class
 )
 @Required(fields = {"orderItemId", "productOrderId"})
-public class RelatedProductOrderItem extends Entity implements IRelatedProductOrderItem {
-
-  /**
-   * The actual type of the target instance when needed for disambiguation.
-   */
-  @JsonProperty("@referredType")
-  private @SafeText String atReferredType;
+public class RelatedProductOrderItem extends ShoppingCartRef implements IRelatedProductOrderItem {
 
   /**
    * Action of the order item for this product.

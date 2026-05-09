@@ -7,6 +7,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.LogicalResourceRef;
 import org.opentmf.common.model.NamedEntity;
 import org.opentmf.common.model.PartyAccountRef;
 import org.opentmf.common.model.ProductRef;

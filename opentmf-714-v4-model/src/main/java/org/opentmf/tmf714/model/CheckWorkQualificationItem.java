@@ -7,6 +7,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.TerminationError;
+import org.opentmf.common.model.WorkQualificationItemRelationship;
+import org.opentmf.common.model.WorkQualificationRelationship;
 import org.opentmf.commons.validation.constraints.SafeText;
 
 /**

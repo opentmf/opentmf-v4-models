@@ -6,10 +6,10 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.RoleSpecification;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.SafeId;
 import org.opentmf.commons.validation.constraints.SafeText;
-import org.opentmf.partner.model.RoleSpecification;
 
 /**
  * A characteristic of the party privacy profile, whose value(s) would be

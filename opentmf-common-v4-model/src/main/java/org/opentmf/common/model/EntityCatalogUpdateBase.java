@@ -10,12 +10,17 @@ import org.opentmf.commons.validation.constraints.SafeText;
  * Synthesized abstract parent for 9 model classes.
  *
  * <p><br/>
- * <strong>Referring TMF artifacts:</strong>
+ * <strong>Direct descendants:</strong>
  * <ul>
- *   <li>TMF-633: Service Catalog Management API</li>
- *   <li>TMF-662: Entity Catalog Management API</li>
- *   <li>TMF-711: Shipment Management Management API</li>
- *   <li>TMF-908: IoT Agent and Device Management API</li>
+ *   <li>AssociationSpecificationUpdate (662)</li>
+ *   <li>EntityCatalogItemUpdate (662)</li>
+ *   <li>EntityCatalogUpdate (662)</li>
+ *   <li>EntityCategoryUpdate (662)</li>
+ *   <li>IotDeviceSpecificationUpdate (908)</li>
+ *   <li>ServiceCandidateUpdate (633)</li>
+ *   <li>ServiceCatalogUpdate (633)</li>
+ *   <li>ServiceCategoryUpdate (633)</li>
+ *   <li>ShipmentSpecificationUpdate (711)</li>
  * </ul>
  * </p>
  *

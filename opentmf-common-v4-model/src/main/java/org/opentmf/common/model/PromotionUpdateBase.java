@@ -9,10 +9,12 @@ import org.opentmf.commons.validation.constraints.SafeText;
  * Synthesized abstract parent for 4 model classes.
  *
  * <p><br/>
- * <strong>Referring TMF artifacts:</strong>
+ * <strong>Direct descendants:</strong>
  * <ul>
- *   <li>TMF-671: Promotion Management API</li>
- *   <li>TMF-725: Metadata Catalog Management API</li>
+ *   <li>MetadataCatalogItemUpdate (725)</li>
+ *   <li>MetadataCategoryUpdate (725)</li>
+ *   <li>MetadataSpecificationUpdate (725)</li>
+ *   <li>PromotionUpdate (671)</li>
  * </ul>
  * </p>
  *

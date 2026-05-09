@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
+import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import org.opentmf.common.model.AssociationBase;
 import org.opentmf.common.model.AssociationSpecificationRef;
+import org.opentmf.common.model.ConstraintRef;
+import org.opentmf.common.model.NamedEntity;
+import org.opentmf.common.model.TimePeriod;
+import org.opentmf.commons.validation.constraints.SafeText;
 
 /**
  * Association is the class that describes a relationship between two or more
@@ -39,7 +43,7 @@ import org.opentmf.common.model.AssociationSpecificationRef;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = Association.class
 )
-public class Association extends AssociationBase implements IAssociation {
+public class Association extends NamedEntity implements IAssociation {
 
   /**
    * The end point roles of this association.
@@ -51,4 +55,36 @@ public class Association extends AssociationBase implements IAssociation {
    * reference to an AssociationSpecification object.
    */
   private @Valid AssociationSpecificationRef associationSpec;
+
+  /**
+   * Any constraints in this association.
+   */
+  @JsonProperty("constraint")
+  private List<@Valid ConstraintRef> constraints;
+
+  /**
+   * Description of the association.
+   */
+  private @SafeText String description;
+
+  /**
+   * The last modified date of this association object.
+   */
+  private OffsetDateTime lastUpdate;
+
+  /**
+   * Indicates the current lifecycle status.
+   */
+  private @SafeText String lifecycleStatus;
+
+  /**
+   * A period of time, either as a deadline (endDateTime only) a startDateTime
+   * only, or both.
+   */
+  private @Valid TimePeriod validFor;
+
+  /**
+   * Version of this REST resource.
+   */
+  private @SafeText String version;
 }

@@ -2,7 +2,6 @@
 
 Shared **model** types for the **General** group (referenced by many TMF modules). Group membership follows TM Forum’s official Open API portfolio grouping — see [Open APIs](https://www.tmforum.org/open-digital-architecture/open-apis).
 
-
 - TMF-621: Trouble Ticket Management API, version: 4.0.0
 - TMF-649: Performance Thresholding Management API, version: 4.0.0
 - TMF-655: Change Management API, version: 4.0.0
@@ -39,7 +38,7 @@ Usually pulled in transitively. To depend explicitly:
 <dependency>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-general-v4-model</artifactId>
-    <version>4.1.0.10</version>
+    <version>4.1.0.11</version>
 </dependency>
 ```
 

@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.opentmf.common.model.Characteristic;
 import org.opentmf.common.model.Entity;
 import org.opentmf.common.model.Place;
+import org.opentmf.common.model.RelatedEntityRef;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.ResourceRef;
 import org.opentmf.common.model.ServiceProblemRef;

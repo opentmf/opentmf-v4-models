@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.opentmf.common.model.ChannelRef;
 import org.opentmf.common.model.Characteristic;
 import org.opentmf.common.model.Extensible;
+import org.opentmf.common.model.ProcessFlowSpecificationRef;
 import org.opentmf.common.model.RelatedEntity;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.commons.validation.constraints.SafeText;

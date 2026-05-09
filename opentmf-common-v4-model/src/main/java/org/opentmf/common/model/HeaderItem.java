@@ -34,12 +34,7 @@ import org.opentmf.commons.validation.constraints.SafeText;
     defaultImpl = HeaderItem.class
 )
 @Required(fields = {"name", "value"})
-public class HeaderItem extends Extensible implements IHeaderItem {
-
-  /**
-   * The name of the header item, e.g. locale.
-   */
-  private @SafeText String name;
+public class HeaderItem extends RuleUpdate implements IHeaderItem {
 
   /**
    * The value of the header item, e.g. en-us.

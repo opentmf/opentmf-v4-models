@@ -11,6 +11,8 @@ import org.opentmf.common.model.Characteristic;
 import org.opentmf.common.model.EntityRef;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.Rule;
+import org.opentmf.common.model.RuleUpdate;
+import org.opentmf.common.model.TemplateRef;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.SafeText;
 

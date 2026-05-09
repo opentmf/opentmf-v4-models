@@ -7,6 +7,7 @@ import java.net.URI;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.BundledProductOfferingPriceRelationship;
 import org.opentmf.common.model.ConstraintRef;
 import org.opentmf.common.model.Money;
 import org.opentmf.common.model.PlaceRef;

@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.opentmf.common.model.NamedEntity;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.Rule;
+import org.opentmf.common.model.TemplateRef;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.SafeText;
 

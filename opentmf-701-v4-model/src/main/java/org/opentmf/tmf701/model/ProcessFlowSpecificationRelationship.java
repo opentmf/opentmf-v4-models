@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.AssociationSpecRef;
 import org.opentmf.common.model.NamedEntity;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.SafeText;

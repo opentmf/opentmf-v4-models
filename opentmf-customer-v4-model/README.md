@@ -2,7 +2,6 @@
 
 Shared **model** types for the **Customer** group (referenced by many TMF modules). Group membership follows TM Forum’s official Open API portfolio grouping — see [Open APIs](https://www.tmforum.org/open-digital-architecture/open-apis).
 
-
 - TMF-622: Product Ordering Management API, version: 4.0.0
 - TMF-629: Customer Management API, version: 4.0.0
 - TMF-646: Appointment Management API, version: 4.0.0
@@ -22,7 +21,7 @@ Usually pulled in transitively. To depend explicitly:
 <dependency>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-customer-v4-model</artifactId>
-    <version>4.0.0.10</version>
+    <version>4.0.0.11</version>
 </dependency>
 ```
 

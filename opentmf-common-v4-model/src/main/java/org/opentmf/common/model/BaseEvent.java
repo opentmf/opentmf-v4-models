@@ -1,10 +1,10 @@
 package org.opentmf.common.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Size;
 import java.net.URI;
 import lombok.Getter;
 import lombok.Setter;
-import org.opentmf.commons.validation.constraints.SafeText;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * Base event with common attributes.
@@ -21,26 +21,17 @@ import org.opentmf.commons.validation.constraints.SafeText;
  */
 @Getter
 @Setter
-public class BaseEvent extends AddressableEventBase implements IBaseEvent {
+public class BaseEvent extends IotManagementEvent implements IBaseEvent {
 
   /**
-   * When subclassing, this defines the super-class.
+   * Hyperlink reference.
    */
-  @JsonProperty("@baseType")
-  private @SafeText String atBaseType;
+  private URI href;
 
   /**
-   * A URI to a JSON-Schema file that defines additional attributes and
-   * relationships.
+   * unique identifier.
    */
-  @JsonProperty("@schemaLocation")
-  private URI atSchemaLocation;
-
-  /**
-   * When subclassing, this defines the subclass Extensible name.
-   */
-  @JsonProperty("@type")
-  private @SafeText String atType;
-
-  private Object event;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 }

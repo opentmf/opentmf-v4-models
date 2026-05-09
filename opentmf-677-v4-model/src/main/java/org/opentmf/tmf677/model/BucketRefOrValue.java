@@ -10,6 +10,7 @@ import org.opentmf.common.model.NamedEntity;
 import org.opentmf.common.model.PartyAccountRef;
 import org.opentmf.common.model.Quantity;
 import org.opentmf.common.model.RelatedParty;
+import org.opentmf.common.model.ReserveBalanceRef;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.SafeText;
 

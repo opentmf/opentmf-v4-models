@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.GraphRef;
+import org.opentmf.common.model.VertexRef;
 
 /**
  * Represents a task used to query topology in the service

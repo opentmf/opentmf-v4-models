@@ -1,15 +1,11 @@
 package org.opentmf.product.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.Valid;
-import java.time.OffsetDateTime;
-import java.util.List;
+import jakarta.validation.constraints.Size;
+import java.net.URI;
 import lombok.Getter;
 import lombok.Setter;
-import org.opentmf.common.model.Entity;
-import org.opentmf.common.model.RelatedParty;
-import org.opentmf.commons.validation.constraints.SafeText;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * An occurrence of employing a Product, Service, or Resource for its intended
@@ -34,57 +30,17 @@ import org.opentmf.commons.validation.constraints.SafeText;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = Usage.class
 )
-public class Usage extends Entity implements IUsage {
+public class Usage extends UsageUpdate implements IUsage {
 
   /**
-   * Description of usage.
+   * Hyperlink reference.
    */
-  private @SafeText String description;
+  private URI href;
 
   /**
-   * List of: An occurrence of employing a product for its intended purpose with
-   * all rating details.
+   * unique identifier.
    */
-  @JsonProperty("ratedProductUsage")
-  private List<@Valid RatedProductUsage> ratedProductUsages;
-
-  /**
-   * List of: Related Party reference. A related party defines party or party role
-   * linked to a specific entity.
-   */
-  @JsonProperty("relatedParty")
-  private List<@Valid RelatedParty> relatedParties;
-
-  /**
-   * Possible values for the status of the Usage
-   * <br/><p>Recommended values: received, rejected, recycled, guided, rated,
-   * rerated, billed.
-   *
-   * @see org.opentmf.product.model.UsageStatusType
-   */
-  private @SafeText String status;
-
-  /**
-   * List of: Provides the value of a given characteristic.
-   */
-  @JsonProperty("usageCharacteristic")
-  private List<@Valid UsageCharacteristic> usageCharacteristics;
-
-  /**
-   * Date of usage.
-   */
-  private OffsetDateTime usageDate;
-
-  /**
-   * UsageSpecification reference. UsageSpecification is a detailed description of
-   * a usage event that are of interest to the business and can have charges
-   * applied to it. It is comprised of characteristics, which define all
-   * attributes known for a particular type of usage.
-   */
-  private @Valid UsageSpecificationRef usageSpecification;
-
-  /**
-   * Type of usage.
-   */
-  private @SafeText String usageType;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 }

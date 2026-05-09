@@ -1,13 +1,12 @@
 package org.opentmf.general.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
 import java.net.URI;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.commons.validation.constraints.Required;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * REST resource for test environment allocation lifecycle.
@@ -35,24 +34,17 @@ import org.opentmf.commons.validation.constraints.Required;
     defaultImpl = TestEnvironmentAllocationExecution.class
 )
 @Required(fields = {"resourceManagerUrl"})
-public class TestEnvironmentAllocationExecution extends Execution implements ITestEnvironmentAllocationExecution {
+public class TestEnvironmentAllocationExecution extends TestEnvironmentAllocationExecutionCreate implements ITestEnvironmentAllocationExecution {
 
   /**
-   * A reference to a managed test abstract environment resource.
+   * Hyperlink reference.
    */
-  private @Valid AbstractEnvironmentRef abstractEnvironment;
+  private URI href;
 
   /**
-   * List of: Individual mapping from an abstract resource to a list of concrete
-   * resources.
+   * unique identifier.
    */
-  @JsonProperty("concreteResourceMapping")
-  private List<@Valid ConcreteResourceMapping> concreteResourceMappings;
-
-  private URI resourceManagerUrl;
-
-  /**
-   * A reference to a managed test scenario resource.
-   */
-  private @Valid TestScenarioRef testScenario;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 }

@@ -9,9 +9,9 @@ import lombok.Setter;
 import org.opentmf.common.model.Characteristic;
 import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.RelatedPlace;
+import org.opentmf.common.model.ShoppingCartRef;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;
-import org.opentmf.customer.model.ShoppingCartRef;
 
 /**
  * This is a task resource allowing assessment of the risks associated with a

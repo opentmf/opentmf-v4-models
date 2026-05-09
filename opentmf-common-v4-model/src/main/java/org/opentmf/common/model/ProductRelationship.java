@@ -47,7 +47,7 @@ import org.opentmf.commons.validation.constraints.Required;
     defaultImpl = ProductRelationship.class
 )
 @Required(fields = {"product", "relationshipType"})
-public class ProductRelationship extends InteractionRelationship implements IProductRelationship {
+public class ProductRelationship extends WarrantyRelationship implements IProductRelationship {
 
   /**
    * A product to be created defined by value or existing defined by reference.

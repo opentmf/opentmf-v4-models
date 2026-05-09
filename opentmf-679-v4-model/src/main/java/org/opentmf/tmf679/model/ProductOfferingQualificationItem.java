@@ -13,6 +13,7 @@ import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.Note;
 import org.opentmf.common.model.ProductOfferingRef;
 import org.opentmf.common.model.ProductRefOrValue;
+import org.opentmf.common.model.QualificationItemRelationship;
 import org.opentmf.common.model.TerminationError;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeId;

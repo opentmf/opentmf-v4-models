@@ -13,6 +13,7 @@ import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.Note;
 import org.opentmf.common.model.ProductOfferingRef;
 import org.opentmf.common.model.ProductRefOrValue;
+import org.opentmf.common.model.QuoteItemRelationship;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.commons.validation.constraints.SafeId;
 import org.opentmf.commons.validation.constraints.SafeText;

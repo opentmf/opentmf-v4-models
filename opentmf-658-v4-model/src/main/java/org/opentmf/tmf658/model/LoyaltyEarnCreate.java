@@ -9,13 +9,14 @@ import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.LoyaltyProgramMemberRef;
+import org.opentmf.common.model.LoyaltyProgramProductRef;
 import org.opentmf.common.model.Money;
 import org.opentmf.common.model.RelatedParty;
+import org.opentmf.common.model.UsageSpecificationRef;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;
 import org.opentmf.product.model.RatedProductUsage;
 import org.opentmf.product.model.UsageCharacteristic;
-import org.opentmf.product.model.UsageSpecificationRef;
 
 /**
  * A specialised event to process direct loyalty points earnings.

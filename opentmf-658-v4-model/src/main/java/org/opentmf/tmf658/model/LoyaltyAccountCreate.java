@@ -11,6 +11,7 @@ import org.opentmf.common.model.AccountBalance;
 import org.opentmf.common.model.AccountRelationship;
 import org.opentmf.common.model.Contact;
 import org.opentmf.common.model.Extensible;
+import org.opentmf.common.model.LoyaltyProgramProductRef;
 import org.opentmf.common.model.Money;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.TaxExemptionCertificate;

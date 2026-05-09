@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 import java.net.URI;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.UsageSpecificationUpdate;
 import org.opentmf.commons.validation.constraints.SafeId;
 
 /**

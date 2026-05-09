@@ -11,12 +11,18 @@ import org.opentmf.commons.validation.constraints.SafeText;
  * Synthesized abstract parent for 10 model classes.
  *
  * <p><br/>
- * <strong>Referring TMF artifacts:</strong>
+ * <strong>Direct descendants:</strong>
  * <ul>
- *   <li>TMF-634: Resource Catalog Management API</li>
- *   <li>TMF-662: Entity Catalog Management API</li>
- *   <li>TMF-686: Topology API</li>
- *   <li>TMF-703: Entity Inventory Management API</li>
+ *   <li>AssociationCreate (662, 703)</li>
+ *   <li>AssociationUpdate (662, 703)</li>
+ *   <li>EdgeSpecificationCreate (686)</li>
+ *   <li>EdgeSpecificationUpdate (686)</li>
+ *   <li>ResourceCandidateCreate (634)</li>
+ *   <li>ResourceCandidateUpdate (634)</li>
+ *   <li>ResourceCatalogCreate (634)</li>
+ *   <li>ResourceCatalogUpdate (634)</li>
+ *   <li>VertexSpecificationCreate (686)</li>
+ *   <li>VertexSpecificationUpdate (686)</li>
  * </ul>
  * </p>
  *

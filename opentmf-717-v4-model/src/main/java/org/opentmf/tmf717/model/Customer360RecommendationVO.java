@@ -12,10 +12,10 @@ import org.opentmf.common.model.GeographicLocationRef;
 import org.opentmf.common.model.NamedEntity;
 import org.opentmf.common.model.ProductOrderRef;
 import org.opentmf.common.model.RelatedParty;
+import org.opentmf.common.model.ShoppingCartRef;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.SafeText;
 import org.opentmf.customer.model.RecommendationItem;
-import org.opentmf.customer.model.ShoppingCartRef;
 
 /**
  * Recommendation API is used to recommend offering quickly based on the history

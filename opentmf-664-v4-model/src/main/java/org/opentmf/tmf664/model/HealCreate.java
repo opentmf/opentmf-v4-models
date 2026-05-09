@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.Characteristic;
 import org.opentmf.common.model.Extensible;
+import org.opentmf.common.model.HealPolicyRef;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;
 

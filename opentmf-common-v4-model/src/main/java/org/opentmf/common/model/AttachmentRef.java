@@ -67,7 +67,7 @@ import org.opentmf.commons.validation.constraints.Required;
     defaultImpl = AttachmentRef.class
 )
 @Required(fields = {"id"})
-public class AttachmentRef extends AgreementSpecificationRef implements IAttachmentRef {
+public class AttachmentRef extends TemplateRef implements IAttachmentRef {
 
   /**
    * Link to the attachment media/content.

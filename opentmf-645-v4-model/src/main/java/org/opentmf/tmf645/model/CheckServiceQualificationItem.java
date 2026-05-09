@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.ServiceQualificationItemRelationship;
+import org.opentmf.common.model.ServiceQualificationRelationship;
 import org.opentmf.common.model.TerminationError;
 import org.opentmf.commons.validation.constraints.SafeText;
 

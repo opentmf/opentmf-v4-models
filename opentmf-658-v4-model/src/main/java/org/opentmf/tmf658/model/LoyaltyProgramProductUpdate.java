@@ -10,6 +10,9 @@ import lombok.Setter;
 import org.opentmf.common.model.AgreementItemRef;
 import org.opentmf.common.model.BillingAccountRef;
 import org.opentmf.common.model.Characteristic;
+import org.opentmf.common.model.LoyaltyAccountRef;
+import org.opentmf.common.model.LoyaltyProgramProductSpecRef;
+import org.opentmf.common.model.ProductCreateBase;
 import org.opentmf.common.model.ProductRefOrValue;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.RelatedPlaceRefOrValue;
@@ -17,7 +20,6 @@ import org.opentmf.common.model.RelatedProductOrderItem;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;
-import org.opentmf.product.model.ProductCreateBase;
 
 /**
  * An instance of a loyalty program specification, linked to a specified loyalty

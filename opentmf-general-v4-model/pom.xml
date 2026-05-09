@@ -12,7 +12,6 @@
   <name>opentmf-general-v4-model</name>
   <version>4.1.0.11-SNAPSHOT</version>
   <description>
-        
     - TMF-621: Trouble Ticket Management API, version: 4.0.0
     - TMF-649: Performance Thresholding Management API, version: 4.0.0
     - TMF-655: Change Management API, version: 4.0.0
@@ -48,7 +47,7 @@
     <dependency>
       <groupId>org.opentmf.model</groupId>
       <artifactId>opentmf-general-v4-api</artifactId>
-      <version>4.1.0.10</version>
+      <version>4.1.0.11</version>
     </dependency>
     <dependency>
       <groupId>org.opentmf.model</groupId>

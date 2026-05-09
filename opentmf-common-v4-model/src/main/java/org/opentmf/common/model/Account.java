@@ -37,7 +37,7 @@ import org.opentmf.commons.validation.constraints.SafeText;
     defaultImpl = Account.class
 )
 @Required(fields = {"name"})
-public class Account extends NamedEntity implements IAccount {
+public class Account extends BillPresentationMedia implements IAccount {
 
   /**
    * List of: Balances linked to the account.
@@ -71,11 +71,6 @@ public class Account extends NamedEntity implements IAccount {
    * A base / value business entity used to represent money.
    */
   private @Valid Money creditLimit;
-
-  /**
-   * Detailed description of the party account.
-   */
-  private @SafeText String description;
 
   /**
    * Date of last modification of the account.

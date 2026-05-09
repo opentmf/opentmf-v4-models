@@ -7,8 +7,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.AgreementSpecificationRef;
+import org.opentmf.common.model.RoleSpecification;
 import org.opentmf.commons.validation.constraints.Required;
-import org.opentmf.partner.model.RoleSpecification;
 
 /**
  * A PartyPrivacyRoleSpecification represents a specification of a role defined

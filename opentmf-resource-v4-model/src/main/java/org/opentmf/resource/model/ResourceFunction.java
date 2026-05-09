@@ -1,14 +1,12 @@
 package org.opentmf.resource.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.Valid;
-import java.util.List;
+import jakarta.validation.constraints.Size;
+import java.net.URI;
 import lombok.Getter;
 import lombok.Setter;
-import org.opentmf.common.model.Characteristic;
 import org.opentmf.commons.validation.constraints.Required;
-import org.opentmf.commons.validation.constraints.SafeText;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * A ResourceFunction is a behavior to transform inputs of any nature into
@@ -37,50 +35,17 @@ import org.opentmf.commons.validation.constraints.SafeText;
     defaultImpl = ResourceFunction.class
 )
 @Required(fields = {"href", "id"})
-public class ResourceFunction extends LogicalResource implements IResourceFunction {
+public class ResourceFunction extends ResourceFunctionCreate implements IResourceFunction {
 
   /**
-   * List of the kinds of auto-modifications that are applied to a given network
-   * service e.g. what can be scaled.
+   * Hyperlink reference.
    */
-  @JsonProperty("autoModification")
-  private List<@Valid Characteristic> autoModifications;
+  private URI href;
 
   /**
-   * External connection points of the resource function. These are the service
-   * access points (SAP) where inputs and outputs of the function are available.
+   * unique identifier.
    */
-  @JsonProperty("connectionPoint")
-  private List<@Valid ConnectionPointRef> connectionPoints;
-
-  /**
-   * Internal connectivity of contained resource functions.
-   */
-  @JsonProperty("connectivity")
-  private List<@Valid ResourceGraph> connectivities;
-
-  /**
-   * A type of the Resource Function as specified by the provider of the API.
-   */
-  private @SafeText String functionType;
-
-  /**
-   * Priority of the Resource Function. Decides what happens in a contention
-   * scenario.
-   */
-  private Integer priority;
-
-  /**
-   * Role of the Resource Function. Used when Resource Function is a component of
-   * a composite Resource Function and the exact role of the service within the
-   * composite is not clear from descriptor/location.
-   */
-  private @SafeText String role;
-
-  /**
-   * This is a reference to a schedule. Allows consumers to schedule modifications
-   * to the service at certain times.
-   */
-  @JsonProperty("schedule")
-  private List<@Valid ScheduleRef> schedules;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 }

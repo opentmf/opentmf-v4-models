@@ -17,6 +17,8 @@ import org.opentmf.common.model.ProductPrice;
 import org.opentmf.common.model.Quantity;
 import org.opentmf.common.model.RelatedPartyWithContactInfo;
 import org.opentmf.common.model.RelatedPlaceRefOrValue;
+import org.opentmf.common.model.RelatedShipment;
+import org.opentmf.common.model.ShipmentTrackingRef;
 import org.opentmf.commons.validation.constraints.SafeText;
 
 /**

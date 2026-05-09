@@ -1,14 +1,11 @@
 package org.opentmf.general.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.Valid;
-import java.util.List;
+import jakarta.validation.constraints.Size;
+import java.net.URI;
 import lombok.Getter;
 import lombok.Setter;
-import org.opentmf.common.model.NamedEntity;
-import org.opentmf.common.model.PerformanceMeasurement;
-import org.opentmf.commons.validation.constraints.SafeText;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * ThresholdRule A base entity for concrete definition of thresholds.This
@@ -32,49 +29,17 @@ import org.opentmf.commons.validation.constraints.SafeText;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = ThresholdRule.class
 )
-public class ThresholdRule extends NamedEntity implements IThresholdRule {
+public class ThresholdRule extends ThresholdRuleUpdate implements IThresholdRule {
 
   /**
-   * A threshold crossing or a threshold ceased to be crossing results in a
-   * Performance consequence.
+   * Hyperlink reference.
    */
-  @JsonProperty("consequence")
-  private List<@Valid Consequence> consequences;
+  private URI href;
 
   /**
-   * A counter/KPI to be used by the threshold rule.
+   * unique identifier.
    */
-  private @Valid PerformanceMeasurement measurement;
-
-  /**
-   * A specific description of the threshold crossing (intended to be populated e
-   * under the alarm under CrossedThreshold structure).
-   */
-  private @SafeText String perfAlarmSpecThresholdCrossingDescription;
-
-  /**
-   * The specification of how to populate the alarm fields when generating a
-   * threshold crossing alarm.
-   */
-  private @Valid PerformanceAlarmSpecification performanceAlarmSpecification;
-
-  /**
-   * A concrete threshold may have two possible values: \"Raise\" - a threshold
-   * was crossed or \"Clear\" - a threshold ceased crossing.
-   */
-  private @SafeText String thresholdRuleCondition;
-
-  /**
-   * A word, term, or phrase by which a Performance threshold rule is known and
-   * distinguished from other threshold rules.
-   */
-  private @SafeText String thresholdRuleName;
-
-  /**
-   * A threshold can be generated in different severity levels. A crossing for
-   * each level may require a different condition and possibly trigger a different
-   * consequence. The supported severity levels are equivalent to the possible
-   * severity level of alarms.
-   */
-  private @SafeText String thresholdRuleSeverity;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 }

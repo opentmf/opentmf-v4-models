@@ -19,6 +19,7 @@ import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.RelatedPlaceRefOrValue;
 import org.opentmf.common.model.SLARef;
 import org.opentmf.common.model.ServiceProblemRef;
+import org.opentmf.common.model.TroubleTicketRef;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;
 import org.opentmf.general.model.EntitySpecificationRef;

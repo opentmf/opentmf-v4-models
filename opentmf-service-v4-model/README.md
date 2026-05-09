@@ -2,7 +2,6 @@
 
 Shared **model** types for the **Service** group (referenced by many TMF modules). Group membership follows TM Forum’s official Open API portfolio grouping — see [Open APIs](https://www.tmforum.org/open-digital-architecture/open-apis).
 
-
 - TMF-633: Service Catalog Management API, version: 4.0.0
 - TMF-638: Service Inventory Management API, version: 4.0.0
 - TMF-640: Service Activation Management API, version: 4.0.0
@@ -18,7 +17,7 @@ Usually pulled in transitively. To depend explicitly:
 <dependency>
     <groupId>org.opentmf.model</groupId>
     <artifactId>opentmf-service-v4-model</artifactId>
-    <version>4.2.0.10</version>
+    <version>4.2.0.11</version>
 </dependency>
 ```
 

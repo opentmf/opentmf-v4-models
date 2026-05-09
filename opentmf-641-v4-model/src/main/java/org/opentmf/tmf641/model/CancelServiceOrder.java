@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.CancelOrder;
+import org.opentmf.common.model.ServiceOrderRef;
 import org.opentmf.commons.validation.constraints.SafeText;
 
 /**

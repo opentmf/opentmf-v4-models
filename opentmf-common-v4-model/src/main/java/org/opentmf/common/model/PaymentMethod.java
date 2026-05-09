@@ -42,7 +42,7 @@ import org.opentmf.commons.validation.constraints.SafeText;
     defaultImpl = PaymentMethod.class
 )
 @Required(fields = {"atType", "name"})
-public class PaymentMethod extends NamedEntity implements IPaymentMethod {
+public class PaymentMethod extends Entity implements IPaymentMethod {
 
   /**
    * Reference to the accounts that are linked to the payment method. May be a
@@ -68,6 +68,11 @@ public class PaymentMethod extends NamedEntity implements IPaymentMethod {
    * for the payment methods of a specific customer or account.
    */
   private Boolean isPreferred;
+
+  /**
+   * Friendly name assigned to the payment method.
+   */
+  private @SafeText String name;
 
   /**
    * Related Party reference. A related party defines party or party role linked

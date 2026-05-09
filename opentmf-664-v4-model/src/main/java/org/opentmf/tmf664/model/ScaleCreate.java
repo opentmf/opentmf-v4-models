@@ -8,10 +8,10 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.Extensible;
+import org.opentmf.common.model.ScheduleRef;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeId;
 import org.opentmf.commons.validation.constraints.SafeText;
-import org.opentmf.resource.model.ScheduleRef;
 
 /**
  * Task Resource used to request scaling of a Resource Function

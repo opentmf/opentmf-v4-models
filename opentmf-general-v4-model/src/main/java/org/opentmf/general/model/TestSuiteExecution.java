@@ -1,12 +1,12 @@
 package org.opentmf.general.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
+import java.net.URI;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.commons.validation.constraints.Required;
-import org.opentmf.commons.validation.constraints.SafeText;
+import org.opentmf.commons.validation.constraints.SafeId;
 
 /**
  * REST resource for the test suite execution lifecycle.
@@ -34,21 +34,17 @@ import org.opentmf.commons.validation.constraints.SafeText;
     defaultImpl = TestSuiteExecution.class
 )
 @Required(fields = {"testEnvironmentProvisioningExecution"})
-public class TestSuiteExecution extends TestExecution implements ITestSuiteExecution {
+public class TestSuiteExecution extends TestSuiteExecutionCreate implements ITestSuiteExecution {
 
   /**
-   * The actual type of the target instance when needed for disambiguation.
+   * Hyperlink reference.
    */
-  @JsonProperty("@referredType")
-  private @SafeText String atReferredType;
+  private URI href;
 
   /**
-   * Name of the related entity.
+   * unique identifier.
    */
-  private @SafeText String name;
-
-  /**
-   * A reference to a managed test suite resource.
-   */
-  private @Valid TestSuiteRef testSuite;
+  @SafeId
+  @Size(max = 100)
+  private String id;
 }

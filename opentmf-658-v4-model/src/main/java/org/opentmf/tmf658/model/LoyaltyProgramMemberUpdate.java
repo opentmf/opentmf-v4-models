@@ -10,6 +10,7 @@ import org.opentmf.common.model.AgreementRef;
 import org.opentmf.common.model.Characteristic;
 import org.opentmf.common.model.ContactMedium;
 import org.opentmf.common.model.CreditProfile;
+import org.opentmf.common.model.LoyaltyProgramProductRef;
 import org.opentmf.common.model.PaymentMethodRef;
 import org.opentmf.common.model.RoleTypeRef;
 import org.opentmf.common.model.TimePeriod;

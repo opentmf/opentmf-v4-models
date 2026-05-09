@@ -3,7 +3,7 @@ package org.opentmf.general.model;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.Setter;
-import org.opentmf.common.model.Extensible;
+import org.opentmf.common.model.RuleUpdate;
 import org.opentmf.commons.validation.constraints.SafeText;
 
 /**
@@ -28,7 +28,7 @@ import org.opentmf.commons.validation.constraints.SafeText;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = TopicCreate.class
 )
-public class TopicCreate extends Extensible implements ITopicCreate {
+public class TopicCreate extends RuleUpdate implements ITopicCreate {
 
   /**
    * is the filter that will be applied on the content of the Event.
@@ -39,10 +39,4 @@ public class TopicCreate extends Extensible implements ITopicCreate {
    * is the filter that will be applied on the Event header properties.
    */
   private @SafeText String headerQuery;
-
-  /**
-   * use to identify grouping of events, per domain, per event types, per access
-   * control-right and so on.
-   */
-  private @SafeText String name;
 }

@@ -7,7 +7,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.Characteristic;
-import org.opentmf.general.model.EdgeCreateBase;
+import org.opentmf.common.model.EdgeRef;
+import org.opentmf.general.model.EdgeBase;
 
 /**
  * A Vertex is connected by directed Edges to other vertices in a Graph.
@@ -30,17 +31,13 @@ import org.opentmf.general.model.EdgeCreateBase;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = VertexUpdate.class
 )
-public class VertexUpdate extends EdgeCreateBase implements IVertexUpdate {
+public class VertexUpdate extends EdgeBase implements IVertexUpdate {
 
   /**
    * Directed Edges which this Vertex is connected by. (optional, read only).
    */
   @JsonProperty("edge")
   private List<@Valid EdgeRef> edges;
-
-  private @Valid GraphRef graph;
-
-  private @Valid GraphRef subGraph;
 
   /**
    * List of: Describes a given characteristic of an object or entity through a

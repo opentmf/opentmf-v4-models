@@ -19,7 +19,6 @@ import org.opentmf.commons.validation.constraints.SafeText;
  * <strong>Referring TMF artifacts:</strong>
  * <ul>
  *   <li>TMF-666: Account Management API</li>
- *   <li>TMF-common: common</li>
  * </ul>
  * </p>
  *

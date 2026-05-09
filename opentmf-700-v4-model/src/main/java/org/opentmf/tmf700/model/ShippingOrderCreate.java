@@ -15,6 +15,7 @@ import org.opentmf.common.model.ProductOrderRef;
 import org.opentmf.common.model.ProductPrice;
 import org.opentmf.common.model.RelatedPartyWithContactInfo;
 import org.opentmf.common.model.RelatedPlaceRefOrValue;
+import org.opentmf.common.model.RelatedShippingOrder;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeText;
 import org.opentmf.partner.model.ShippingInstruction;

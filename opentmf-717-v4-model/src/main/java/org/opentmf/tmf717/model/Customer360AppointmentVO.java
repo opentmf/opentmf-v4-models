@@ -6,12 +6,12 @@ import jakarta.validation.constraints.Size;
 import java.time.OffsetDateTime;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.CalendarEventRef;
 import org.opentmf.common.model.Entity;
 import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.Required;
 import org.opentmf.commons.validation.constraints.SafeId;
 import org.opentmf.commons.validation.constraints.SafeText;
-import org.opentmf.customer.model.CalendarEventRef;
 
 /**
  * An Appointment is an arrangement to do something or meet someone at a

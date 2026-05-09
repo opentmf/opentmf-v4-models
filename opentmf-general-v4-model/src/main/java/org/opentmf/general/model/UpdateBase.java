@@ -13,13 +13,19 @@ import org.opentmf.commons.validation.constraints.SafeText;
  * Synthesized abstract parent for 11 model classes.
  *
  * <p><br/>
- * <strong>Referring TMF artifacts:</strong>
+ * <strong>Direct descendants:</strong>
  * <ul>
- *   <li>TMF-704: Test Case Management API</li>
- *   <li>TMF-705: Test Environment Management API</li>
- *   <li>TMF-706: Test Data Management API</li>
- *   <li>TMF-709: Test Scenario Management API</li>
- *   <li>TMF-710: General Test Artifact Management API</li>
+ *   <li>AbstractEnvironmentUpdate (705)</li>
+ *   <li>ConcreteEnvironmentMetaModelUpdate (705)</li>
+ *   <li>GeneralTestArtifactUpdate (710)</li>
+ *   <li>NonFunctionalTestModelUpdate (704)</li>
+ *   <li>ProvisioningArtifactUpdate (705)</li>
+ *   <li>TestCaseUpdate (704)</li>
+ *   <li>TestDataInstanceUpdate (706)</li>
+ *   <li>TestDataSchemaUpdate (706)</li>
+ *   <li>TestResourceAPIUpdate (705)</li>
+ *   <li>TestScenarioUpdate (709)</li>
+ *   <li>TestSuiteUpdate (704)</li>
  * </ul>
  * </p>
  *

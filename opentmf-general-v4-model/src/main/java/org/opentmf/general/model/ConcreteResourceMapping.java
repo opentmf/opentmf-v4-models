@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.opentmf.common.model.ConcreteResource;
 import org.opentmf.common.model.Entity;
 import org.opentmf.commons.validation.constraints.SafeText;
 

@@ -10,6 +10,7 @@ import org.opentmf.common.model.ChannelRef;
 import org.opentmf.common.model.CharacteristicSpecification;
 import org.opentmf.common.model.IntentUpdateBase;
 import org.opentmf.common.model.RelatedParty;
+import org.opentmf.common.model.TaskFlowSpecificationRef;
 
 /**
  * ProcessFlowSpecification is a class that allow to describe a processFlow

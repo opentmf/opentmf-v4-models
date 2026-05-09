@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.opentmf.common.model.Extensible;
 import org.opentmf.common.model.LoyaltyProgramMemberRef;
+import org.opentmf.common.model.LoyaltyProgramPartnerRef;
+import org.opentmf.common.model.LoyaltyProgramProductRef;
 import org.opentmf.commons.validation.constraints.SafeId;
 import org.opentmf.commons.validation.constraints.SafeText;
 

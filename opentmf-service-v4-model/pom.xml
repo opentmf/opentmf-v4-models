@@ -12,7 +12,6 @@
   <name>opentmf-service-v4-model</name>
   <version>4.2.0.11-SNAPSHOT</version>
   <description>
-        
     - TMF-633: Service Catalog Management API, version: 4.0.0
     - TMF-638: Service Inventory Management API, version: 4.0.0
     - TMF-640: Service Activation Management API, version: 4.0.0
@@ -27,7 +26,7 @@
     <dependency>
       <groupId>org.opentmf.model</groupId>
       <artifactId>opentmf-service-v4-api</artifactId>
-      <version>4.2.0.10</version>
+      <version>4.2.0.11</version>
     </dependency>
     <dependency>
       <groupId>org.opentmf.model</groupId>

@@ -3,12 +3,15 @@ package org.opentmf.tmf620.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
+import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import org.opentmf.common.model.AssociationBase;
+import org.opentmf.common.model.ConstraintRef;
 import org.opentmf.common.model.Quantity;
+import org.opentmf.common.model.TimePeriod;
 import org.opentmf.commons.validation.constraints.SafeText;
+import org.opentmf.product.model.BundledProductSpecification;
 
 /**
  * This is representing a product offering price (charge) based on both the
@@ -33,7 +36,24 @@ import org.opentmf.commons.validation.constraints.SafeText;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = POPCharge.class
 )
-public class POPCharge extends AssociationBase implements IPOPCharge {
+public class POPCharge extends BundledProductSpecification implements IPOPCharge {
+
+  /**
+   * The Constraint resource represents a policy/rule applied to
+   * ProductOfferingPrice.
+   */
+  @JsonProperty("constraint")
+  private List<@Valid ConstraintRef> constraints;
+
+  /**
+   * Description of the productOfferingPrice.
+   */
+  private @SafeText String description;
+
+  /**
+   * the last update time of this ProductOfferingPrice.
+   */
+  private OffsetDateTime lastUpdate;
 
   /**
    * Provides all amounts (tax included, duty free, tax rate), used currency and
@@ -70,4 +90,15 @@ public class POPCharge extends AssociationBase implements IPOPCharge {
    * An amount in a given unit.
    */
   private @Valid Quantity unitOfMeasure;
+
+  /**
+   * A period of time, either as a deadline (endDateTime only) a startDateTime
+   * only, or both.
+   */
+  private @Valid TimePeriod validFor;
+
+  /**
+   * ProductOffering version.
+   */
+  private @SafeText String version;
 }

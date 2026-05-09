@@ -10,15 +10,16 @@ import lombok.Setter;
 import org.opentmf.common.model.Characteristic;
 import org.opentmf.common.model.EntityRef;
 import org.opentmf.common.model.Feature;
+import org.opentmf.common.model.Note;
 import org.opentmf.common.model.RelatedEntityRefOrValue;
 import org.opentmf.common.model.RelatedParty;
 import org.opentmf.common.model.RelatedPlaceRefOrValue;
 import org.opentmf.common.model.RelatedServiceOrderItem;
 import org.opentmf.common.model.ResourceRef;
+import org.opentmf.common.model.RuleUpdate;
 import org.opentmf.common.model.ServiceRefOrValue;
 import org.opentmf.common.model.ServiceRelationship;
 import org.opentmf.common.model.ServiceSpecificationRef;
-import org.opentmf.common.model.WarrantyBase;
 import org.opentmf.commons.validation.constraints.SafeText;
 
 /**
@@ -42,7 +43,7 @@ import org.opentmf.commons.validation.constraints.SafeText;
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
     defaultImpl = AiModelUpdate.class
 )
-public class AiModelUpdate extends WarrantyBase implements IAiModelUpdate {
+public class AiModelUpdate extends RuleUpdate implements IAiModelUpdate {
 
   /**
    * AiModelSpecification is a class that offers characteristics to describe a
@@ -57,6 +58,11 @@ public class AiModelUpdate extends WarrantyBase implements IAiModelUpdate {
    * Is it a customer facing or resource facing service.
    */
   private @SafeText String category;
+
+  /**
+   * Free-text description of the service.
+   */
+  private @SafeText String description;
 
   /**
    * Date when the service ends.
@@ -77,6 +83,12 @@ public class AiModelUpdate extends WarrantyBase implements IAiModelUpdate {
   private Boolean hasStarted;
 
   /**
+   * If true, the service is a ServiceBundle which regroup a service hierarchy. If
+   * false, the service is a 'atomic' service (hierarchy leaf).
+   */
+  private Boolean isBundle;
+
+  /**
    * If FALSE and hasStarted is FALSE, this particular Service has NOT been
    * enabled for use - if FALSE and hasStarted is TRUE then the service has
    * failed.
@@ -87,6 +99,12 @@ public class AiModelUpdate extends WarrantyBase implements IAiModelUpdate {
    * If TRUE, this Service can be changed without affecting any other services.
    */
   private Boolean isStateful;
+
+  /**
+   * A list of notes made on this service.
+   */
+  @JsonProperty("note")
+  private List<@Valid Note> notes;
 
   /**
    * A list of places (Place [*]). Used to define a place useful for the service
@@ -157,6 +175,15 @@ public class AiModelUpdate extends WarrantyBase implements IAiModelUpdate {
    * Service; 4: Manually by a Customer of the Provider; 5: Any of the above.
    */
   private @SafeText String startMode;
+
+  /**
+   * Valid values for the lifecycle state of the service
+   * <br/><p>Recommended values: feasibilityChecked, designed, reserved, inactive,
+   * active, terminated.
+   *
+   * @see org.opentmf.common.model.ServiceStateType
+   */
+  private @SafeText String state;
 
   /**
    * A list of supporting resources (SupportingResource [*]).Note: only Service of
